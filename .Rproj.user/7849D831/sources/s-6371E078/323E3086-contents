@@ -1,0 +1,173 @@
+#insulin secretion
+library(readxl)
+library(FactoMineR)
+library(factoextra)
+library(corrplot)
+library(dplyr)
+library(ComplexHeatmap)
+library(viridis)
+###############################################################################################
+# FAMD; Factor analysis of mixed variables
+# ALL
+###############################################################################################
+#Read input data files
+#dominant taxa
+dom <- read.csv("reports\\dominance.csv")
+dom <- dom %>% dplyr::select(sample_name, dominant_species, dmn)
+colnames(dom) <- c("sequencing", "dominant_species", "dmn")
+#macronutrient data
+mac <- readxl::read_xlsx("data\\macronutrients.xlsx")
+mac<- mac %>% dplyr::select(-2:-6) %>% janitor::clean_names()
+#scfa data
+scfa <- readxl::read_xlsx("data\\corr_scfa_insulin_18072023.csv.xlsx") %>% slice(1:24)
+#join tables
+scfa3 <- scfa %>% 
+  left_join(dom,by='sequencing') %>% 
+  left_join(mac,by='sequencing') #%>% 
+ # select(-sequencing, -experiement, -replicate) %>%
+  #slice(1:24) #check can definitely eliminate B0 rep 2
+
+scfa3$concentration[scfa3$concentration==1]<-"one_percent"
+scfa3$concentration[scfa3$concentration==2]<-"five_percent"
+scfa3$concentration[scfa3$concentration==0]<-"control"
+rownames(scfa3)<-scfa3$sample
+scfa3 <- scfa3 %>% dplyr::select(-sample)
+col_names <- c("dominant_species","condition","concentration")
+scfa3[col_names] <- lapply(scfa3[col_names] , factor)
+scfa3[is.na(scfa3)] <- 0.01 #remove any NA
+#fix lactose column entries
+scfa3$lactose_percent[scfa3$lactose_percent=="-"] <- 0.01
+scfa3$lactose_percent <-gsub("<","",scfa3$lactose_percent)
+scfa3$lactose_percent <- as.numeric(scfa3$lactose_percent)
+scfa3[scfa3==0] <- 0.01
+scfa3 <- scfa3 %>% filter(concentration=="five_percent") %>% 
+  dplyr::select(-concentration, -experiment, -replicate)
+#scale within columns for insulin
+scale_this <- function(x){
+  (x - mean(x, na.rm=TRUE)) / sd(x, na.rm=TRUE)
+}
+insulin <- scfa3 %>% dplyr::select(9:11)
+names(insulin) <- c("insulin1","insulin2", "insulin3")
+#raw values
+insulin_mean <- insulin %>% 
+  rowwise() %>%
+  mutate(Mean=mean(c(insulin1, insulin2, insulin3)),
+         SD=sd(c(insulin1, insulin2, insulin3)))
+insulin_mean_mat <- as.matrix(insulin_mean)
+rownames(insulin_mean_mat) <- scfa3$condition
+#raw minus 2
+insulin_mat<-insulin_mat[,-2]
+insulin_mean2 <- insulin %>% 
+  rowwise() %>%
+  mutate(Mean=mean(c(insulin1, insulin2, insulin3)),
+         SD=sd(c(insulin1, insulin2, insulin3)))
+insulin_mean_mat <- as.matrix(insulin_mean)
+rownames(insulin_mean_mat) <- scfa3$condition
+
+
+names(insulin) <- c("insulin1","insulin2", "insulin3")
+rownames(insulin) <- rownames(scfa3)
+insulin$insulin1 <- scale_this(insulin$insulin1)
+insulin$insulin2 <- scale_this(insulin$insulin2)
+insulin$insulin3 <- scale_this(insulin$insulin3)
+
+insulin_mat <- as.matrix(insulin)
+rownames(insulin_mat) <- scfa3$condition
+
+#drop second replicate
+#insulin_mat<-insulin_mat[,-2]
+#drop insulin1-3
+insulin_mean_mat<-insulin_mean_mat[,-1:-3]
+
+Heatmap(insulin_mean_mat,
+        col=viridis(3),
+        show_row_names = T,
+        cluster_columns = F,
+        row_names_gp = gpar(fontsize = 24, fontface="bold"),
+        column_names_gp = gpar(fontsize = 24, fontface="bold"))
+#remove concentration 1%
+res.famd <- FAMD(scfa3, graph = FALSE) #compute the FAMD
+
+################
+#  plots
+################
+
+#eigenvalues - proportions of variances
+eig.val <- get_eigenvalue(res.famd)
+#head(eig.val)
+eig.val
+fviz_screeplot(res.famd)
+#extract results for variables
+var <- get_famd_var(res.famd)
+# Plot of variables (uncolored)
+#fviz_famd_var(res.famd, repel = TRUE)
+# Plot of quantitative variables, by contribution
+fviz_famd_var(res.famd, col.var = "contrib", 
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+              repel = TRUE)
+
+# highligting the quality of representation of the continuous variables
+# on the factor map. If a variable is well represented by two dimensions,
+# the sum of the cos2 is closed to one
+fviz_famd_var(res.famd, col.var = "cos2",
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+              repel = TRUE)
+
+fviz_famd_var(res.famd, "quali.var", col.var = "contrib", 
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"))
+
+fviz_famd_ind(res.famd, col.ind = "cos2",
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+              #geom="point",
+              repel = TRUE)
+fviz_famd_ind(res.famd,
+              geom="point",
+              habillage = "condition", # color by groups 
+              # palette = c("#00AFBB", "#E7B800", "#FC4E07"),
+              addEllipses = TRUE)
+#PLOT - EACH IND DATAPOINT PLUS CENTRE OF EACH FACTOR - NO LABELS - COLOR BY SPECIES
+fviz_famd_ind(res.famd,
+              #geom="point",
+              habillage = "dominant_species", # color by groups 
+              #palette = c("#00AFBB", "#E7B800", "#FC4E07", "pink"),
+              addEllipses = TRUE,
+              repel = TRUE)
+fviz_contrib(res.famd, "var", axes = 2) #graph individuals
+
+#circleplots
+fviz_famd_var(res.famd, "quanti.var", col.var = "contrib", 
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+              repel = TRUE)
+fviz_famd_var(res.famd, "quanti.var", col.var = "cos2", 
+              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+              repel = TRUE)
+
+#############################################################
+#CORRPLOT
+#############################################################
+library(ggcorrplot)
+library(dplyr)
+
+sapply(lapply(scfa3, unique), length)
+scfa3 <- scfa3 %>% select(-experiment)
+#check number of uniques variables for each factor
+model.matrix(~0+., data=scfa3) %>% #get p values
+  cor_pmat() -> p.mat
+
+model.matrix(~0+., data=scfa3) %>% 
+  cor(use="pairwise.complete.obs") %>% 
+  ggcorrplot(lab=TRUE, 
+             lab_size=2, 
+             #method="circle", 
+             p.mat = p.mat, 
+             type = "lower",
+             hc.order = TRUE,
+             #insig="blank",
+             colors = c("#6D9EC1", "white", "#E46726"),
+             tl.cex = 8) ->corr
+corr
+pdf("D:/R_projects/metabolic/figures/corr.pdf", height = 12, width = 22)
+corr
+dev.off()
+
+#subset just few factors

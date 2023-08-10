@@ -1,0 +1,217 @@
+2023-08-08 01:48:01 INFO::Writing function arguments to log file
+2023-08-08 01:48:01 DEBUG::Function arguments
+2023-08-08 01:48:01 DEBUG::Output folder: maaslin2_collapsed/t24/strep_exposure_Y
+2023-08-08 01:48:01 DEBUG::Min Abundance: 0.000000
+2023-08-08 01:48:01 DEBUG::Min Prevalence: 0.100000
+2023-08-08 01:48:01 DEBUG::Normalization: TSS
+2023-08-08 01:48:01 DEBUG::Transform: LOG
+2023-08-08 01:48:01 DEBUG::Analysis method: LM
+2023-08-08 01:48:01 DEBUG::Max significance: 0.250000
+2023-08-08 01:48:01 DEBUG::Random effects:
+2023-08-08 01:48:01 DEBUG::Fixed effects: strep_exposure
+2023-08-08 01:48:01 DEBUG::Correction method: BH
+2023-08-08 01:48:01 DEBUG::Standardize: TRUE
+2023-08-08 01:48:01 DEBUG::Cores: 1
+2023-08-08 01:48:01 INFO::Verifying options selected are valid
+2023-08-08 01:48:01 INFO::Determining format of input files
+2023-08-08 01:48:01 INFO::Input format is data samples as columns and metadata samples as rows
+2023-08-08 01:48:01 DEBUG::Transformed data so samples are rows
+2023-08-08 01:48:01 DEBUG::A total of 12 samples were found in both the data and metadata
+2023-08-08 01:48:01 DEBUG::Reordering data/metadata to use same sample ordering
+2023-08-08 01:48:01 INFO::Formula for fixed effects: expr ~  strep_exposure
+2023-08-08 01:48:01 INFO::Filter data based on min abundance and min prevalence
+2023-08-08 01:48:01 INFO::Total samples in data: 12
+2023-08-08 01:48:01 INFO::Min samples required with min abundance for a feature not to be filtered: 1.200000
+2023-08-08 01:48:01 INFO::Total filtered features: 70
+2023-08-08 01:48:01 INFO::Filtered feature names from abundance and prevalence filtering: GGB3293_SGB4348, Clostridium_sp_AF34_10BH, Clostridium_sp_AM49_4BH, Clostridia_unclassified_SGB14844, Megasphaera_sp_AM44_1BH, Bacteroidaceae_bacterium, Clostridium_phoceensis, Dorea_sp_AF24_7LB, Clostridiales_bacterium_Choco116, GGB3256_SGB4303, Roseburia_inulinivorans, Desulfovibrio_piger, Evtepia_gabavorous, GGB51441_SGB71759, GGB2982_SGB3964, Roseburia_intestinalis, GGB3486_SGB4658, Flavonifractor_plautii, GGB4750_SGB6579, GGB9730_SGB15291, Eubacteriaceae_bacterium, GGB3277_SGB4327, Bilophila_SGB15450, Prevotella_stercorea, Prevotella_hominis, Clostridia_unclassified_SGB20884, Firmicutes_bacterium_AF16_15, Collinsella_tanakaei, Sutterella_SGB9281, GGB9694_SGB15203, Streptococcus_sp_A12, Lactobacillus_vaginalis, Blautia_schinkii, Eisenbergiella_massiliensis, Lachnospira_sp_NSJ_43, Anaeromassilibacillus_sp_An250, GGB1538_SGB2121, GGB4456_SGB6141, Erysipelatoclostridium_ramosum, Faecalicoccus_pleomorphus, Pseudoflavonifractor_sp_Marseille_P3106, Intestinimonas_butyriciproducens, Eubacterium_callanderi, Enterococcus_faecalis, Fusobacterium_varium, Enterocloster_citroniae, Klebsiella_pneumoniae, Duodenibacillus_massiliensis, Hungatella_hathewayi, Intestinibacillus_massiliensis, Butyricimonas_faecihominis, Allisonella_histaminiformans, Enorma_massiliensis, Senegalimassilia_faecalis, Slackia_isoflavoniconvertens, Traorella_massiliensis, Coprobacillus_cateniformis, Alistipes_dispar, Amedibacterium_intestinale, Candidatus_Stoquefichus_sp_SB1, Clostridium_sp_NSJ_42, GGB3614_SGB4886, GGB9627_SGB15081, Bacteroides_pectinophilus, GGB9632_SGB15089, Prevotella_copri_clade_D, GGB1235_SGB1614, GGB9615_SGB15053, Lachnospiraceae_bacterium_BX3, Anaerotignum_faecicola
+2023-08-08 01:48:01 INFO::Total filtered features with variance filtering: 0
+2023-08-08 01:48:01 INFO::Filtered feature names from variance filtering:
+2023-08-08 01:48:01 INFO::Running selected normalization method: TSS
+2023-08-08 01:48:01 INFO::Applying z-score to standardize continuous metadata
+2023-08-08 01:48:01 INFO::Running selected transform method: LOG
+2023-08-08 01:48:01 INFO::Running selected analysis method: LM
+2023-08-08 01:48:01 INFO::Fitting model to feature number 1, Bacteroides_uniformis
+2023-08-08 01:48:01 INFO::Fitting model to feature number 2, Phocaeicola_vulgatus
+2023-08-08 01:48:01 INFO::Fitting model to feature number 3, Faecalibacterium_prausnitzii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 4, Blautia_wexlerae
+2023-08-08 01:48:02 INFO::Fitting model to feature number 5, Eubacterium_rectale
+2023-08-08 01:48:02 INFO::Fitting model to feature number 6, Bifidobacterium_adolescentis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 7, Ruminococcus_bromii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 8, Blautia_faecis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 9, Roseburia_faecis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 10, Coprococcus_eutactus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 11, Anaerobutyricum_hallii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 12, Collinsella_aerofaciens
+2023-08-08 01:48:02 INFO::Fitting model to feature number 13, Bifidobacterium_longum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 14, Ruminococcaceae_unclassified_SGB4425
+2023-08-08 01:48:02 INFO::Fitting model to feature number 15, Blautia_massiliensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 16, Candidatus_Cibiobacter_qucibialis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 17, Ruminococcus_sp_JE7A12
+2023-08-08 01:48:02 INFO::Fitting model to feature number 18, Dorea_longicatena
+2023-08-08 01:48:02 INFO::Fitting model to feature number 19, Dialister_hominis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 20, Streptococcus_salivarius
+2023-08-08 01:48:02 INFO::Fitting model to feature number 21, Akkermansia_muciniphila
+2023-08-08 01:48:02 INFO::Fitting model to feature number 22, Alistipes_putredinis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 23, Ruminococcus_bicirculans
+2023-08-08 01:48:02 INFO::Fitting model to feature number 24, Lachnospiraceae_bacterium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 25, Catenibacterium_sp_AM22_15
+2023-08-08 01:48:02 INFO::Fitting model to feature number 26, Bifidobacterium_bifidum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 27, Fusicatenibacter_saccharivorans
+2023-08-08 01:48:02 INFO::Fitting model to feature number 28, Prevotella_copri_clade_A
+2023-08-08 01:48:02 INFO::Fitting model to feature number 29, Ruminococcus_torques
+2023-08-08 01:48:02 INFO::Fitting model to feature number 30, Clostridium_sp_AF15_49
+2023-08-08 01:48:02 INFO::Fitting model to feature number 31, Parabacteroides_distasonis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 32, Blautia_obeum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 33, Clostridia_bacterium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 34, Phocaeicola_dorei
+2023-08-08 01:48:02 INFO::Fitting model to feature number 35, Faecalibacterium_SGB15346
+2023-08-08 01:48:02 INFO::Fitting model to feature number 36, Dialister_succinatiphilus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 37, Megamonas_funiformis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 38, Megasphaera_sp_BL7
+2023-08-08 01:48:02 INFO::Fitting model to feature number 39, Coprococcus_comes
+2023-08-08 01:48:02 INFO::Fitting model to feature number 40, Anaerostipes_hadrus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 41, Gemmiger_formicilis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 42, Bacteroides_eggerthii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 43, Bacteroides_ovatus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 44, Romboutsia_timonensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 45, Prevotella_copri_clade_C
+2023-08-08 01:48:02 INFO::Fitting model to feature number 46, Bifidobacterium_pseudocatenulatum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 47, Streptococcus_thermophilus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 48, Coprococcus_catus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 49, Acidaminococcaceae_unclassified_SGB5785
+2023-08-08 01:48:02 INFO::Fitting model to feature number 50, Bacteroides_cellulosilyticus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 51, Gemmiger_SGB15299
+2023-08-08 01:48:02 INFO::Fitting model to feature number 52, Clostridiales_bacterium_KLE1615
+2023-08-08 01:48:02 INFO::Fitting model to feature number 53, Alistipes_onderdonkii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 54, Bacteroides_xylanisolvens
+2023-08-08 01:48:02 INFO::Fitting model to feature number 55, Roseburia_hominis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 56, Dorea_formicigenerans
+2023-08-08 01:48:02 INFO::Fitting model to feature number 57, Bacteroides_stercoris
+2023-08-08 01:48:02 INFO::Fitting model to feature number 58, Lacrimispora_celerecrescens
+2023-08-08 01:48:02 INFO::Fitting model to feature number 59, Clostridiaceae_bacterium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 60, Erysipelotrichaceae_bacterium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 61, Blautia_SGB4831
+2023-08-08 01:48:02 INFO::Fitting model to feature number 62, Dialister_invisus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 63, GGB9633_SGB15090
+2023-08-08 01:48:02 INFO::Fitting model to feature number 64, Ruminococcus_callidus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 65, Barnesiella_intestinihominis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 66, Alistipes_indistinctus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 67, Bifidobacterium_catenulatum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 68, Parabacteroides_merdae
+2023-08-08 01:48:02 INFO::Fitting model to feature number 69, GGB9642_SGB15119
+2023-08-08 01:48:02 INFO::Fitting model to feature number 70, Methanobrevibacter_smithii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 71, Alistipes_finegoldii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 72, Blautia_sp_MSK_20_85
+2023-08-08 01:48:02 INFO::Fitting model to feature number 73, Clostridia_unclassified_SGB6317
+2023-08-08 01:48:02 INFO::Fitting model to feature number 74, Lachnospiraceae_bacterium_WCA3_601_WT_6H
+2023-08-08 01:48:02 INFO::Fitting model to feature number 75, Faecalitalea_cylindroides
+2023-08-08 01:48:02 INFO::Fitting model to feature number 76, Faecalicatena_fissicatena
+2023-08-08 01:48:02 INFO::Fitting model to feature number 77, Eubacterium_ramulus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 78, Bacteroides_caccae
+2023-08-08 01:48:02 INFO::Fitting model to feature number 79, Eubacterium_sp_AM28_29
+2023-08-08 01:48:02 INFO::Fitting model to feature number 80, GGB1267_SGB1701
+2023-08-08 01:48:02 INFO::Fitting model to feature number 81, Enteroscipio_rubneri
+2023-08-08 01:48:02 INFO::Fitting model to feature number 82, GGB9758_SGB15368
+2023-08-08 01:48:02 INFO::Fitting model to feature number 83, Dysosmobacter_welbionis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 84, Blautia_caecimuris
+2023-08-08 01:48:02 INFO::Fitting model to feature number 85, Adlercreutzia_equolifaciens
+2023-08-08 01:48:02 INFO::Fitting model to feature number 86, Ruminococcaceae_unclassified_SGB15265
+2023-08-08 01:48:02 INFO::Fitting model to feature number 87, Sellimonas_intestinalis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 88, GGB4579_SGB6329
+2023-08-08 01:48:02 INFO::Fitting model to feature number 89, Bacteroides_thetaiotaomicron
+2023-08-08 01:48:02 INFO::Fitting model to feature number 90, Bacteroidales_bacterium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 91, Blautia_SGB4815
+2023-08-08 01:48:02 INFO::Fitting model to feature number 92, Agathobaculum_butyriciproducens
+2023-08-08 01:48:02 INFO::Fitting model to feature number 93, Phocaeicola_plebeius
+2023-08-08 01:48:02 INFO::Fitting model to feature number 94, Fusobacterium_nucleatum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 95, GGB3746_SGB5089
+2023-08-08 01:48:02 INFO::Fitting model to feature number 96, Bilophila_wadsworthia
+2023-08-08 01:48:02 INFO::Fitting model to feature number 97, Clostridium_sp_AF36_4
+2023-08-08 01:48:02 INFO::Fitting model to feature number 98, Lachnospira_pectinoschiza
+2023-08-08 01:48:02 INFO::Fitting model to feature number 99, Bacteroides_intestinalis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 100, Peptococcaceae_bacterium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 101, GGB9635_SGB15106
+2023-08-08 01:48:02 INFO::Fitting model to feature number 102, Odoribacter_splanchnicus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 103, Monoglobus_pectinilyticus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 104, Clostridium_sp_AT4
+2023-08-08 01:48:02 INFO::Fitting model to feature number 105, Ligilactobacillus_ruminis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 106, Dorea_sp_AF36_15AT
+2023-08-08 01:48:02 INFO::Fitting model to feature number 107, Bacteroides_fragilis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 108, Parabacteroides_goldsteinii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 109, Bacteroides_finegoldii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 110, Blautia_sp_MSK_21_1
+2023-08-08 01:48:02 INFO::Fitting model to feature number 111, Ruminococcaceae_bacterium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 112, Ruminococcus_lactaris
+2023-08-08 01:48:02 INFO::Fitting model to feature number 113, Clostridia_unclassified_SGB4447
+2023-08-08 01:48:02 INFO::Fitting model to feature number 114, Weissella_confusa
+2023-08-08 01:48:02 INFO::Fitting model to feature number 115, Clostridium_fessum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 116, Eggerthellaceae_bacterium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 117, Blautia_glucerasea
+2023-08-08 01:48:02 INFO::Fitting model to feature number 118, Acidaminococcus_provencensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 119, Holdemanella_biformis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 120, Lachnospira_eligens
+2023-08-08 01:48:02 INFO::Fitting model to feature number 121, Ruminococcaceae_unclassified_SGB15236
+2023-08-08 01:48:02 INFO::Fitting model to feature number 122, Parolsenella_catena
+2023-08-08 01:48:02 INFO::Fitting model to feature number 123, GGB781_SGB1024
+2023-08-08 01:48:02 INFO::Fitting model to feature number 124, Bacteroides_faecis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 125, Bifidobacterium_animalis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 126, Bacteroides_nordii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 127, Bifidobacterium_angulatum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 128, Streptococcus_parasanguinis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 129, Ruthenibacterium_lactatiformans
+2023-08-08 01:48:02 INFO::Fitting model to feature number 130, Alistipes_communis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 131, Olsenella_sp_GAM18
+2023-08-08 01:48:02 INFO::Fitting model to feature number 132, GGB9644_SGB15121
+2023-08-08 01:48:02 INFO::Fitting model to feature number 133, Blautia_sp_AF19_10LB
+2023-08-08 01:48:02 INFO::Fitting model to feature number 134, Butyricimonas_virosa
+2023-08-08 01:48:02 INFO::Fitting model to feature number 135, Collinsella_bouchesdurhonensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 136, Enterocloster_bolteae
+2023-08-08 01:48:02 INFO::Fitting model to feature number 137, Eubacterium_sp_AF34_35BH
+2023-08-08 01:48:02 INFO::Fitting model to feature number 138, Lacrimispora_amygdalina
+2023-08-08 01:48:02 INFO::Fitting model to feature number 139, Ruminococcaceae_unclassified_SGB15234
+2023-08-08 01:48:02 INFO::Fitting model to feature number 140, Sutterella_wadsworthensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 141, GGB9699_SGB15216
+2023-08-08 01:48:02 INFO::Fitting model to feature number 142, Escherichia_coli
+2023-08-08 01:48:02 INFO::Fitting model to feature number 143, Fusobacterium_mortiferum
+2023-08-08 01:48:02 INFO::Fitting model to feature number 144, Lactobacillus_acidophilus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 145, Alistipes_shahii
+2023-08-08 01:48:02 INFO::Fitting model to feature number 146, Lacticaseibacillus_rhamnosus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 147, GGB6547_SGB9247
+2023-08-08 01:48:02 INFO::Fitting model to feature number 148, Culturomica_massiliensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 149, Enterococcus_faecium
+2023-08-08 01:48:02 INFO::Fitting model to feature number 150, Alistipes_inops
+2023-08-08 01:48:02 INFO::Fitting model to feature number 151, Weissella_cibaria
+2023-08-08 01:48:02 INFO::Fitting model to feature number 152, Oscillibacter_sp_ER4
+2023-08-08 01:48:02 INFO::Fitting model to feature number 153, GGB6574_SGB9290
+2023-08-08 01:48:02 INFO::Fitting model to feature number 154, Eggerthella_lenta
+2023-08-08 01:48:02 INFO::Fitting model to feature number 155, Clostridia_unclassified_SGB6276
+2023-08-08 01:48:02 INFO::Fitting model to feature number 156, Enorma_phocaeensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 157, Alistipes_timonensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 158, Butyrivibrio_crossotus
+2023-08-08 01:48:02 INFO::Fitting model to feature number 159, Butyricimonas_paravirosa
+2023-08-08 01:48:02 INFO::Fitting model to feature number 160, GGB9522_SGB14921
+2023-08-08 01:48:02 INFO::Fitting model to feature number 161, Alistipes_senegalensis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 162, Turicibacter_sanguinis
+2023-08-08 01:48:02 INFO::Fitting model to feature number 163, Lactobacillus_gasseri
+2023-08-08 01:48:02 INFO::Fitting model to feature number 164, GGB3433_SGB4573
+2023-08-08 01:48:02 INFO::Fitting model to feature number 165, Clostridium_symbiosum
+2023-08-08 01:48:02 INFO::Counting total values for each feature
+2023-08-08 01:48:02 WARNING::Deleting existing residuals file: maaslin2_collapsed/t24/strep_exposure_Y/residuals.rds
+2023-08-08 01:48:02 INFO::Writing residuals to file maaslin2_collapsed/t24/strep_exposure_Y/residuals.rds
+2023-08-08 01:48:02 WARNING::Deleting existing fitted file: maaslin2_collapsed/t24/strep_exposure_Y/fitted.rds
+2023-08-08 01:48:02 INFO::Writing fitted values to file maaslin2_collapsed/t24/strep_exposure_Y/fitted.rds
+2023-08-08 01:48:02 INFO::Writing all results to file (ordered by increasing q-values): maaslin2_collapsed/t24/strep_exposure_Y/all_results.tsv
+2023-08-08 01:48:02 INFO::Writing the significant results (those which are less than or equal to the threshold of 0.250000 ) to file (ordered by increasing q-values): maaslin2_collapsed/t24/strep_exposure_Y/significant_results.tsv
+2023-08-08 01:48:02 INFO::Writing heatmap of significant results to file: maaslin2_collapsed/t24/strep_exposure_Y/heatmap.pdf
+2023-08-08 01:48:02 INFO::Writing association plots (one for each significant association) to output folder: maaslin2_collapsed/t24/strep_exposure_Y
+2023-08-08 01:48:02 INFO::Plotting associations from most to least significant, grouped by metadata
+2023-08-08 01:48:02 INFO::Plotting data for metadata number 1, strep_exposure
+2023-08-08 01:48:02 INFO::Creating boxplot for categorical data, strep_exposure vs Streptococcus_salivarius
+2023-08-08 01:48:03 INFO::Creating boxplot for categorical data, strep_exposure vs Bifidobacterium_longum
+2023-08-08 01:48:03 INFO::Creating boxplot for categorical data, strep_exposure vs Bifidobacterium_animalis
+2023-08-08 01:48:03 INFO::Creating boxplot for categorical data, strep_exposure vs Lactobacillus_acidophilus
+2023-08-08 01:48:03 INFO::Creating boxplot for categorical data, strep_exposure vs Dorea_longicatena
+2023-08-08 01:48:03 INFO::Creating boxplot for categorical data, strep_exposure vs Bifidobacterium_bifidum
+2023-08-08 01:48:04 INFO::Creating boxplot for categorical data, strep_exposure vs Prevotella_copri_clade_A
+2023-08-08 01:48:04 INFO::Creating boxplot for categorical data, strep_exposure vs Roseburia_faecis
+2023-08-08 01:48:04 INFO::Creating boxplot for categorical data, strep_exposure vs Escherichia_coli

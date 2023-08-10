@@ -1,0 +1,8 @@
+#funcdiv superfocus 1
+library(tidyverse)
+library(dplyr)
+library(FuncDiv)
+library(viridis)
+library(webshot)
+library(devEMF)
+

@@ -1,0 +1,10 @@
+Diversity type,Metric,Method,P value,F (Test Statistic),sig
+?,Richness,Kruskal-Wallis rank sum,0.229,1.446935,
+,Shannon,Kruskal-Wallis rank sum,0.6809,0.169169,
+,Inverse Simpson,Kruskal-Wallis rank sum,0.6578,0.196196,
+,Berger-Parker (dominance),Kruskal-Wallis rank sum,0.0104,6.564103,*
+,Gini (dominance),Kruskal-Wallis rank sum,0.5218,0.410256,
+?,Bray-Curtis dissimilarity,PERMANOVA (adonis2),0.0019,14.56514,**
+,Robust Aitchison distances,PERMANOVA (adonis2),0.5082,0.869299, 
+,Weighted UNIFRAC distances,PERMANOVA (adonis2),0.0023,33.70637,**
+,Unweighted UNIFRAC distances,PERMANOVA (adonis2),0.5222,0.659969, 

@@ -1,0 +1,4 @@
+"","Data","Metric","Comparing","Test","Test_Statistic","P_value","Significance_codes"
+"2","SUPER-FOCUS level 3 (T_24)","Robust Aitchison Distances","Strep exposure","anosim","0.355555555555556","0.0029","**"
+"21","SUPER-FOCUS level 3 (T_24)","Robust Aitchison Distances","Strep exposure","adonis2","2.8723146215741","0.0019","**"
+"3","SUPER-FOCUS level 3 (T_24)","Robust Aitchison Distances","Strep exposure","beta_dispersion","2.33034573862367","0.1998001998002"," "

@@ -1,0 +1,1394 @@
+2023-08-07 20:14:39 INFO::Writing function arguments to log file
+2023-08-07 20:14:39 DEBUG::Function arguments
+2023-08-07 20:14:39 DEBUG::Output folder: maaslin2_func/t6/strep_exposure_Y
+2023-08-07 20:14:39 DEBUG::Min Abundance: 0.000000
+2023-08-07 20:14:39 DEBUG::Min Prevalence: 0.100000
+2023-08-07 20:14:39 DEBUG::Normalization: TSS
+2023-08-07 20:14:39 DEBUG::Transform: LOG
+2023-08-07 20:14:39 DEBUG::Analysis method: LM
+2023-08-07 20:14:39 DEBUG::Max significance: 0.250000
+2023-08-07 20:14:39 DEBUG::Random effects:
+2023-08-07 20:14:39 DEBUG::Fixed effects: strep_exposure
+2023-08-07 20:14:39 DEBUG::Correction method: BH
+2023-08-07 20:14:39 DEBUG::Standardize: TRUE
+2023-08-07 20:14:39 DEBUG::Cores: 1
+2023-08-07 20:14:39 INFO::Verifying options selected are valid
+2023-08-07 20:14:39 INFO::Determining format of input files
+2023-08-07 20:14:39 INFO::Input format is data samples as columns and metadata samples as rows
+2023-08-07 20:14:39 DEBUG::Transformed data so samples are rows
+2023-08-07 20:14:39 DEBUG::A total of 12 samples were found in both the data and metadata
+2023-08-07 20:14:39 DEBUG::Reordering data/metadata to use same sample ordering
+2023-08-07 20:14:40 INFO::Formula for fixed effects: expr ~  strep_exposure
+2023-08-07 20:14:40 INFO::Filter data based on min abundance and min prevalence
+2023-08-07 20:14:40 INFO::Total samples in data: 12
+2023-08-07 20:14:40 INFO::Min samples required with min abundance for a feature not to be filtered: 1.200000
+2023-08-07 20:14:40 INFO::Total filtered features: 0
+2023-08-07 20:14:40 INFO::Filtered feature names from abundance and prevalence filtering:
+2023-08-07 20:14:40 INFO::Total filtered features with variance filtering: 0
+2023-08-07 20:14:40 INFO::Filtered feature names from variance filtering:
+2023-08-07 20:14:40 INFO::Running selected normalization method: TSS
+2023-08-07 20:14:40 INFO::Applying z-score to standardize continuous metadata
+2023-08-07 20:14:40 INFO::Running selected transform method: LOG
+2023-08-07 20:14:40 INFO::Running selected analysis method: LM
+2023-08-07 20:14:40 INFO::Fitting model to feature number 1, X..945..Fimbriae
+2023-08-07 20:14:40 INFO::Fitting model to feature number 2, X.GlcNAc.2.Catabolic.Operon
+2023-08-07 20:14:40 INFO::Fitting model to feature number 3, X2.Ketogluconate.Utilization
+2023-08-07 20:14:40 INFO::Fitting model to feature number 4, X2.O.alpha.mannosyl.D.glycerate.utilization
+2023-08-07 20:14:40 INFO::Fitting model to feature number 5, X2.phosphoglycolate.salvage
+2023-08-07 20:14:40 INFO::Fitting model to feature number 6, X4.Hydroxyphenylacetic.acid.catabolic.pathway
+2023-08-07 20:14:40 INFO::Fitting model to feature number 7, X5.FCL.like.protein
+2023-08-07 20:14:40 INFO::Fitting model to feature number 8, A.DNA.integrity.scanning.protein.that.co.occurs.with.RadA
+2023-08-07 20:14:40 INFO::Fitting model to feature number 9, A.Gammaproteobacteria.Cluster.Relating.to.Translation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 10, A.Glutathione.dependent.Thiol.Reductase.Associated.with.a.Step.in.Lysine.Biosynthesis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 11, A.Gram.positive.cluster.that.relates.ribosomal.protein.L28P.to.a.set.of.uncharacterized.proteins
+2023-08-07 20:14:40 INFO::Fitting model to feature number 12, A.Hypothetical.Protein.Related.to.Proline.Metabolism
+2023-08-07 20:14:40 INFO::Fitting model to feature number 13, A.TRAP.transporter.and.a.hypothetical
+2023-08-07 20:14:40 INFO::Fitting model to feature number 14, A.conserved.operon.linked.to.TyrR.and.possibly.involved.in.virulence
+2023-08-07 20:14:40 INFO::Fitting model to feature number 15, A.toxin.antitoxin.module.cotranscribed.with.DinB
+2023-08-07 20:14:40 INFO::Fitting model to feature number 16, ABC.transporter.alkylphosphonate..TC.3.A.1.9.1.
+2023-08-07 20:14:40 INFO::Fitting model to feature number 17, ABC.transporter.branched.chain.amino.acid..TC.3.A.1.4.1.
+2023-08-07 20:14:40 INFO::Fitting model to feature number 18, ABC.transporter.dipeptide..TC.3.A.1.5.2.
+2023-08-07 20:14:40 INFO::Fitting model to feature number 19, ABC.transporter.oligopeptide..TC.3.A.1.5.1.
+2023-08-07 20:14:40 INFO::Fitting model to feature number 20, ABC.transporter.tungstate..TC.3.A.1.6.2.
+2023-08-07 20:14:40 INFO::Fitting model to feature number 21, ATP.dependent.Nuclease
+2023-08-07 20:14:40 INFO::Fitting model to feature number 22, ATP.dependent.RNA.helicases..bacterial
+2023-08-07 20:14:40 INFO::Fitting model to feature number 23, ATP.dependent.efflux.pump.transporter.Ybh
+2023-08-07 20:14:40 INFO::Fitting model to feature number 24, Accessory.colonization.factor
+2023-08-07 20:14:40 INFO::Fitting model to feature number 25, Acetoin..butanediol.metabolism
+2023-08-07 20:14:40 INFO::Fitting model to feature number 26, Acetone.Butanol.Ethanol.Synthesis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 27, Acetyl.CoA.fermentation.to.Butyrate
+2023-08-07 20:14:40 INFO::Fitting model to feature number 28, Acyl.CoA.thioesterase.II
+2023-08-07 20:14:40 INFO::Fitting model to feature number 29, Adaptation.to.d.cysteine
+2023-08-07 20:14:40 INFO::Fitting model to feature number 30, Adenosyl.nucleosidases
+2023-08-07 20:14:40 INFO::Fitting model to feature number 31, Adhesins.in.Staphylococcus
+2023-08-07 20:14:40 INFO::Fitting model to feature number 32, Adhesion.of.Campylobacter
+2023-08-07 20:14:40 INFO::Fitting model to feature number 33, Alanine.biosynthesis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 34, Alginate.metabolism
+2023-08-07 20:14:40 INFO::Fitting model to feature number 35, Alkaloid.biosynthesis.from.L.lysine
+2023-08-07 20:14:40 INFO::Fitting model to feature number 36, Alkanesulfonate.assimilation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 37, Alkanesulfonates.Utilization
+2023-08-07 20:14:40 INFO::Fitting model to feature number 38, Alkylphosphonate.utilization
+2023-08-07 20:14:40 INFO::Fitting model to feature number 39, Allantoin.Utilization
+2023-08-07 20:14:40 INFO::Fitting model to feature number 40, Alpha.Amylase.locus.in.Streptocococcus
+2023-08-07 20:14:40 INFO::Fitting model to feature number 41, Alpha.acetolactate.operon
+2023-08-07 20:14:40 INFO::Fitting model to feature number 42, Amino.acid.racemase
+2023-08-07 20:14:40 INFO::Fitting model to feature number 43, Aminoglycoside.adenylyltransferases
+2023-08-07 20:14:40 INFO::Fitting model to feature number 44, Ammonia.assimilation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 45, An.Arabinose.Sensor
+2023-08-07 20:14:40 INFO::Fitting model to feature number 46, Anaerobic.Oxidative.Degradation.of.L.Ornithine
+2023-08-07 20:14:40 INFO::Fitting model to feature number 47, Anaerobic.benzoate.metabolism
+2023-08-07 20:14:40 INFO::Fitting model to feature number 48, Anaerobic.respiratory.reductases
+2023-08-07 20:14:40 INFO::Fitting model to feature number 49, Archaeal.lipids
+2023-08-07 20:14:40 INFO::Fitting model to feature number 50, Archaeal.membrane.bound.hydrogenases
+2023-08-07 20:14:40 INFO::Fitting model to feature number 51, Arginine.Biosynthesis.extended
+2023-08-07 20:14:40 INFO::Fitting model to feature number 52, Arginine.Deiminase.Pathway
+2023-08-07 20:14:40 INFO::Fitting model to feature number 53, Arginine.and.Ornithine.Degradation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 54, Aromatic.Amin.Catabolism
+2023-08-07 20:14:40 INFO::Fitting model to feature number 55, Aromatic.amino.acid.degradation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 56, Aromatic.amino.acid.interconversions.with.aryl.acids
+2023-08-07 20:14:40 INFO::Fitting model to feature number 57, Arsenic.resistance
+2023-08-07 20:14:40 INFO::Fitting model to feature number 58, At1g01770
+2023-08-07 20:14:40 INFO::Fitting model to feature number 59, At1g14345
+2023-08-07 20:14:40 INFO::Fitting model to feature number 60, At1g21350
+2023-08-07 20:14:40 INFO::Fitting model to feature number 61, At1g26220.At1g32070
+2023-08-07 20:14:40 INFO::Fitting model to feature number 62, At1g48360
+2023-08-07 20:14:40 INFO::Fitting model to feature number 63, At1g54520
+2023-08-07 20:14:40 INFO::Fitting model to feature number 64, At1g69340.At2g40600
+2023-08-07 20:14:40 INFO::Fitting model to feature number 65, At2g23840
+2023-08-07 20:14:40 INFO::Fitting model to feature number 66, At2g25870
+2023-08-07 20:14:40 INFO::Fitting model to feature number 67, At2g33980.At1g28960
+2023-08-07 20:14:40 INFO::Fitting model to feature number 68, At3g21300
+2023-08-07 20:14:40 INFO::Fitting model to feature number 69, At4g10620.At3g57180.At3g47450
+2023-08-07 20:14:40 INFO::Fitting model to feature number 70, At5g04520.AT1G06240
+2023-08-07 20:14:40 INFO::Fitting model to feature number 71, At5g37530..CsdL.protein.family.
+2023-08-07 20:14:40 INFO::Fitting model to feature number 72, At5g63290
+2023-08-07 20:14:40 INFO::Fitting model to feature number 73, Autoinducer.2..AI.2..transport.and.processing..lsrACDBFGE.operon.
+2023-08-07 20:14:40 INFO::Fitting model to feature number 74, Auxin.degradation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 75, B12.duf71
+2023-08-07 20:14:40 INFO::Fitting model to feature number 76, BEY.LIP
+2023-08-07 20:14:40 INFO::Fitting model to feature number 77, BOX..RUP.and.SPRITE.repeats.in.Streptococcus.pneumoniae
+2023-08-07 20:14:40 INFO::Fitting model to feature number 78, Bacitracin.Stress.Response
+2023-08-07 20:14:40 INFO::Fitting model to feature number 79, Bacterial.Cell.Division
+2023-08-07 20:14:40 INFO::Fitting model to feature number 80, Bacterial.Chemotaxis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 81, Bacterial.Cytoskeleton
+2023-08-07 20:14:40 INFO::Fitting model to feature number 82, Bacterial.cyanide.production.and.tolerance.mechanisms
+2023-08-07 20:14:40 INFO::Fitting model to feature number 83, Bacterial.hemoglobins
+2023-08-07 20:14:40 INFO::Fitting model to feature number 84, Bacterial.motility.Gliding
+2023-08-07 20:14:40 INFO::Fitting model to feature number 85, Bacteriocins.in.Lactobacilli
+2023-08-07 20:14:40 INFO::Fitting model to feature number 86, Bacteroides.capsular.polysaccharide.transcription.antitermination.proteins
+2023-08-07 20:14:40 INFO::Fitting model to feature number 87, Benzoate.catabolism
+2023-08-07 20:14:40 INFO::Fitting model to feature number 88, Benzoate.degradation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 89, Beta.Glucoside.Metabolism
+2023-08-07 20:14:40 INFO::Fitting model to feature number 90, Beta.lactamase
+2023-08-07 20:14:40 INFO::Fitting model to feature number 91, Beta.lactamase.cluster.in.Streptococcus
+2023-08-07 20:14:40 INFO::Fitting model to feature number 92, Biflavanoid.biosynthesis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 93, Biofilm.Adhesin.Biosynthesis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 94, Biogenesis.of.c.type.cytochromes
+2023-08-07 20:14:40 INFO::Fitting model to feature number 95, Biogenesis.of.cbb3.type.cytochrome.c.oxidases
+2023-08-07 20:14:40 INFO::Fitting model to feature number 96, Biogenesis.of.cytochrome.c.oxidases
+2023-08-07 20:14:40 INFO::Fitting model to feature number 97, Biotin.biosynthesis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 98, Biotin.synthesis...utilization
+2023-08-07 20:14:40 INFO::Fitting model to feature number 99, Biphenyl.Degradation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 100, BlaR1.Family.Regulatory.Sensor.transducer.Disambiguation
+2023-08-07 20:14:40 INFO::Fitting model to feature number 101, Branched.Chain.Amino.Acid.Biosynthesis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 102, Broadly.distributed.proteins.not.in.subsystems
+2023-08-07 20:14:40 INFO::Fitting model to feature number 103, Butanol.Biosynthesis
+2023-08-07 20:14:40 INFO::Fitting model to feature number 104, C.jejuni.colonization.of.chick.caeca
+2023-08-07 20:14:40 INFO::Fitting model to feature number 105, CBSS.100226.1.peg.2266
+2023-08-07 20:14:40 INFO::Fitting model to feature number 106, CBSS.176299.3.peg.235
+2023-08-07 20:14:40 INFO::Fitting model to feature number 107, CBSS.176299.4.peg.1292
+2023-08-07 20:14:40 INFO::Fitting model to feature number 108, CBSS.188.1.peg.9880
+2023-08-07 20:14:40 INFO::Fitting model to feature number 109, CBSS.194948.1.peg.143
+2023-08-07 20:14:40 INFO::Fitting model to feature number 110, CBSS.196164.1.peg.1690
+2023-08-07 20:14:40 INFO::Fitting model to feature number 111, CBSS.196164.1.peg.461
+2023-08-07 20:14:40 INFO::Fitting model to feature number 112, CBSS.203122.12.peg.188
+2023-08-07 20:14:40 INFO::Fitting model to feature number 113, CBSS.205922.3.peg.1809
+2023-08-07 20:14:40 INFO::Fitting model to feature number 114, CBSS.211586.1.peg.2357
+2023-08-07 20:14:40 INFO::Fitting model to feature number 115, CBSS.211586.1.peg.3133
+2023-08-07 20:14:40 INFO::Fitting model to feature number 116, CBSS.216592.1.peg.3534
+2023-08-07 20:14:40 INFO::Fitting model to feature number 117, CBSS.216592.1.peg.3937
+2023-08-07 20:14:40 INFO::Fitting model to feature number 118, CBSS.222523.1.peg.1311
+2023-08-07 20:14:40 INFO::Fitting model to feature number 119, CBSS.243265.1.peg.198
+2023-08-07 20:14:40 INFO::Fitting model to feature number 120, CBSS.246196.1.peg.364
+2023-08-07 20:14:40 INFO::Fitting model to feature number 121, CBSS.257314.1.peg.488
+2023-08-07 20:14:40 INFO::Fitting model to feature number 122, CBSS.257314.1.peg.676
+2023-08-07 20:14:40 INFO::Fitting model to feature number 123, CBSS.258594.1.peg.3339
+2023-08-07 20:14:40 INFO::Fitting model to feature number 124, CBSS.261594.1.peg.788
+2023-08-07 20:14:41 INFO::Fitting model to feature number 125, CBSS.262316.1.peg.2929
+2023-08-07 20:14:41 INFO::Fitting model to feature number 126, CBSS.262719.3.peg.410
+2023-08-07 20:14:41 INFO::Fitting model to feature number 127, CBSS.265072.7.peg.546
+2023-08-07 20:14:41 INFO::Fitting model to feature number 128, CBSS.269482.1.peg.1294
+2023-08-07 20:14:41 INFO::Fitting model to feature number 129, CBSS.269799.3.peg.2220
+2023-08-07 20:14:41 INFO::Fitting model to feature number 130, CBSS.269801.1.peg.2186
+2023-08-07 20:14:41 INFO::Fitting model to feature number 131, CBSS.279010.5.peg.3195
+2023-08-07 20:14:41 INFO::Fitting model to feature number 132, CBSS.281090.3.peg.464
+2023-08-07 20:14:41 INFO::Fitting model to feature number 133, CBSS.292415.3.peg.2341
+2023-08-07 20:14:41 INFO::Fitting model to feature number 134, CBSS.316057.3.peg.1308
+2023-08-07 20:14:41 INFO::Fitting model to feature number 135, CBSS.316057.3.peg.563
+2023-08-07 20:14:41 INFO::Fitting model to feature number 136, CBSS.316057.3.peg.659
+2023-08-07 20:14:41 INFO::Fitting model to feature number 137, CBSS.316275.9.peg.382
+2023-08-07 20:14:41 INFO::Fitting model to feature number 138, CBSS.316407.3.peg.1371
+2023-08-07 20:14:41 INFO::Fitting model to feature number 139, CBSS.318161.14.peg.2599
+2023-08-07 20:14:41 INFO::Fitting model to feature number 140, CBSS.320372.3.peg.6046
+2023-08-07 20:14:41 INFO::Fitting model to feature number 141, CBSS.320388.3.peg.3759
+2023-08-07 20:14:41 INFO::Fitting model to feature number 142, CBSS.323098.3.peg.2823
+2023-08-07 20:14:41 INFO::Fitting model to feature number 143, CBSS.323850.3.peg.3269
+2023-08-07 20:14:41 INFO::Fitting model to feature number 144, CBSS.323850.3.peg.3284
+2023-08-07 20:14:41 INFO::Fitting model to feature number 145, CBSS.326442.4.peg.1852
+2023-08-07 20:14:41 INFO::Fitting model to feature number 146, CBSS.342610.3.peg.1536
+2023-08-07 20:14:41 INFO::Fitting model to feature number 147, CBSS.342610.3.peg.283
+2023-08-07 20:14:41 INFO::Fitting model to feature number 148, CBSS.344610.3.peg.2335
+2023-08-07 20:14:41 INFO::Fitting model to feature number 149, CBSS.350688.3.peg.1509
+2023-08-07 20:14:41 INFO::Fitting model to feature number 150, CBSS.354.1.peg.2917
+2023-08-07 20:14:41 INFO::Fitting model to feature number 151, CBSS.393121.3.peg.2760
+2023-08-07 20:14:41 INFO::Fitting model to feature number 152, CBSS.393130.3.peg.794
+2023-08-07 20:14:41 INFO::Fitting model to feature number 153, CBSS.49338.1.peg.459
+2023-08-07 20:14:41 INFO::Fitting model to feature number 154, CBSS.498211.3.peg.1514
+2023-08-07 20:14:41 INFO::Fitting model to feature number 155, CBSS.502800.3.peg.2785
+2023-08-07 20:14:41 INFO::Fitting model to feature number 156, CBSS.52598.3.peg.2843
+2023-08-07 20:14:41 INFO::Fitting model to feature number 157, CBSS.56780.10.peg.1536
+2023-08-07 20:14:41 INFO::Fitting model to feature number 158, CBSS.584.1.peg.841
+2023-08-07 20:14:41 INFO::Fitting model to feature number 159, CBSS.83331.1.peg.3039
+2023-08-07 20:14:41 INFO::Fitting model to feature number 160, CBSS.84588.1.peg.1247
+2023-08-07 20:14:41 INFO::Fitting model to feature number 161, CBSS.89187.3.peg.2957
+2023-08-07 20:14:41 INFO::Fitting model to feature number 162, CLO.thiaminPP.biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 163, CMP.N.acetylneuraminate.Biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 164, CO2.uptake..carboxysome
+2023-08-07 20:14:41 INFO::Fitting model to feature number 165, COG0277
+2023-08-07 20:14:41 INFO::Fitting model to feature number 166, COG1836
+2023-08-07 20:14:41 INFO::Fitting model to feature number 167, COG2016
+2023-08-07 20:14:41 INFO::Fitting model to feature number 168, COG2363
+2023-08-07 20:14:41 INFO::Fitting model to feature number 169, CRISPR.associated.cluster
+2023-08-07 20:14:41 INFO::Fitting model to feature number 170, CRISPRs
+2023-08-07 20:14:41 INFO::Fitting model to feature number 171, CXXX.repeat.peptide.maturase.system
+2023-08-07 20:14:41 INFO::Fitting model to feature number 172, Cadmium.resistance
+2023-08-07 20:14:41 INFO::Fitting model to feature number 173, Calvin.Benson.cycle
+2023-08-07 20:14:41 INFO::Fitting model to feature number 174, Campylobacter.Iron.Metabolism
+2023-08-07 20:14:41 INFO::Fitting model to feature number 175, Capsular.Polysaccharide..CPS..of.Campylobacter
+2023-08-07 20:14:41 INFO::Fitting model to feature number 176, Capsular.Polysaccharides.Biosynthesis.and.Assembly
+2023-08-07 20:14:41 INFO::Fitting model to feature number 177, Capsular.heptose.biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 178, Capsular.surface.virulence.antigen.loci
+2023-08-07 20:14:41 INFO::Fitting model to feature number 179, CarD
+2023-08-07 20:14:41 INFO::Fitting model to feature number 180, Carbon.Starvation
+2023-08-07 20:14:41 INFO::Fitting model to feature number 181, Carbon.monoxide.induced.hydrogenase
+2023-08-07 20:14:41 INFO::Fitting model to feature number 182, Carnitine.Metabolism.in.Microorganisms
+2023-08-07 20:14:41 INFO::Fitting model to feature number 183, Carotenoid.biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 184, Carotenoids
+2023-08-07 20:14:41 INFO::Fitting model to feature number 185, Catechol.branch.of.beta.ketoadipate.pathway
+2023-08-07 20:14:41 INFO::Fitting model to feature number 186, CbiZ.Main
+2023-08-07 20:14:41 INFO::Fitting model to feature number 187, Cell.Division.Cluster
+2023-08-07 20:14:41 INFO::Fitting model to feature number 188, Cell.Division.Subsystem.including.YidCD
+2023-08-07 20:14:41 INFO::Fitting model to feature number 189, Cell.division.cluster.containing.FtsZ.and.FtsW
+2023-08-07 20:14:41 INFO::Fitting model to feature number 190, Cell.division.ribosomal.stress.proteins.cluster
+2023-08-07 20:14:41 INFO::Fitting model to feature number 191, Cell.envelope.associated.LytR.CpsA.Psr.transcriptional.attenuators
+2023-08-07 20:14:41 INFO::Fitting model to feature number 192, Cellulosome
+2023-08-07 20:14:41 INFO::Fitting model to feature number 193, Central.meta.cleavage.pathway.of.aromatic.compound.degradation
+2023-08-07 20:14:41 INFO::Fitting model to feature number 194, Chitin.and.N.acetylglucosamine.utilization
+2023-08-07 20:14:41 INFO::Fitting model to feature number 195, Chitobiose
+2023-08-07 20:14:41 INFO::Fitting model to feature number 196, Chloroaromatic.degradation.pathway
+2023-08-07 20:14:41 INFO::Fitting model to feature number 197, Chlorophyll.Biosynthesis.in.plants.and.prokaryotes
+2023-08-07 20:14:41 INFO::Fitting model to feature number 198, Choline.Transport
+2023-08-07 20:14:41 INFO::Fitting model to feature number 199, Choline.and.Betaine.Uptake.and.Betaine.Biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 200, Chorismate.Synthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 201, Cinnamic.Acid.Degradation
+2023-08-07 20:14:41 INFO::Fitting model to feature number 202, CitAB
+2023-08-07 20:14:41 INFO::Fitting model to feature number 203, Citrate.Metabolism.KE2
+2023-08-07 20:14:41 INFO::Fitting model to feature number 204, Cluster.Ytf.and.putative.sugar.transporter
+2023-08-07 20:14:41 INFO::Fitting model to feature number 205, Cluster.based.Subsystem.Grouping.Hypotheticals...perhaps.Proteosome.Related
+2023-08-07 20:14:41 INFO::Fitting model to feature number 206, Cobalamin
+2023-08-07 20:14:41 INFO::Fitting model to feature number 207, Cobalamin.synthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 208, Cobalt.zinc.cadmium.resistance
+2023-08-07 20:14:41 INFO::Fitting model to feature number 209, Coenzyme.A.Biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 210, Coenzyme.B.synthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 211, Coenzyme.B12.biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 212, Coenzyme.F420.hydrogenase
+2023-08-07 20:14:41 INFO::Fitting model to feature number 213, Coenzyme.F420.synthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 214, Coenzyme.PQQ.synthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 215, CoenzymeM.Archaea
+2023-08-07 20:14:41 INFO::Fitting model to feature number 216, Colanic.acid.biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 217, Cold.shock..CspA.family.of.proteins
+2023-08-07 20:14:41 INFO::Fitting model to feature number 218, Colicin.V.and.Bacteriocin.Production.Cluster
+2023-08-07 20:14:41 INFO::Fitting model to feature number 219, Colonization.factor.antigen.I.fimbriae
+2023-08-07 20:14:41 INFO::Fitting model to feature number 220, Commensurate.regulon.activation
+2023-08-07 20:14:41 INFO::Fitting model to feature number 221, Common.Pathway.For.Synthesis.of.Aromatic.Compounds..DAHP.synthase.to.chorismate.
+2023-08-07 20:14:41 INFO::Fitting model to feature number 222, Competence.in.Streptococci
+2023-08-07 20:14:41 INFO::Fitting model to feature number 223, Competence.or.DNA.damage.inducible.protein.CinA.and.related.protein.families
+2023-08-07 20:14:41 INFO::Fitting model to feature number 224, Conjugative.transposon..Bacteroidales
+2023-08-07 20:14:41 INFO::Fitting model to feature number 225, Conserved.cluster.around.inner.membrane.protein.gene.yghQ..probably.involved.in.polysaccharide.biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 226, Conserved.gene.cluster.possibly.involved.in.RNA.metabolism
+2023-08-07 20:14:41 INFO::Fitting model to feature number 227, Control.of.cell.elongation...division.cycle.in.Bacilli
+2023-08-07 20:14:41 INFO::Fitting model to feature number 228, Copper.homeostasis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 229, Copper.homeostasis..copper.tolerance
+2023-08-07 20:14:41 INFO::Fitting model to feature number 230, Creatine.and.Creatinine.Degradation
+2023-08-07 20:14:41 INFO::Fitting model to feature number 231, Curli.production
+2023-08-07 20:14:41 INFO::Fitting model to feature number 232, Cyanate.hydrolysis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 233, Cyanobacterial.Circadian.Clock
+2023-08-07 20:14:41 INFO::Fitting model to feature number 234, Cyanobacterial.bypass.in.the.TCA
+2023-08-07 20:14:41 INFO::Fitting model to feature number 235, Cyanophycin.Metabolism
+2023-08-07 20:14:41 INFO::Fitting model to feature number 236, Cysteine.Biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 237, Cysteine.Biosynthesis..MCB.432
+2023-08-07 20:14:41 INFO::Fitting model to feature number 238, CytR.regulation
+2023-08-07 20:14:41 INFO::Fitting model to feature number 239, D.Alanyl.Lipoteichoic.Acid.Biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 240, D.Galacturonate.and.D.Glucuronate.Utilization
+2023-08-07 20:14:41 INFO::Fitting model to feature number 241, D.Sorbitol.D.Glucitol..and.L.Sorbose.Utilization
+2023-08-07 20:14:41 INFO::Fitting model to feature number 242, D.Tagatose.and.Galactitol.Utilization
+2023-08-07 20:14:41 INFO::Fitting model to feature number 243, D.allose.utilization
+2023-08-07 20:14:41 INFO::Fitting model to feature number 244, D.galactarate..D.glucarate.and.D.glycerate.catabolism
+2023-08-07 20:14:41 INFO::Fitting model to feature number 245, D.galactarate..D.glucarate.and.D.glycerate.catabolism...gjo
+2023-08-07 20:14:41 INFO::Fitting model to feature number 246, D.galactonate.catabolism
+2023-08-07 20:14:41 INFO::Fitting model to feature number 247, D.gluconate.and.ketogluconates.metabolism
+2023-08-07 20:14:41 INFO::Fitting model to feature number 248, D.glucosaminate.utilization
+2023-08-07 20:14:41 INFO::Fitting model to feature number 249, D.ribose.utilization
+2023-08-07 20:14:41 INFO::Fitting model to feature number 250, D.tyrosyl.tRNA.Tyr..deacylase
+2023-08-07 20:14:41 INFO::Fitting model to feature number 251, DNA.Repair.Base.Excision
+2023-08-07 20:14:41 INFO::Fitting model to feature number 252, DNA.phosphorothioation
+2023-08-07 20:14:41 INFO::Fitting model to feature number 253, DNA.processing.cluster
+2023-08-07 20:14:41 INFO::Fitting model to feature number 254, DNA.recombination..archaeal
+2023-08-07 20:14:41 INFO::Fitting model to feature number 255, DNA.repair..UvrABC.system
+2023-08-07 20:14:41 INFO::Fitting model to feature number 256, DNA.repair..bacterial
+2023-08-07 20:14:41 INFO::Fitting model to feature number 257, DNA.repair..bacterial.DinG.and.relatives
+2023-08-07 20:14:41 INFO::Fitting model to feature number 258, DNA.repair..bacterial.MutL.MutS.system
+2023-08-07 20:14:41 INFO::Fitting model to feature number 259, DNA.repair..bacterial.RecBCD.pathway
+2023-08-07 20:14:41 INFO::Fitting model to feature number 260, DNA.repair..bacterial.RecFOR.pathway
+2023-08-07 20:14:41 INFO::Fitting model to feature number 261, DNA.repair..bacterial.UmuCD.system
+2023-08-07 20:14:41 INFO::Fitting model to feature number 262, DNA.repair..bacterial.UvrD.and.related.helicases
+2023-08-07 20:14:41 INFO::Fitting model to feature number 263, DNA.repair..bacterial.photolyase
+2023-08-07 20:14:41 INFO::Fitting model to feature number 264, DNA.replication..archaeal
+2023-08-07 20:14:41 INFO::Fitting model to feature number 265, DNA.structural.proteins..bacterial
+2023-08-07 20:14:41 INFO::Fitting model to feature number 266, DNA.topoisomerases..Type.I..ATP.independent
+2023-08-07 20:14:41 INFO::Fitting model to feature number 267, DNA.topoisomerases..Type.II..ATP.dependent
+2023-08-07 20:14:41 INFO::Fitting model to feature number 268, DNA.binding.regulatory.proteins..strays
+2023-08-07 20:14:41 INFO::Fitting model to feature number 269, DNA.replication
+2023-08-07 20:14:41 INFO::Fitting model to feature number 270, De.Novo.Purine.Biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 271, De.Novo.Pyrimidine.Synthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 272, Dehydrogenase.complexes
+2023-08-07 20:14:41 INFO::Fitting model to feature number 273, Denitrification
+2023-08-07 20:14:41 INFO::Fitting model to feature number 274, Deoxyribose.and.Deoxynucleoside.Catabolism
+2023-08-07 20:14:41 INFO::Fitting model to feature number 275, Diadenylate.cyclase.cluster
+2023-08-07 20:14:41 INFO::Fitting model to feature number 276, Dihydroxyacetone.kinases
+2023-08-07 20:14:41 INFO::Fitting model to feature number 277, Dimethylarginine.metabolism
+2023-08-07 20:14:41 INFO::Fitting model to feature number 278, Diphthamide.biosynthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 279, Dipicolinate.Synthesis
+2023-08-07 20:14:41 INFO::Fitting model to feature number 280, Dissimilatory.nitrite.reductase
+2023-08-07 20:14:41 INFO::Fitting model to feature number 281, EC.2.7.1...Phosphotransferases.with.an.alcohol.group.as.acceptor
+2023-08-07 20:14:41 INFO::Fitting model to feature number 282, EC.3.4.11...Aminopeptidases
+2023-08-07 20:14:41 INFO::Fitting model to feature number 283, EC.3.4.13...Dipeptidases
+2023-08-07 20:14:41 INFO::Fitting model to feature number 284, EC.3.4.17...Metallocarboxypeptidases
+2023-08-07 20:14:41 INFO::Fitting model to feature number 285, EC.3.4.19...Omega.peptidases
+2023-08-07 20:14:42 INFO::Fitting model to feature number 286, EC.3.4.21...Serine.endopeptidase
+2023-08-07 20:14:42 INFO::Fitting model to feature number 287, EC.4..1..1...Carboxy.lyases
+2023-08-07 20:14:42 INFO::Fitting model to feature number 288, EC.4.1.2...Aldehyde.lyases
+2023-08-07 20:14:42 INFO::Fitting model to feature number 289, EC.4.1.3...Oxo.acid.lyases
+2023-08-07 20:14:42 INFO::Fitting model to feature number 290, EC.6.3.4...Ligases.that.form.carbon.nitrogen.bonds
+2023-08-07 20:14:42 INFO::Fitting model to feature number 291, EC.6.4.1...Ligases.that.form.carbon.carbon.bonds
+2023-08-07 20:14:42 INFO::Fitting model to feature number 292, EC699.706
+2023-08-07 20:14:42 INFO::Fitting model to feature number 293, ECF.class.transporters
+2023-08-07 20:14:42 INFO::Fitting model to feature number 294, ESAT.6.proteins.secretion.system.in.Firmicutes
+2023-08-07 20:14:42 INFO::Fitting model to feature number 295, ESAT.6.proteins.secretion.system.in.Mycobacteria..locus.ESX.1.
+2023-08-07 20:14:42 INFO::Fitting model to feature number 296, Ectoine.biosynthesis.and.regulation
+2023-08-07 20:14:42 INFO::Fitting model to feature number 297, Energy.conserving.hydrogenase.b..Methanococcales.Methanobacteriales.Methanopyrales
+2023-08-07 20:14:42 INFO::Fitting model to feature number 298, Energy.conserving.hydrogenase..Methanococcales.Methanobacteriales.Methanopyrales
+2023-08-07 20:14:42 INFO::Fitting model to feature number 299, Energy.conserving.hydrogenase..ferredoxin.
+2023-08-07 20:14:42 INFO::Fitting model to feature number 300, Entner.Doudoroff.Pathway
+2023-08-07 20:14:42 INFO::Fitting model to feature number 301, Erythromycin.resistance
+2023-08-07 20:14:42 INFO::Fitting model to feature number 302, Ethanolamine.utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 303, Exopolysaccharide.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 304, Experimental.ThMP.RZ
+2023-08-07 20:14:42 INFO::Fitting model to feature number 305, Extracellular.Polysaccharide.Biosynthesis.of.Streptococci
+2023-08-07 20:14:42 INFO::Fitting model to feature number 306, F0F1.type.ATP.synthase
+2023-08-07 20:14:42 INFO::Fitting model to feature number 307, F1453.mlsummers
+2023-08-07 20:14:42 INFO::Fitting model to feature number 308, F420.bobik
+2023-08-07 20:14:42 INFO::Fitting model to feature number 309, FOL.Commensurate.regulon.activation
+2023-08-07 20:14:42 INFO::Fitting model to feature number 310, Fatty.Acid.Biosynthesis.FASI
+2023-08-07 20:14:42 INFO::Fitting model to feature number 311, Fatty.Acid.Biosynthesis.FASII
+2023-08-07 20:14:42 INFO::Fitting model to feature number 312, Fatty.acid.degradation.regulons
+2023-08-07 20:14:42 INFO::Fitting model to feature number 313, Fe.S.cluster.assembly
+2023-08-07 20:14:42 INFO::Fitting model to feature number 314, FeFe.hydrogenase.maturation
+2023-08-07 20:14:42 INFO::Fitting model to feature number 315, Fermentations..Lactate
+2023-08-07 20:14:42 INFO::Fitting model to feature number 316, Fermentations..Mixed.acid
+2023-08-07 20:14:42 INFO::Fitting model to feature number 317, Ferrous.iron.transporter.EfeUOB..low.pH.induced
+2023-08-07 20:14:42 INFO::Fitting model to feature number 318, Flagellar.motility
+2023-08-07 20:14:42 INFO::Fitting model to feature number 319, Flagellum
+2023-08-07 20:14:42 INFO::Fitting model to feature number 320, Flagellum.in.Campylobacter
+2023-08-07 20:14:42 INFO::Fitting model to feature number 321, Flavocytochrome.C
+2023-08-07 20:14:42 INFO::Fitting model to feature number 322, Flavodoxin
+2023-08-07 20:14:42 INFO::Fitting model to feature number 323, Flavohaemoglobin
+2023-08-07 20:14:42 INFO::Fitting model to feature number 324, Folate.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 325, FolateExerciseMaizeClassVDC
+2023-08-07 20:14:42 INFO::Fitting model to feature number 326, Formaldehyde.assimilation..Ribulose.monophosphate.pathway
+2023-08-07 20:14:42 INFO::Fitting model to feature number 327, Formate.dehydrogenase
+2023-08-07 20:14:42 INFO::Fitting model to feature number 328, Formate.hydrogenase
+2023-08-07 20:14:42 INFO::Fitting model to feature number 329, Fratricide.in.Streptococcus
+2023-08-07 20:14:42 INFO::Fitting model to feature number 330, Fructooligosaccharides.FOS..and.Raffinose.Utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 331, Fructose.and.Mannose.Inducible.PTS
+2023-08-07 20:14:42 INFO::Fitting model to feature number 332, Fructose.utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 333, Fructoselysine..Amadori.product..utilization.pathway
+2023-08-07 20:14:42 INFO::Fitting model to feature number 334, GABA.and.putrescine.metabolism.from.cluters
+2023-08-07 20:14:42 INFO::Fitting model to feature number 335, Galactose.inducible.PTS
+2023-08-07 20:14:42 INFO::Fitting model to feature number 336, Galactosylceramide.and.Sulfatide.metabolism
+2023-08-07 20:14:42 INFO::Fitting model to feature number 337, Gallic.acid.utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 338, General.Secretion.Pathway
+2023-08-07 20:14:42 INFO::Fitting model to feature number 339, Gentisate.degradation
+2023-08-07 20:14:42 INFO::Fitting model to feature number 340, Glutamate.dehydrogenases
+2023-08-07 20:14:42 INFO::Fitting model to feature number 341, Glutamate.transporter.involved.in.acid.tolerance.in.Streptococcus
+2023-08-07 20:14:42 INFO::Fitting model to feature number 342, Glutamine.synthetases
+2023-08-07 20:14:42 INFO::Fitting model to feature number 343, Glutamine..Glutamate..Aspartate.and.Asparagine.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 344, Glutaredoxins
+2023-08-07 20:14:42 INFO::Fitting model to feature number 345, Glutathione.dependent.pathway.of.formaldehyde.detoxification
+2023-08-07 20:14:42 INFO::Fitting model to feature number 346, Glutathione.regulated.potassium.efflux.system.and.associated.functions
+2023-08-07 20:14:42 INFO::Fitting model to feature number 347, Glutathione..Biosynthesis.and.gamma.glutamyl.cycle
+2023-08-07 20:14:42 INFO::Fitting model to feature number 348, Glutathione..Non.redox.reactions
+2023-08-07 20:14:42 INFO::Fitting model to feature number 349, Glutathione..Redox.cycle
+2023-08-07 20:14:42 INFO::Fitting model to feature number 350, Glutathionylspermidine.and.Trypanothione
+2023-08-07 20:14:42 INFO::Fitting model to feature number 351, Glycerate.metabolism
+2023-08-07 20:14:42 INFO::Fitting model to feature number 352, Glycerol.and.Glycerol.3.phosphate.Uptake.and.Utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 353, Glycerol.fermentation.to.1.3.propanediol
+2023-08-07 20:14:42 INFO::Fitting model to feature number 354, Glycerolipid.and.Glycerophospholipid.Metabolism.in.Bacteria
+2023-08-07 20:14:42 INFO::Fitting model to feature number 355, Glycine.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 356, Glycine.and.Serine.Utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 357, Glycine.cleavage.system
+2023-08-07 20:14:42 INFO::Fitting model to feature number 358, Glycine.reductase..sarcosine.reductase.and.betaine.reductase
+2023-08-07 20:14:42 INFO::Fitting model to feature number 359, Glycogen.metabolism
+2023-08-07 20:14:42 INFO::Fitting model to feature number 360, Glycolate..glyoxylate.interconversions
+2023-08-07 20:14:42 INFO::Fitting model to feature number 361, Glycolysis.and.Gluconeogenesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 362, Glycolysis.and.Gluconeogenesis..including.Archaeal.enzymes
+2023-08-07 20:14:42 INFO::Fitting model to feature number 363, Glycolysis.test
+2023-08-07 20:14:42 INFO::Fitting model to feature number 364, Glyoxylate.bypass
+2023-08-07 20:14:42 INFO::Fitting model to feature number 365, Gram.Positive.Competence
+2023-08-07 20:14:42 INFO::Fitting model to feature number 366, GroEL.GroES
+2023-08-07 20:14:42 INFO::Fitting model to feature number 367, Group.II.intron.associated.genes
+2023-08-07 20:14:42 INFO::Fitting model to feature number 368, Gycosylglycerates
+2023-08-07 20:14:42 INFO::Fitting model to feature number 369, H2.CoM.S.S.HTP.oxidoreductase
+2023-08-07 20:14:42 INFO::Fitting model to feature number 370, HPr.catabolite.repression.system
+2023-08-07 20:14:42 INFO::Fitting model to feature number 371, Heat.shock.Cell.division.Proteases.and.a.Methyltransferase
+2023-08-07 20:14:42 INFO::Fitting model to feature number 372, Heat.shock.dnaK.gene.cluster.extended
+2023-08-07 20:14:42 INFO::Fitting model to feature number 373, Heme.and.Siroheme.biosynthesis.in.plants
+2023-08-07 20:14:42 INFO::Fitting model to feature number 374, Heme.biosynthesis.orphans
+2023-08-07 20:14:42 INFO::Fitting model to feature number 375, Heme..hemin.uptake.and.utilization.systems.in.GramPositives
+2023-08-07 20:14:42 INFO::Fitting model to feature number 376, Hemin.transport.system
+2023-08-07 20:14:42 INFO::Fitting model to feature number 377, Hexose.Phosphate.Uptake.System
+2023-08-07 20:14:42 INFO::Fitting model to feature number 378, Hfl.operon
+2023-08-07 20:14:42 INFO::Fitting model to feature number 379, High.affinity.phosphate.transporter.and.control.of.PHO.regulon
+2023-08-07 20:14:42 INFO::Fitting model to feature number 380, Histidine.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 381, Histidine.Biosynthesis.in.plants
+2023-08-07 20:14:42 INFO::Fitting model to feature number 382, Histidine.Degradation
+2023-08-07 20:14:42 INFO::Fitting model to feature number 383, Homogentisate.pathway.of.aromatic.compound.degradation
+2023-08-07 20:14:42 INFO::Fitting model to feature number 384, Housecleaning.nucleoside.triphosphate.pyrophosphatases
+2023-08-07 20:14:42 INFO::Fitting model to feature number 385, HtrA.and.Sec.secretion
+2023-08-07 20:14:42 INFO::Fitting model to feature number 386, Hydantoin.metabolism
+2023-08-07 20:14:42 INFO::Fitting model to feature number 387, Hydrogenases
+2023-08-07 20:14:42 INFO::Fitting model to feature number 388, Hydroxyaromatic.decarboxylase.family
+2023-08-07 20:14:42 INFO::Fitting model to feature number 389, Hyperosmotic.potassium.uptake
+2023-08-07 20:14:42 INFO::Fitting model to feature number 390, Hypothetical.Coupled.to.RecF
+2023-08-07 20:14:42 INFO::Fitting model to feature number 391, IbrA.and.IbrB..co.activators.of.prophage.gene.expression
+2023-08-07 20:14:42 INFO::Fitting model to feature number 392, Inclusion.membrane.proteins.supporting.intracellular.life.styles.in.Chlamydiales
+2023-08-07 20:14:42 INFO::Fitting model to feature number 393, Indole.pyruvate.oxidoreductase.complex
+2023-08-07 20:14:42 INFO::Fitting model to feature number 394, Inner.membrane.protein.YhjD.and.conserved.cluster.involved.in.LPS.biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 395, Inorganic.Sulfur.Assimilation
+2023-08-07 20:14:42 INFO::Fitting model to feature number 396, Inositol.catabolism
+2023-08-07 20:14:42 INFO::Fitting model to feature number 397, Integrons
+2023-08-07 20:14:42 INFO::Fitting model to feature number 398, Inteins
+2023-08-07 20:14:42 INFO::Fitting model to feature number 399, Intracellular.septation.in.Enterobacteria
+2023-08-07 20:14:42 INFO::Fitting model to feature number 400, Iojap
+2023-08-07 20:14:42 INFO::Fitting model to feature number 401, IojapClusters
+2023-08-07 20:14:42 INFO::Fitting model to feature number 402, Iron.Scavenging.cluster.in.Thermus
+2023-08-07 20:14:42 INFO::Fitting model to feature number 403, Iron.acquisition.in.Streptococcus
+2023-08-07 20:14:42 INFO::Fitting model to feature number 404, Iron.acquisition.in.Vibrio
+2023-08-07 20:14:42 INFO::Fitting model to feature number 405, Iron.III..dicitrate.transport.system.Fec
+2023-08-07 20:14:42 INFO::Fitting model to feature number 406, Isoleucine.degradation
+2023-08-07 20:14:42 INFO::Fitting model to feature number 407, Isoprenoid.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 408, Isoprenoid.Biosynthesis..Interconversions
+2023-08-07 20:14:42 INFO::Fitting model to feature number 409, Isoprenoid.scratch
+2023-08-07 20:14:42 INFO::Fitting model to feature number 410, Isoprenoinds.for.Quinones
+2023-08-07 20:14:42 INFO::Fitting model to feature number 411, KDO2.Lipid.A.biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 412, Ketoisovalerate.oxidoreductase
+2023-08-07 20:14:42 INFO::Fitting model to feature number 413, Khodge314.Isoleucine.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 414, L.2.amino.thiazoline.4.carboxylic.acid.Lcysteine.conversion
+2023-08-07 20:14:42 INFO::Fitting model to feature number 415, L.Arabinose.utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 416, L.Cystine.Uptake.and.Metabolism
+2023-08-07 20:14:42 INFO::Fitting model to feature number 417, L.ascorbate.utilization..and.related.gene.clusters.
+2023-08-07 20:14:42 INFO::Fitting model to feature number 418, L.fucose.utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 419, L.fucose.utilization.temp
+2023-08-07 20:14:42 INFO::Fitting model to feature number 420, L.rhamnose.utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 421, LMPTP.YwlE.cluster
+2023-08-07 20:14:42 INFO::Fitting model to feature number 422, LOS.core.oligosaccharide.biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 423, Lactate.Racemization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 424, Lactate.utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 425, Lacto.N.Biose.I.and.Galacto.N.Biose.Metabolic.Pathway
+2023-08-07 20:14:42 INFO::Fitting model to feature number 426, Lactose.and.Galactose.Uptake.and.Utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 427, Lactose.utilization
+2023-08-07 20:14:42 INFO::Fitting model to feature number 428, Late.competence
+2023-08-07 20:14:42 INFO::Fitting model to feature number 429, Legionaminic.Acid.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 430, Leucine.Biosynthesis
+2023-08-07 20:14:42 INFO::Fitting model to feature number 431, Leucine.Degradation.and.HMG.CoA.Metabolism
+2023-08-07 20:14:42 INFO::Fitting model to feature number 432, Lipid.A.modifications
+2023-08-07 20:14:42 INFO::Fitting model to feature number 433, Lipid.A.Ara4N.pathway...Polymyxin.resistance..
+2023-08-07 20:14:43 INFO::Fitting model to feature number 434, Lipid.linked.oligosaccharide.synthesis.related.cluster
+2023-08-07 20:14:43 INFO::Fitting model to feature number 435, Lipoate..transport
+2023-08-07 20:14:43 INFO::Fitting model to feature number 436, Lipoic.acid.metabolism
+2023-08-07 20:14:43 INFO::Fitting model to feature number 437, Lipopolysaccharide.assembly
+2023-08-07 20:14:43 INFO::Fitting model to feature number 438, Lipopolysaccharide.assembly.cluster
+2023-08-07 20:14:43 INFO::Fitting model to feature number 439, Lipopolysaccharide.related.cluster.in.Alphaproteobacteria
+2023-08-07 20:14:43 INFO::Fitting model to feature number 440, Lipoprotein.Biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 441, Lipoprotein.sorting.system
+2023-08-07 20:14:43 INFO::Fitting model to feature number 442, Listeria.Pathogenicity.Island.LIPI.1.extended
+2023-08-07 20:14:43 INFO::Fitting model to feature number 443, Listeria.phi.A118.like.prophages
+2023-08-07 20:14:43 INFO::Fitting model to feature number 444, Listeria.surface.proteins..Internalin.like.proteins
+2023-08-07 20:14:43 INFO::Fitting model to feature number 445, Lysine.Biosynthesis.DAP.Pathway
+2023-08-07 20:14:43 INFO::Fitting model to feature number 446, Lysine.degradation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 447, Lysine.fermentation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 448, Lysine.fermentation.MCB.432
+2023-08-07 20:14:43 INFO::Fitting model to feature number 449, Lysozyme.inhibitors
+2023-08-07 20:14:43 INFO::Fitting model to feature number 450, MLST
+2023-08-07 20:14:43 INFO::Fitting model to feature number 451, MRSA.analysis.Oli
+2023-08-07 20:14:43 INFO::Fitting model to feature number 452, Macromolecular.synthesis.operon
+2023-08-07 20:14:43 INFO::Fitting model to feature number 453, Major.Outer.Membrane.Proteins
+2023-08-07 20:14:43 INFO::Fitting model to feature number 454, Malonate.decarboxylase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 455, Malonate_
+2023-08-07 20:14:43 INFO::Fitting model to feature number 456, Maltose.and.Maltodextrin.Utilization
+2023-08-07 20:14:43 INFO::Fitting model to feature number 457, Mannitol.Utilization
+2023-08-07 20:14:43 INFO::Fitting model to feature number 458, Mannose.Metabolism
+2023-08-07 20:14:43 INFO::Fitting model to feature number 459, MazEF.toxin.antitoxing..programmed.cell.death..system
+2023-08-07 20:14:43 INFO::Fitting model to feature number 460, Mediator.of.hyperadherence.YidE.in.Enterobacteria.and.its.conserved.region
+2023-08-07 20:14:43 INFO::Fitting model to feature number 461, Melibiose.Utilization
+2023-08-07 20:14:43 INFO::Fitting model to feature number 462, Menaquinone.Biosynthesis.via.Futalosine
+2023-08-07 20:14:43 INFO::Fitting model to feature number 463, Menaquinone.and.Phylloquinone.Biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 464, Menaquinone.biosynthesis.from.chorismate.via.1.4.dihydroxy.2.naphthoate
+2023-08-07 20:14:43 INFO::Fitting model to feature number 465, Menaquinone.biosynthesis.from.chorismate.via.1.4.dihydroxy.6.naphthoate
+2023-08-07 20:14:43 INFO::Fitting model to feature number 466, Mercuric.reductase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 467, Mercury.resistance.operon
+2023-08-07 20:14:43 INFO::Fitting model to feature number 468, Metabolite.repair
+2023-08-07 20:14:43 INFO::Fitting model to feature number 469, Methanofuran
+2023-08-07 20:14:43 INFO::Fitting model to feature number 470, Methanofuran.erick.jmorales
+2023-08-07 20:14:43 INFO::Fitting model to feature number 471, Methanogenesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 472, Methanogenesis.from.methylated.compounds
+2023-08-07 20:14:43 INFO::Fitting model to feature number 473, MethanopterinAromatic
+2023-08-07 20:14:43 INFO::Fitting model to feature number 474, Methicillin.resistance.in.Staphylococci
+2023-08-07 20:14:43 INFO::Fitting model to feature number 475, Methionine.Biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 476, Methionine.Degradation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 477, Methionine.Salvage
+2023-08-07 20:14:43 INFO::Fitting model to feature number 478, Methylcitrate.cycle
+2023-08-07 20:14:43 INFO::Fitting model to feature number 479, Methylglyoxal.Metabolism
+2023-08-07 20:14:43 INFO::Fitting model to feature number 480, Methylthiotransferases
+2023-08-07 20:14:43 INFO::Fitting model to feature number 481, Microbial.ethylene.biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 482, Modification.of.eukaryotic.initiation.factor.5A
+2023-08-07 20:14:43 INFO::Fitting model to feature number 483, Molybdenum.cofactor.biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 484, Molybdopterin.cytosine.dinucleotide
+2023-08-07 20:14:43 INFO::Fitting model to feature number 485, Monika.MRSA
+2023-08-07 20:14:43 INFO::Fitting model to feature number 486, Muconate.lactonizing.enzyme.family
+2023-08-07 20:14:43 INFO::Fitting model to feature number 487, MukBEF.Chromosome.Condensation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 488, Multidrug.Resistance.Efflux.Pumps
+2023-08-07 20:14:43 INFO::Fitting model to feature number 489, Multidrug.Resistance..2.protein.version.Found.in.Gram.positive.bacteria
+2023-08-07 20:14:43 INFO::Fitting model to feature number 490, Multidrug.Resistance..Tripartite.Systems.Found.in.Gram.Negative.Bacteria
+2023-08-07 20:14:43 INFO::Fitting model to feature number 491, Multidrug.efflux.pump.in.Campylobacter.jejuni..CmeABC.operon.
+2023-08-07 20:14:43 INFO::Fitting model to feature number 492, Multiple.Antibiotic.Resistance.MAR.locus
+2023-08-07 20:14:43 INFO::Fitting model to feature number 493, Murein.Hydrolases
+2023-08-07 20:14:43 INFO::Fitting model to feature number 494, Murein.hydrolase.regulation.and.cell.death
+2023-08-07 20:14:43 INFO::Fitting model to feature number 495, Mycobacterium.jamboree
+2023-08-07 20:14:43 INFO::Fitting model to feature number 496, Mycobacterium.virulence.operon.involved.in.DNA.transcription
+2023-08-07 20:14:43 INFO::Fitting model to feature number 497, Mycobacterium.virulence.operon.involved.in.an.unknown.function.with.a.Jag.Protein.and.YidC.and.YidD
+2023-08-07 20:14:43 INFO::Fitting model to feature number 498, Mycobacterium.virulence.operon.involved.in.fatty.acids.biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 499, Mycobacterium.virulence.operon.involved.in.protein.synthesis..LSU.ribosomal.proteins.
+2023-08-07 20:14:43 INFO::Fitting model to feature number 500, Mycobacterium.virulence.operon.involved.in.protein.synthesis..SSU.ribosomal.proteins.
+2023-08-07 20:14:43 INFO::Fitting model to feature number 501, Mycobacterium.virulence.operon.possibly.involved.in.quinolinate.biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 502, N.Acetyl.Galactosamine.and.Galactosamine.Utilization
+2023-08-07 20:14:43 INFO::Fitting model to feature number 503, N.linked.Glycosylation.in.Bacteria
+2023-08-07 20:14:43 INFO::Fitting model to feature number 504, NAD.and.NADP.cofactor.biosynthesis.global
+2023-08-07 20:14:43 INFO::Fitting model to feature number 505, NAD.regulation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 506, Na....H....antiporter
+2023-08-07 20:14:43 INFO::Fitting model to feature number 507, Na....translocating.NADH.quinone.oxidoreductase.and.rnf.like.group.of.electron.transport.complexes
+2023-08-07 20:14:43 INFO::Fitting model to feature number 508, Na..translocating.decarboxylases.and.related.biotin.dependent.enzymes
+2023-08-07 20:14:43 INFO::Fitting model to feature number 509, Naphtalene.and.antracene.degradation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 510, Natural.DNA.Transformation.in.Vibrio
+2023-08-07 20:14:43 INFO::Fitting model to feature number 511, NiFe.hydrogenase.maturation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 512, Nicotinate.catabolism..anaerobic
+2023-08-07 20:14:43 INFO::Fitting model to feature number 513, Nitrate.and.nitrite.ammonification
+2023-08-07 20:14:43 INFO::Fitting model to feature number 514, Nitric.oxide.synthase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 515, Nitrilase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 516, Nitrogen.Metabolism.in.Aspergillus.nidulans
+2023-08-07 20:14:43 INFO::Fitting model to feature number 517, Nitrogen.fixation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 518, Nitrosative.stress
+2023-08-07 20:14:43 INFO::Fitting model to feature number 519, Nonhomologous.End.Joining.in.Bacteria
+2023-08-07 20:14:43 INFO::Fitting model to feature number 520, Nonmevalonate.Branch.of.Isoprenoid.Biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 521, Nucleoid.associated.proteins.in.Bacteria
+2023-08-07 20:14:43 INFO::Fitting model to feature number 522, Nucleoside.triphosphate.pyrophosphohydrolase.MazG
+2023-08-07 20:14:43 INFO::Fitting model to feature number 523, Nudix.KE
+2023-08-07 20:14:43 INFO::Fitting model to feature number 524, Nudix.proteins..nucleoside.triphosphate.hydrolases.
+2023-08-07 20:14:43 INFO::Fitting model to feature number 525, NusA.TFII.Cluster
+2023-08-07 20:14:43 INFO::Fitting model to feature number 526, O.Methyl.Phosphoramidate.Capsule.Modification.in.Campylobacter
+2023-08-07 20:14:43 INFO::Fitting model to feature number 527, O.antigen.capsule.important.for.environmental.persistence
+2023-08-07 20:14:43 INFO::Fitting model to feature number 528, Omega.amidase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 529, Omega.amidase.KE
+2023-08-07 20:14:43 INFO::Fitting model to feature number 530, Omega.amidase.KE2
+2023-08-07 20:14:43 INFO::Fitting model to feature number 531, One.carbon.metabolism.by.tetrahydropterines
+2023-08-07 20:14:43 INFO::Fitting model to feature number 532, Orphan.regulatory.proteins
+2023-08-07 20:14:43 INFO::Fitting model to feature number 533, Osmoprotectant.ABC.transporter.YehZYXW.of.Enterobacteriales
+2023-08-07 20:14:43 INFO::Fitting model to feature number 534, Osmoregulation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 535, Osmotic.stress.cluster
+2023-08-07 20:14:43 INFO::Fitting model to feature number 536, Outer.membrane
+2023-08-07 20:14:43 INFO::Fitting model to feature number 537, Oxidative.stress
+2023-08-07 20:14:43 INFO::Fitting model to feature number 538, Oxygen.stress.response...Human.gut.microbiome
+2023-08-07 20:14:43 INFO::Fitting model to feature number 539, P.uptake..cyanobacteria.
+2023-08-07 20:14:43 INFO::Fitting model to feature number 540, Pentose.phosphate.pathway
+2023-08-07 20:14:43 INFO::Fitting model to feature number 541, Peptide.ABC.transport.system.Sap
+2023-08-07 20:14:43 INFO::Fitting model to feature number 542, Peptide.methionine.sulfoxide.reductase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 543, Peptidoglycan.Biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 544, Peptidoglycan.Crosslinking.of.Peptide.Stems
+2023-08-07 20:14:43 INFO::Fitting model to feature number 545, Peptidoglycan.biosynthesis..gjo
+2023-08-07 20:14:43 INFO::Fitting model to feature number 546, Peptidyl.prolyl.cis.trans.isomerase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 547, Periplasmic.Acid.Stress.Response.in.Enterobacteria
+2023-08-07 20:14:43 INFO::Fitting model to feature number 548, Periplasmic.Stress.Response
+2023-08-07 20:14:43 INFO::Fitting model to feature number 549, Periplasmic.disulfide.interchange
+2023-08-07 20:14:43 INFO::Fitting model to feature number 550, Periplasmic.Binding.Protein.Dependent.Transport.System.for...945..Glucosides
+2023-08-07 20:14:43 INFO::Fitting model to feature number 551, Persister.Cells
+2023-08-07 20:14:43 INFO::Fitting model to feature number 552, Petrobactin.mediated.iron.uptake.system
+2023-08-07 20:14:43 INFO::Fitting model to feature number 553, Phage.DNA.methyltransferases
+2023-08-07 20:14:43 INFO::Fitting model to feature number 554, Phage.capsid.proteins
+2023-08-07 20:14:43 INFO::Fitting model to feature number 555, Phage.entry.and.exit
+2023-08-07 20:14:43 INFO::Fitting model to feature number 556, Phage.head.and.packaging
+2023-08-07 20:14:43 INFO::Fitting model to feature number 557, Phage.integration.and.excision
+2023-08-07 20:14:43 INFO::Fitting model to feature number 558, Phage.nin.genes...N.independent.survival
+2023-08-07 20:14:43 INFO::Fitting model to feature number 559, Phage.packaging.machinery
+2023-08-07 20:14:43 INFO::Fitting model to feature number 560, Phage.shock.protein..psp..operon
+2023-08-07 20:14:43 INFO::Fitting model to feature number 561, Phage.tail.fiber.proteins
+2023-08-07 20:14:43 INFO::Fitting model to feature number 562, Phage.tail.proteins.2
+2023-08-07 20:14:43 INFO::Fitting model to feature number 563, Phd.Doc..YdcE.YdcD.toxin.antitoxin..programmed.cell.death..systems
+2023-08-07 20:14:43 INFO::Fitting model to feature number 564, Phenazine.biosynthesis
+2023-08-07 20:14:43 INFO::Fitting model to feature number 565, Phenol.hydroxylase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 566, Phenylacetyl.CoA.catabolic.pathway..core.
+2023-08-07 20:14:43 INFO::Fitting model to feature number 567, Phenylalanine.and.Tyrosine.Branches.from.Chorismate
+2023-08-07 20:14:43 INFO::Fitting model to feature number 568, Phenylpropionate.Degradation
+2023-08-07 20:14:43 INFO::Fitting model to feature number 569, Phosphate.metabolism
+2023-08-07 20:14:43 INFO::Fitting model to feature number 570, Phosphoenolpyruvate.phosphomutase
+2023-08-07 20:14:43 INFO::Fitting model to feature number 571, Phosphoglycerate.transport.system
+2023-08-07 20:14:43 INFO::Fitting model to feature number 572, Phospholipid.and.Fatty.acid.biosynthesis.related.cluster
+2023-08-07 20:14:44 INFO::Fitting model to feature number 573, Phosphonate.metabolism
+2023-08-07 20:14:44 INFO::Fitting model to feature number 574, Phosphorylcholine.incorporation.in.LPS
+2023-08-07 20:14:44 INFO::Fitting model to feature number 575, Photorespiration..oxidative.C2.cycle.
+2023-08-07 20:14:44 INFO::Fitting model to feature number 576, Plasmid.replication
+2023-08-07 20:14:44 INFO::Fitting model to feature number 577, Plastidial..p.ppGpp.mediated.response.in.plants
+2023-08-07 20:14:44 INFO::Fitting model to feature number 578, Poly.gamma.glutamate.biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 579, Poly.gamma.glutamate.biosynthesis.COPY
+2023-08-07 20:14:44 INFO::Fitting model to feature number 580, Polyadenylation.bacterial
+2023-08-07 20:14:44 INFO::Fitting model to feature number 581, Polyamine.Metabolism
+2023-08-07 20:14:44 INFO::Fitting model to feature number 582, Polyglycerolphosphate.lipoteichoic.acid.biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 583, Polyhydroxybutyrate.metabolism
+2023-08-07 20:14:44 INFO::Fitting model to feature number 584, Polyprenyl.Diphosphate.Biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 585, Polysaccharide.deacetylases
+2023-08-07 20:14:44 INFO::Fitting model to feature number 586, Potassium.homeostasis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 587, Programmed.frameshift
+2023-08-07 20:14:44 INFO::Fitting model to feature number 588, Proline.Synthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 589, Proline..4.hydroxyproline.uptake.and.utilization
+2023-08-07 20:14:44 INFO::Fitting model to feature number 590, Propanediol.utilization
+2023-08-07 20:14:44 INFO::Fitting model to feature number 591, Prophage.lysogenic.conversion.modules
+2023-08-07 20:14:44 INFO::Fitting model to feature number 592, Propionate.CoA.to.Succinate.Module
+2023-08-07 20:14:44 INFO::Fitting model to feature number 593, Propionyl.CoA.to.Succinyl.CoA.Module
+2023-08-07 20:14:44 INFO::Fitting model to feature number 594, Proteasome.archaeal
+2023-08-07 20:14:44 INFO::Fitting model to feature number 595, Proteasome.bacterial
+2023-08-07 20:14:44 INFO::Fitting model to feature number 596, Proteasome.subunit.alpha.archaeal.cluster
+2023-08-07 20:14:44 INFO::Fitting model to feature number 597, Protection.from.Reactive.Oxygen.Species
+2023-08-07 20:14:44 INFO::Fitting model to feature number 598, Protein.Acetylation.and.Deacetylation.in.Bacteria
+2023-08-07 20:14:44 INFO::Fitting model to feature number 599, Protein.chaperones
+2023-08-07 20:14:44 INFO::Fitting model to feature number 600, Protein.degradation
+2023-08-07 20:14:44 INFO::Fitting model to feature number 601, Proteolysis.in.bacteria..ATP.dependent
+2023-08-07 20:14:44 INFO::Fitting model to feature number 602, Proteorhodopsin
+2023-08-07 20:14:44 INFO::Fitting model to feature number 603, Protocatechuate.branch.of.beta.ketoadipate.pathway
+2023-08-07 20:14:44 INFO::Fitting model to feature number 604, Proton.dependent.Peptide.Transporters
+2023-08-07 20:14:44 INFO::Fitting model to feature number 605, Pseudomonas.quinolone.signal.PQS
+2023-08-07 20:14:44 INFO::Fitting model to feature number 606, Pseudouridine.Metabolism
+2023-08-07 20:14:44 INFO::Fitting model to feature number 607, Pterin.biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 608, Pterin.carbinolamine.dehydratase
+2023-08-07 20:14:44 INFO::Fitting model to feature number 609, Pterin.metabolism.3
+2023-08-07 20:14:44 INFO::Fitting model to feature number 610, Purine.Utilization
+2023-08-07 20:14:44 INFO::Fitting model to feature number 611, Purine.conversions
+2023-08-07 20:14:44 INFO::Fitting model to feature number 612, Purine.nucleotide.synthesis.regulator
+2023-08-07 20:14:44 INFO::Fitting model to feature number 613, Putative.TldE.TldD.proteolytic.complex
+2023-08-07 20:14:44 INFO::Fitting model to feature number 614, Putative.diaminopropionate.ammonia.lyase.cluster
+2023-08-07 20:14:44 INFO::Fitting model to feature number 615, Putative.hemin.transporter
+2023-08-07 20:14:44 INFO::Fitting model to feature number 616, Putative.oxidase.COG2907
+2023-08-07 20:14:44 INFO::Fitting model to feature number 617, Putative.sugar.ABC.transporter..ytf.cluster.
+2023-08-07 20:14:44 INFO::Fitting model to feature number 618, Putrescine.utilization.pathways
+2023-08-07 20:14:44 INFO::Fitting model to feature number 619, Pyridoxin..Vitamin.B6..Biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 620, Pyridoxine..vitamin.B6..biosynthesis.in.plants
+2023-08-07 20:14:44 INFO::Fitting model to feature number 621, Pyrimidine.utilization
+2023-08-07 20:14:44 INFO::Fitting model to feature number 622, Pyrroloquinoline.Quinone.biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 623, Pyruvate.Alanine.Serine.Interconversions
+2023-08-07 20:14:44 INFO::Fitting model to feature number 624, Pyruvate.metabolism.I..anaplerotic.reactions..PEP
+2023-08-07 20:14:44 INFO::Fitting model to feature number 625, Pyruvate.metabolism.II..acetyl.CoA..acetogenesis.from.pyruvate
+2023-08-07 20:14:44 INFO::Fitting model to feature number 626, Pyruvate.ferredoxin.oxidoreductase
+2023-08-07 20:14:44 INFO::Fitting model to feature number 627, Q.RZ
+2023-08-07 20:14:44 INFO::Fitting model to feature number 628, Queuosine.exploration.RZ
+2023-08-07 20:14:44 INFO::Fitting model to feature number 629, Queuosine.Archaeosine.Biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 630, Quinate.degradation
+2023-08-07 20:14:44 INFO::Fitting model to feature number 631, Quinone.disambuiguation
+2023-08-07 20:14:44 INFO::Fitting model to feature number 632, Quinone.oxidoreductase.family
+2023-08-07 20:14:44 INFO::Fitting model to feature number 633, Quorum.sensing.in.Yersinia
+2023-08-07 20:14:44 INFO::Fitting model to feature number 634, RCJ.pfr
+2023-08-07 20:14:44 INFO::Fitting model to feature number 635, RNA.3..terminal.phosphate.cyclase
+2023-08-07 20:14:44 INFO::Fitting model to feature number 636, RNA.polymerase.archaeal
+2023-08-07 20:14:44 INFO::Fitting model to feature number 637, RNA.polymerase.archaeal.initiation.factors
+2023-08-07 20:14:44 INFO::Fitting model to feature number 638, RNA.polymerase.bacterial
+2023-08-07 20:14:44 INFO::Fitting model to feature number 639, RNA.processing.and.degradation..bacterial
+2023-08-07 20:14:44 INFO::Fitting model to feature number 640, RNA.processing.orphans
+2023-08-07 20:14:44 INFO::Fitting model to feature number 641, RNA.pseudouridine.syntheses
+2023-08-07 20:14:44 INFO::Fitting model to feature number 642, RP.Bacterial.Cell.Division
+2023-08-07 20:14:44 INFO::Fitting model to feature number 643, Raj.MurE
+2023-08-07 20:14:44 INFO::Fitting model to feature number 644, Rcs.negative.regulator.IgaA
+2023-08-07 20:14:44 INFO::Fitting model to feature number 645, Rcs.phosphorelay.signal.transduction.pathway
+2023-08-07 20:14:44 INFO::Fitting model to feature number 646, RecA.and.RecX
+2023-08-07 20:14:44 INFO::Fitting model to feature number 647, Recycling.of.Peptidoglycan.Amino.Acids
+2023-08-07 20:14:44 INFO::Fitting model to feature number 648, Recycling.of.Peptidoglycan.Amino.Sugars
+2023-08-07 20:14:44 INFO::Fitting model to feature number 649, Redox.dependent.regulation.of.nucleus.processes
+2023-08-07 20:14:44 INFO::Fitting model to feature number 650, Regulation.of.Oxidative.Stress.Response
+2023-08-07 20:14:44 INFO::Fitting model to feature number 651, Resistance.to.Vancomycin
+2023-08-07 20:14:44 INFO::Fitting model to feature number 652, Resistance.to.fluoroquinolones
+2023-08-07 20:14:44 INFO::Fitting model to feature number 653, Respiration...HGM
+2023-08-07 20:14:44 INFO::Fitting model to feature number 654, Respiration...Human.gut.microbiome
+2023-08-07 20:14:44 INFO::Fitting model to feature number 655, Respiratory.Complex.I
+2023-08-07 20:14:44 INFO::Fitting model to feature number 656, Respiratory.dehydrogenases.1
+2023-08-07 20:14:44 INFO::Fitting model to feature number 657, Restriction.Modification.System
+2023-08-07 20:14:44 INFO::Fitting model to feature number 658, Rhamnose.containing.glycans
+2023-08-07 20:14:44 INFO::Fitting model to feature number 659, Riboflavin..FMN.and.FAD.metabolism.Extended
+2023-08-07 20:14:44 INFO::Fitting model to feature number 660, Ribonuclease.H
+2023-08-07 20:14:44 INFO::Fitting model to feature number 661, Ribonucleotide.reduction
+2023-08-07 20:14:44 INFO::Fitting model to feature number 662, Ribosomal.protein.S12p.Asp.methylthiotransferase
+2023-08-07 20:14:44 INFO::Fitting model to feature number 663, Ribosomal.protein.S5p.acylation
+2023-08-07 20:14:44 INFO::Fitting model to feature number 664, Ribosomal.proteins..zinc.requirement
+2023-08-07 20:14:44 INFO::Fitting model to feature number 665, Ribosome.LSU.bacterial
+2023-08-07 20:14:44 INFO::Fitting model to feature number 666, Ribosome.LSU.eukaryotic.and.archaeal
+2023-08-07 20:14:44 INFO::Fitting model to feature number 667, Ribosome.SSU.bacterial
+2023-08-07 20:14:44 INFO::Fitting model to feature number 668, Ribosome.SSU.eukaryotic.and.archaeal
+2023-08-07 20:14:44 INFO::Fitting model to feature number 669, Ribosome.activity.modulation
+2023-08-07 20:14:44 INFO::Fitting model to feature number 670, Ribosome.biogenesis.bacterial
+2023-08-07 20:14:44 INFO::Fitting model to feature number 671, RpoS.Regulators.SG1
+2023-08-07 20:14:44 INFO::Fitting model to feature number 672, Rrf2.family.transcriptional.regulators
+2023-08-07 20:14:44 INFO::Fitting model to feature number 673, RtcB.RtcA
+2023-08-07 20:14:44 INFO::Fitting model to feature number 674, Rubrerythrin
+2023-08-07 20:14:44 INFO::Fitting model to feature number 675, RuvABC.plus.a.hypothetical
+2023-08-07 20:14:44 INFO::Fitting model to feature number 676, SCIFF.peptide.maturase.system
+2023-08-07 20:14:44 INFO::Fitting model to feature number 677, Salicylate.and.gentisate.catabolism
+2023-08-07 20:14:44 INFO::Fitting model to feature number 678, Salmochelin.mediated.Iron.Acquisition
+2023-08-07 20:14:44 INFO::Fitting model to feature number 679, Salmonella.invasion.locus
+2023-08-07 20:14:44 INFO::Fitting model to feature number 680, Sarcosine.temp
+2023-08-07 20:14:44 INFO::Fitting model to feature number 681, SecY2.SecA2.Specialized.Transport.System
+2023-08-07 20:14:44 INFO::Fitting model to feature number 682, Selenocysteine.metabolism
+2023-08-07 20:14:44 INFO::Fitting model to feature number 683, Selenoprotein.O
+2023-08-07 20:14:44 INFO::Fitting model to feature number 684, SeqA.and.Co.occurring.Genes
+2023-08-07 20:14:44 INFO::Fitting model to feature number 685, Serine.Biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 686, Serine.glyoxylate.cycle
+2023-08-07 20:14:44 INFO::Fitting model to feature number 687, Serotype.determining.Capsular.polysaccharide.biosynthesis.in.Staphylococcus
+2023-08-07 20:14:44 INFO::Fitting model to feature number 688, Sex.pheromones.in.Enterococcus.faecalis.and.other.Firmicutes
+2023-08-07 20:14:44 INFO::Fitting model to feature number 689, Sialic.Acid.Metabolism
+2023-08-07 20:14:44 INFO::Fitting model to feature number 690, Siderophore.Aerobactin
+2023-08-07 20:14:44 INFO::Fitting model to feature number 691, Siderophore.Enterobactin
+2023-08-07 20:14:44 INFO::Fitting model to feature number 692, Siderophore.Pyoverdine
+2023-08-07 20:14:44 INFO::Fitting model to feature number 693, Siderophore.Yersiniabactin.Biosynthesis
+2023-08-07 20:14:44 INFO::Fitting model to feature number 694, Siderophore.assembly.kit
+2023-08-07 20:14:44 INFO::Fitting model to feature number 695, Siderophore.pyochelin
+2023-08-07 20:14:44 INFO::Fitting model to feature number 696, SigmaB.stress.responce.regulation
+2023-08-07 20:14:44 INFO::Fitting model to feature number 697, Signal.peptidase
+2023-08-07 20:14:44 INFO::Fitting model to feature number 698, Single.Rhodanese.domain.proteins
+2023-08-07 20:14:44 INFO::Fitting model to feature number 699, Single.copy.ribosomal.proteins
+2023-08-07 20:14:44 INFO::Fitting model to feature number 700, Small.acid.soluble.spore.proteins
+2023-08-07 20:14:44 INFO::Fitting model to feature number 701, Small.multidrug.resistance.strays
+2023-08-07 20:14:44 INFO::Fitting model to feature number 702, Soluble.cytochromes.and.functionally.related.electron.carriers
+2023-08-07 20:14:44 INFO::Fitting model to feature number 703, Sortase
+2023-08-07 20:14:44 INFO::Fitting model to feature number 704, SpoVS.protein.family
+2023-08-07 20:14:44 INFO::Fitting model to feature number 705, Spore.Core.Dehydration
+2023-08-07 20:14:44 INFO::Fitting model to feature number 706, Spore.germination
+2023-08-07 20:14:44 INFO::Fitting model to feature number 707, Sporulation.Cluster
+2023-08-07 20:14:44 INFO::Fitting model to feature number 708, Sporulation.Cluster.III.A
+2023-08-07 20:14:44 INFO::Fitting model to feature number 709, Sporulation.draft
+2023-08-07 20:14:44 INFO::Fitting model to feature number 710, Sporulation.gene.orphans
+2023-08-07 20:14:44 INFO::Fitting model to feature number 711, Sporulation.associated.proteins.with.broader.functions
+2023-08-07 20:14:44 INFO::Fitting model to feature number 712, Sporulation.related.Hypotheticals
+2023-08-07 20:14:44 INFO::Fitting model to feature number 713, Staphylococcal.pathogenicity.islands.SaPI
+2023-08-07 20:14:44 INFO::Fitting model to feature number 714, Staphylococcal.phi.Mu50B.like.prophages
+2023-08-07 20:14:44 INFO::Fitting model to feature number 715, Steroid.sulfates
+2023-08-07 20:14:44 INFO::Fitting model to feature number 716, Streptococcal.Hyaluronic.Acid.Capsule
+2023-08-07 20:14:45 INFO::Fitting model to feature number 717, Streptococcal.Mga.Regulon
+2023-08-07 20:14:45 INFO::Fitting model to feature number 718, Streptococcus.agalactiae.virulome
+2023-08-07 20:14:45 INFO::Fitting model to feature number 719, Streptococcus.pneumoniae.Vancomycin.Tolerance.Locus
+2023-08-07 20:14:45 INFO::Fitting model to feature number 720, Streptococcus.pyogenes.Virulome
+2023-08-07 20:14:45 INFO::Fitting model to feature number 721, Streptococcus.pyogenes.recombinatorial.zone
+2023-08-07 20:14:45 INFO::Fitting model to feature number 722, Streptococcus.pyogenes.virulence.regulators
+2023-08-07 20:14:45 INFO::Fitting model to feature number 723, Streptolysin.S.Biosynthesis.and.Transport
+2023-08-07 20:14:45 INFO::Fitting model to feature number 724, Streptothricin.resistance
+2023-08-07 20:14:45 INFO::Fitting model to feature number 725, Stringent.Response...p.ppGpp.metabolism
+2023-08-07 20:14:45 INFO::Fitting model to feature number 726, Succinate.dehydrogenase
+2023-08-07 20:14:45 INFO::Fitting model to feature number 727, Sucrose.utilization
+2023-08-07 20:14:45 INFO::Fitting model to feature number 728, Sucrose.specific.PTS
+2023-08-07 20:14:45 INFO::Fitting model to feature number 729, Sugar.utilization.in.Thermotogales
+2023-08-07 20:14:45 INFO::Fitting model to feature number 730, Sugar.phosphate.stress.regulation
+2023-08-07 20:14:45 INFO::Fitting model to feature number 731, Sulfatases.and.sulfatase.modifying.factor.1
+2023-08-07 20:14:45 INFO::Fitting model to feature number 732, Sulfate.reduction.associated.complexes
+2023-08-07 20:14:45 INFO::Fitting model to feature number 733, Sulfur.oxidation
+2023-08-07 20:14:45 INFO::Fitting model to feature number 734, Synechocystis.experimental
+2023-08-07 20:14:45 INFO::Fitting model to feature number 735, Synthesis.of.osmoregulated.periplasmic.glucans
+2023-08-07 20:14:45 INFO::Fitting model to feature number 736, T7.like.phage.core.proteins
+2023-08-07 20:14:45 INFO::Fitting model to feature number 737, TCA.Cycle
+2023-08-07 20:14:45 INFO::Fitting model to feature number 738, Tagatose.utilization
+2023-08-07 20:14:45 INFO::Fitting model to feature number 739, Tannin.biosynthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 740, Taurine.Utilization
+2023-08-07 20:14:45 INFO::Fitting model to feature number 741, Teichoic.and.lipoteichoic.acids.biosynthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 742, Teichuronic.acid.biosynthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 743, Tellurite.resistance..Chromosomal.determinants
+2023-08-07 20:14:45 INFO::Fitting model to feature number 744, TenI.like.tautomerase
+2023-08-07 20:14:45 INFO::Fitting model to feature number 745, Terminal.cytochrome.C.oxidases
+2023-08-07 20:14:45 INFO::Fitting model to feature number 746, Terminal.cytochrome.O.ubiquinol.oxidase
+2023-08-07 20:14:45 INFO::Fitting model to feature number 747, Terminal.cytochrome.d.ubiquinol.oxidases
+2023-08-07 20:14:45 INFO::Fitting model to feature number 748, Terminal.cytochrome.oxidases
+2023-08-07 20:14:45 INFO::Fitting model to feature number 749, Test...DHFR
+2023-08-07 20:14:45 INFO::Fitting model to feature number 750, Test...Riboflavin
+2023-08-07 20:14:45 INFO::Fitting model to feature number 751, Test...Thiamin
+2023-08-07 20:14:45 INFO::Fitting model to feature number 752, Test.Pyridoxin.B6
+2023-08-07 20:14:45 INFO::Fitting model to feature number 753, Test.Q
+2023-08-07 20:14:45 INFO::Fitting model to feature number 754, The.Chv.regulatory.system.of.Alphaproteobacteria
+2023-08-07 20:14:45 INFO::Fitting model to feature number 755, The.fimbrial.Sfm.cluster
+2023-08-07 20:14:45 INFO::Fitting model to feature number 756, The.fimbrial.Stf.cluster
+2023-08-07 20:14:45 INFO::Fitting model to feature number 757, The.mdtABCD.multidrug.resistance.cluster
+2023-08-07 20:14:45 INFO::Fitting model to feature number 758, The.usher.protein.HtrE.fimbrial.cluster
+2023-08-07 20:14:45 INFO::Fitting model to feature number 759, Thermosome..archaeal
+2023-08-07 20:14:45 INFO::Fitting model to feature number 760, ThiD.ThiE.fusions
+2023-08-07 20:14:45 INFO::Fitting model to feature number 761, Thiamin.Copy.RZ
+2023-08-07 20:14:45 INFO::Fitting model to feature number 762, Thiamin.biosynthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 763, Thiamin.biosynthesis.LDP
+2023-08-07 20:14:45 INFO::Fitting model to feature number 764, Thiamin.biosynthesis.in.plants
+2023-08-07 20:14:45 INFO::Fitting model to feature number 765, Thioredoxin.disulfide.reductase
+2023-08-07 20:14:45 INFO::Fitting model to feature number 766, Threonine.anaerobic.catabolism.gene.cluster
+2023-08-07 20:14:45 INFO::Fitting model to feature number 767, Threonine.and.Homoserine.Biosynthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 768, Threonine.degradation
+2023-08-07 20:14:45 INFO::Fitting model to feature number 769, Threonylcarbamoyladenosine
+2023-08-07 20:14:45 INFO::Fitting model to feature number 770, Tn552
+2023-08-07 20:14:45 INFO::Fitting model to feature number 771, Tolerance.to.colicin.E2
+2023-08-07 20:14:45 INFO::Fitting model to feature number 772, Ton.and.Tol.transport.systems
+2023-08-07 20:14:45 INFO::Fitting model to feature number 773, Toxin.antitoxin.replicon.stabilization.systems
+2023-08-07 20:14:45 INFO::Fitting model to feature number 774, Toxin.antitoxin.systems..other.than.RelBE.and.MazEF.
+2023-08-07 20:14:45 INFO::Fitting model to feature number 775, Trans.translation.by.stalled.ribosomes
+2023-08-07 20:14:45 INFO::Fitting model to feature number 776, Transcription.elongation.factors..archaeal
+2023-08-07 20:14:45 INFO::Fitting model to feature number 777, Transcription.factors.bacterial
+2023-08-07 20:14:45 INFO::Fitting model to feature number 778, Transcription.initiation..bacterial.sigma.factors
+2023-08-07 20:14:45 INFO::Fitting model to feature number 779, Translation.elongation.factor.G.family
+2023-08-07 20:14:45 INFO::Fitting model to feature number 780, Translation.elongation.factors.bacterial
+2023-08-07 20:14:45 INFO::Fitting model to feature number 781, Translation.elongation.factors.eukaryotic.and.archaeal
+2023-08-07 20:14:45 INFO::Fitting model to feature number 782, Translation.initiation.factors.bacterial
+2023-08-07 20:14:45 INFO::Fitting model to feature number 783, Translation.initiation.factors.eukaryotic.and.archaeal
+2023-08-07 20:14:45 INFO::Fitting model to feature number 784, Translation.termination.factors.bacterial
+2023-08-07 20:14:45 INFO::Fitting model to feature number 785, Transport.of.Iron
+2023-08-07 20:14:45 INFO::Fitting model to feature number 786, Transport.of.Manganese
+2023-08-07 20:14:45 INFO::Fitting model to feature number 787, Transport.of.Molybdenum
+2023-08-07 20:14:45 INFO::Fitting model to feature number 788, Transport.of.Nickel.and.Cobalt
+2023-08-07 20:14:45 INFO::Fitting model to feature number 789, Transport.of.Zinc
+2023-08-07 20:14:45 INFO::Fitting model to feature number 790, Transposase.in.enterics
+2023-08-07 20:14:45 INFO::Fitting model to feature number 791, Trehalose.Biosynthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 792, Trehalose.Uptake.and.Utilization
+2023-08-07 20:14:45 INFO::Fitting model to feature number 793, Triacylglycerol.metabolism
+2023-08-07 20:14:45 INFO::Fitting model to feature number 794, Tricarballylate.Utilization
+2023-08-07 20:14:45 INFO::Fitting model to feature number 795, Tricarboxylate.transport.system
+2023-08-07 20:14:45 INFO::Fitting model to feature number 796, Tryptophan.synthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 797, Twin.arginine.translocation.system
+2023-08-07 20:14:45 INFO::Fitting model to feature number 798, Two.cell.division.clusters.relating.to.chromosome.partitioning
+2023-08-07 20:14:45 INFO::Fitting model to feature number 799, Two.partner.secretion.pathway..TPS.
+2023-08-07 20:14:45 INFO::Fitting model to feature number 800, Two.component.Response.Regulator.of.Virulence.ResDE
+2023-08-07 20:14:45 INFO::Fitting model to feature number 801, Two.component.regulatory.systems.in.Campylobacter
+2023-08-07 20:14:45 INFO::Fitting model to feature number 802, Type.1.pili..mannose.sensitive.fimbriae.
+2023-08-07 20:14:45 INFO::Fitting model to feature number 803, Type.4.conjugative.transfer.system..IncI1.type
+2023-08-07 20:14:45 INFO::Fitting model to feature number 804, Type.4.secretion.and.conjugative.transfer
+2023-08-07 20:14:45 INFO::Fitting model to feature number 805, Type.I.Restriction.Modification
+2023-08-07 20:14:45 INFO::Fitting model to feature number 806, Type.III.secretion.system.orphans
+2023-08-07 20:14:45 INFO::Fitting model to feature number 807, Type.III.secretion.systems..extended
+2023-08-07 20:14:45 INFO::Fitting model to feature number 808, Type.IV.pilus
+2023-08-07 20:14:45 INFO::Fitting model to feature number 809, Type.VI.secretion.systems
+2023-08-07 20:14:45 INFO::Fitting model to feature number 810, UDP.N.acetylmuramate.from.Fructose.6.phosphate.Biosynthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 811, Ubiquinone.Biosynthesis
+2023-08-07 20:14:45 INFO::Fitting model to feature number 812, Ubiquinone.Menaquinone.cytochrome.c.reductase.complexes
+2023-08-07 20:14:45 INFO::Fitting model to feature number 813, Ubiquinone.biosynthesis....gjo
+2023-08-07 20:14:45 INFO::Fitting model to feature number 814, Universal.GTPases
+2023-08-07 20:14:45 INFO::Fitting model to feature number 815, Universal.stress.protein.family
+2023-08-07 20:14:45 INFO::Fitting model to feature number 816, Unknown.carbohydrate.utilization...cluster.Ydj..
+2023-08-07 20:14:45 INFO::Fitting model to feature number 817, Unknown.carbohydrate.utilization...cluster.Yeg..
+2023-08-07 20:14:45 INFO::Fitting model to feature number 818, Unknown.carbohydrate.utilization.containing.Fructose.bisphosphate.aldolase
+2023-08-07 20:14:45 INFO::Fitting model to feature number 819, Unknown.sugar.utilization..cluster.yphABCDEFG.
+2023-08-07 20:14:45 INFO::Fitting model to feature number 820, Unsaturated.Fatty.Acid.Metabolism
+2023-08-07 20:14:45 INFO::Fitting model to feature number 821, Unspecified.monosaccharide.transport.cluster
+2023-08-07 20:14:45 INFO::Fitting model to feature number 822, Uptake.of.selenate.and.selenite
+2023-08-07 20:14:45 INFO::Fitting model to feature number 823, Uracil.DNA.glycosylase
+2023-08-07 20:14:45 INFO::Fitting model to feature number 824, Urea.decomposition
+2023-08-07 20:14:45 INFO::Fitting model to feature number 825, Urease.subunits
+2023-08-07 20:14:45 INFO::Fitting model to feature number 826, Utilization.of.glutathione.as.a.sulphur.source
+2023-08-07 20:14:45 INFO::Fitting model to feature number 827, V.Type.ATP.synthase
+2023-08-07 20:14:45 INFO::Fitting model to feature number 828, VC0266
+2023-08-07 20:14:45 INFO::Fitting model to feature number 829, Valine.degradation
+2023-08-07 20:14:45 INFO::Fitting model to feature number 830, VieSAB.signal.transduction.system.of.Vibrio
+2023-08-07 20:14:45 INFO::Fitting model to feature number 831, WhiB.and.WhiB.type.regulatory.proteins_
+2023-08-07 20:14:45 INFO::Fitting model to feature number 832, Widespread.colonization.island
+2023-08-07 20:14:45 INFO::Fitting model to feature number 833, Xanthine.Metabolism.in.Bacteria
+2023-08-07 20:14:45 INFO::Fitting model to feature number 834, Xanthosine.utilization..xap.region.
+2023-08-07 20:14:45 INFO::Fitting model to feature number 835, Xylose.utilization
+2023-08-07 20:14:45 INFO::Fitting model to feature number 836, YcfH
+2023-08-07 20:14:45 INFO::Fitting model to feature number 837, YebC
+2023-08-07 20:14:45 INFO::Fitting model to feature number 838, YgfZ
+2023-08-07 20:14:45 INFO::Fitting model to feature number 839, YgfZ.Fe.S
+2023-08-07 20:14:45 INFO::Fitting model to feature number 840, YgjD.and.YeaZ
+2023-08-07 20:14:45 INFO::Fitting model to feature number 841, YjbEFGH.Locus.Involved.in.Exopolysaccharide.Production
+2023-08-07 20:14:45 INFO::Fitting model to feature number 842, YjeE
+2023-08-07 20:14:45 INFO::Fitting model to feature number 843, YrdC.YciO
+2023-08-07 20:14:46 INFO::Fitting model to feature number 844, YrdC.YciO.Sua5.and.associated.protein.families
+2023-08-07 20:14:46 INFO::Fitting model to feature number 845, Zinc.regulated.enzymes
+2023-08-07 20:14:46 INFO::Fitting model to feature number 846, Zinc.resistance
+2023-08-07 20:14:46 INFO::Fitting model to feature number 847, acinetobacter.tca
+2023-08-07 20:14:46 INFO::Fitting model to feature number 848, archaeal.lipids.bobik
+2023-08-07 20:14:46 INFO::Fitting model to feature number 849, beta.glucuronide.utilization
+2023-08-07 20:14:46 INFO::Fitting model to feature number 850, cAMP.signaling.in.bacteria
+2023-08-07 20:14:46 INFO::Fitting model to feature number 851, carbazol.degradation.cluster
+2023-08-07 20:14:46 INFO::Fitting model to feature number 852, cell.division.cluster.containing.FtsQ
+2023-08-07 20:14:46 INFO::Fitting model to feature number 853, coA.FolK
+2023-08-07 20:14:46 INFO::Fitting model to feature number 854, ct6A
+2023-08-07 20:14:46 INFO::Fitting model to feature number 855, dTDP.rhamnose.synthesis
+2023-08-07 20:14:46 INFO::Fitting model to feature number 856, dcernst.CoA.Salvage
+2023-08-07 20:14:46 INFO::Fitting model to feature number 857, methyl.t6A
+2023-08-07 20:14:46 INFO::Fitting model to feature number 858, millsd.methanogensis
+2023-08-07 20:14:46 INFO::Fitting model to feature number 859, n.Phenylalkanoic.acid.degradation
+2023-08-07 20:14:46 INFO::Fitting model to feature number 860, p.Aminobenzoyl.Glutamate.Utilization
+2023-08-07 20:14:46 INFO::Fitting model to feature number 861, p.Hydroxybenzoate.degradation
+2023-08-07 20:14:46 INFO::Fitting model to feature number 862, pVir.Plasmid.of.Campylobacter
+2023-08-07 20:14:46 INFO::Fitting model to feature number 863, pyrimidine.conversions
+2023-08-07 20:14:46 INFO::Fitting model to feature number 864, rRNA.modification.Archaea
+2023-08-07 20:14:46 INFO::Fitting model to feature number 865, rRNA.modification.bacteria
+2023-08-07 20:14:46 INFO::Fitting model to feature number 866, riboflavin.to.FAD
+2023-08-07 20:14:46 INFO::Fitting model to feature number 867, t.6.A.synthesis.in.bacteria
+2023-08-07 20:14:46 INFO::Fitting model to feature number 868, t6A.synthesis.in.bacteria
+2023-08-07 20:14:46 INFO::Fitting model to feature number 869, tRNA.aminoacylation..Ala
+2023-08-07 20:14:46 INFO::Fitting model to feature number 870, tRNA.aminoacylation..Arg
+2023-08-07 20:14:46 INFO::Fitting model to feature number 871, tRNA.aminoacylation..Asp.and.Asn
+2023-08-07 20:14:46 INFO::Fitting model to feature number 872, tRNA.aminoacylation..Cys
+2023-08-07 20:14:46 INFO::Fitting model to feature number 873, tRNA.aminoacylation..Glu.and.Gln
+2023-08-07 20:14:46 INFO::Fitting model to feature number 874, tRNA.aminoacylation..Gly
+2023-08-07 20:14:46 INFO::Fitting model to feature number 875, tRNA.aminoacylation..His
+2023-08-07 20:14:46 INFO::Fitting model to feature number 876, tRNA.aminoacylation..Ile
+2023-08-07 20:14:46 INFO::Fitting model to feature number 877, tRNA.aminoacylation..Leu
+2023-08-07 20:14:46 INFO::Fitting model to feature number 878, tRNA.aminoacylation..Lys
+2023-08-07 20:14:46 INFO::Fitting model to feature number 879, tRNA.aminoacylation..Met
+2023-08-07 20:14:46 INFO::Fitting model to feature number 880, tRNA.aminoacylation..Phe
+2023-08-07 20:14:46 INFO::Fitting model to feature number 881, tRNA.aminoacylation..Ser
+2023-08-07 20:14:46 INFO::Fitting model to feature number 882, tRNA.aminoacylation..Thr
+2023-08-07 20:14:46 INFO::Fitting model to feature number 883, tRNA.aminoacylation..Trp
+2023-08-07 20:14:46 INFO::Fitting model to feature number 884, tRNA.aminoacylation..Tyr
+2023-08-07 20:14:46 INFO::Fitting model to feature number 885, tRNA.aminoacylation..Val
+2023-08-07 20:14:46 INFO::Fitting model to feature number 886, tRNA.modification.Archaea
+2023-08-07 20:14:46 INFO::Fitting model to feature number 887, tRNA.modification.yeast.mitochondrial
+2023-08-07 20:14:46 INFO::Fitting model to feature number 888, tRNA.mods.Archaea
+2023-08-07 20:14:46 INFO::Fitting model to feature number 889, tRNA.nucleotidyltransferase
+2023-08-07 20:14:46 INFO::Fitting model to feature number 890, tRNA.processing
+2023-08-07 20:14:46 INFO::Fitting model to feature number 891, tRNA.splicing
+2023-08-07 20:14:46 INFO::Fitting model to feature number 892, tRNA.dependent.amino.acid.transfers
+2023-08-07 20:14:46 INFO::Fitting model to feature number 893, tRNA.methylthiotransferase.containing.cluster
+2023-08-07 20:14:46 INFO::Fitting model to feature number 894, trimethylamine.N.oxide..TMAO..reductase
+2023-08-07 20:14:46 INFO::Counting total values for each feature
+2023-08-07 20:14:46 INFO::Writing residuals to file maaslin2_func/t6/strep_exposure_Y/residuals.rds
+2023-08-07 20:14:46 INFO::Writing fitted values to file maaslin2_func/t6/strep_exposure_Y/fitted.rds
+2023-08-07 20:14:46 INFO::Writing all results to file (ordered by increasing q-values): maaslin2_func/t6/strep_exposure_Y/all_results.tsv
+2023-08-07 20:14:46 INFO::Writing the significant results (those which are less than or equal to the threshold of 0.250000 ) to file (ordered by increasing q-values): maaslin2_func/t6/strep_exposure_Y/significant_results.tsv
+2023-08-07 20:14:46 INFO::Writing heatmap of significant results to file: maaslin2_func/t6/strep_exposure_Y/heatmap.pdf
+2023-08-07 20:14:46 INFO::Writing association plots (one for each significant association) to output folder: maaslin2_func/t6/strep_exposure_Y
+2023-08-07 20:14:46 INFO::Plotting associations from most to least significant, grouped by metadata
+2023-08-07 20:14:46 INFO::Plotting data for metadata number 1, strep_exposure
+2023-08-07 20:14:46 INFO::Creating boxplot for categorical data, strep_exposure vs Competence.in.Streptococci
+2023-08-07 20:14:46 INFO::Creating boxplot for categorical data, strep_exposure vs SecY2.SecA2.Specialized.Transport.System
+2023-08-07 20:14:47 INFO::Creating boxplot for categorical data, strep_exposure vs Late.competence
+2023-08-07 20:14:47 INFO::Creating boxplot for categorical data, strep_exposure vs Sucrose.specific.PTS
+2023-08-07 20:14:47 INFO::Creating boxplot for categorical data, strep_exposure vs Beta.lactamase.cluster.in.Streptococcus
+2023-08-07 20:14:47 INFO::Creating boxplot for categorical data, strep_exposure vs Urea.decomposition
+2023-08-07 20:14:48 INFO::Creating boxplot for categorical data, strep_exposure vs Glutamate.transporter.involved.in.acid.tolerance.in.Streptococcus
+2023-08-07 20:14:48 INFO::Creating boxplot for categorical data, strep_exposure vs Control.of.cell.elongation...division.cycle.in.Bacilli
+2023-08-07 20:14:48 INFO::Creating boxplot for categorical data, strep_exposure vs Urease.subunits
+2023-08-07 20:14:48 INFO::Creating boxplot for categorical data, strep_exposure vs Gram.Positive.Competence
+2023-08-07 20:14:49 INFO::Creating boxplot for categorical data, strep_exposure vs HtrA.and.Sec.secretion
+2023-08-07 20:14:49 INFO::Creating boxplot for categorical data, strep_exposure vs Polyglycerolphosphate.lipoteichoic.acid.biosynthesis
+2023-08-07 20:14:49 INFO::Creating boxplot for categorical data, strep_exposure vs Archaeal.lipids
+2023-08-07 20:14:49 INFO::Creating boxplot for categorical data, strep_exposure vs pyrimidine.conversions
+2023-08-07 20:14:50 INFO::Creating boxplot for categorical data, strep_exposure vs Conserved.gene.cluster.possibly.involved.in.RNA.metabolism
+2023-08-07 20:14:50 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.dependent.amino.acid.transfers
+2023-08-07 20:14:50 INFO::Creating boxplot for categorical data, strep_exposure vs A.Gram.positive.cluster.that.relates.ribosomal.protein.L28P.to.a.set.of.uncharacterized.proteins
+2023-08-07 20:14:50 INFO::Creating boxplot for categorical data, strep_exposure vs At4g10620.At3g57180.At3g47450
+2023-08-07 20:14:51 INFO::Creating boxplot for categorical data, strep_exposure vs Streptococcus.agalactiae.virulome
+2023-08-07 20:14:51 INFO::Creating boxplot for categorical data, strep_exposure vs Acetoin..butanediol.metabolism
+2023-08-07 20:14:51 INFO::Creating boxplot for categorical data, strep_exposure vs Cell.Division.Cluster
+2023-08-07 20:14:51 INFO::Creating boxplot for categorical data, strep_exposure vs Cell.envelope.associated.LytR.CpsA.Psr.transcriptional.attenuators
+2023-08-07 20:14:51 INFO::Creating boxplot for categorical data, strep_exposure vs Chitin.and.N.acetylglucosamine.utilization
+2023-08-07 20:14:52 INFO::Creating boxplot for categorical data, strep_exposure vs Streptococcus.pyogenes.virulence.regulators
+2023-08-07 20:14:52 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.262719.3.peg.410
+2023-08-07 20:14:52 INFO::Creating boxplot for categorical data, strep_exposure vs Unspecified.monosaccharide.transport.cluster
+2023-08-07 20:14:52 INFO::Creating boxplot for categorical data, strep_exposure vs Glycerolipid.and.Glycerophospholipid.Metabolism.in.Bacteria
+2023-08-07 20:14:53 INFO::Creating boxplot for categorical data, strep_exposure vs Single.Rhodanese.domain.proteins
+2023-08-07 20:14:53 INFO::Creating boxplot for categorical data, strep_exposure vs Streptococcus.pyogenes.Virulome
+2023-08-07 20:14:53 INFO::Creating boxplot for categorical data, strep_exposure vs ATP.dependent.Nuclease
+2023-08-07 20:14:53 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.222523.1.peg.1311
+2023-08-07 20:14:53 INFO::Creating boxplot for categorical data, strep_exposure vs L.Arabinose.utilization
+2023-08-07 20:14:54 INFO::Creating boxplot for categorical data, strep_exposure vs Omega.amidase
+2023-08-07 20:14:54 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.261594.1.peg.788
+2023-08-07 20:14:54 INFO::Creating boxplot for categorical data, strep_exposure vs D.Alanyl.Lipoteichoic.Acid.Biosynthesis
+2023-08-07 20:14:54 INFO::Creating boxplot for categorical data, strep_exposure vs Extracellular.Polysaccharide.Biosynthesis.of.Streptococci
+2023-08-07 20:14:54 INFO::Creating boxplot for categorical data, strep_exposure vs acinetobacter.tca
+2023-08-07 20:14:55 INFO::Creating boxplot for categorical data, strep_exposure vs RNA.pseudouridine.syntheses
+2023-08-07 20:14:55 INFO::Creating boxplot for categorical data, strep_exposure vs Copper.homeostasis
+2023-08-07 20:14:55 INFO::Creating boxplot for categorical data, strep_exposure vs IojapClusters
+2023-08-07 20:14:55 INFO::Creating boxplot for categorical data, strep_exposure vs Methionine.Biosynthesis
+2023-08-07 20:14:56 INFO::Creating boxplot for categorical data, strep_exposure vs Glycerol.fermentation.to.1.3.propanediol
+2023-08-07 20:14:56 INFO::Creating boxplot for categorical data, strep_exposure vs TCA.Cycle
+2023-08-07 20:14:56 INFO::Creating boxplot for categorical data, strep_exposure vs Streptococcal.Mga.Regulon
+2023-08-07 20:14:57 INFO::Creating boxplot for categorical data, strep_exposure vs Transport.of.Zinc
+2023-08-07 20:14:57 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.257314.1.peg.676
+2023-08-07 20:14:57 INFO::Creating boxplot for categorical data, strep_exposure vs Dehydrogenase.complexes
+2023-08-07 20:14:57 INFO::Creating boxplot for categorical data, strep_exposure vs Mercuric.reductase
+2023-08-07 20:14:57 INFO::Creating boxplot for categorical data, strep_exposure vs Raj.MurE
+2023-08-07 20:14:58 INFO::Creating boxplot for categorical data, strep_exposure vs Xylose.utilization
+2023-08-07 20:14:58 INFO::Creating boxplot for categorical data, strep_exposure vs Adhesion.of.Campylobacter
+2023-08-07 20:14:58 INFO::Creating boxplot for categorical data, strep_exposure vs Sporulation.Cluster
+2023-08-07 20:14:59 INFO::Creating boxplot for categorical data, strep_exposure vs Threonine.anaerobic.catabolism.gene.cluster
+2023-08-07 20:14:59 INFO::Creating boxplot for categorical data, strep_exposure vs Alpha.acetolactate.operon
+2023-08-07 20:14:59 INFO::Creating boxplot for categorical data, strep_exposure vs Mercury.resistance.operon
+2023-08-07 20:14:59 INFO::Creating boxplot for categorical data, strep_exposure vs D.Galacturonate.and.D.Glucuronate.Utilization
+2023-08-07 20:15:00 INFO::Creating boxplot for categorical data, strep_exposure vs DNA.repair..bacterial.MutL.MutS.system
+2023-08-07 20:15:00 INFO::Creating boxplot for categorical data, strep_exposure vs Prophage.lysogenic.conversion.modules
+2023-08-07 20:15:00 INFO::Creating boxplot for categorical data, strep_exposure vs Capsular.surface.virulence.antigen.loci
+2023-08-07 20:15:00 INFO::Creating boxplot for categorical data, strep_exposure vs Heat.shock.dnaK.gene.cluster.extended
+2023-08-07 20:15:00 INFO::Creating boxplot for categorical data, strep_exposure vs DNA.repair..bacterial
+2023-08-07 20:15:01 INFO::Creating boxplot for categorical data, strep_exposure vs Glutathione..Redox.cycle
+2023-08-07 20:15:01 INFO::Creating boxplot for categorical data, strep_exposure vs Broadly.distributed.proteins.not.in.subsystems
+2023-08-07 20:15:01 INFO::Creating boxplot for categorical data, strep_exposure vs Choline.and.Betaine.Uptake.and.Betaine.Biosynthesis
+2023-08-07 20:15:01 INFO::Creating boxplot for categorical data, strep_exposure vs Monika.MRSA
+2023-08-07 20:15:01 INFO::Creating boxplot for categorical data, strep_exposure vs Na....translocating.NADH.quinone.oxidoreductase.and.rnf.like.group.of.electron.transport.complexes
+2023-08-07 20:15:02 INFO::Creating boxplot for categorical data, strep_exposure vs Unknown.carbohydrate.utilization.containing.Fructose.bisphosphate.aldolase
+2023-08-07 20:15:02 INFO::Creating boxplot for categorical data, strep_exposure vs Fructooligosaccharides.FOS..and.Raffinose.Utilization
+2023-08-07 20:15:02 INFO::Creating boxplot for categorical data, strep_exposure vs Two.partner.secretion.pathway..TPS.
+2023-08-07 20:15:02 INFO::Creating boxplot for categorical data, strep_exposure vs Diadenylate.cyclase.cluster
+2023-08-07 20:15:02 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.84588.1.peg.1247
+2023-08-07 20:15:03 INFO::Creating boxplot for categorical data, strep_exposure vs Synthesis.of.osmoregulated.periplasmic.glucans
+2023-08-07 20:15:03 INFO::Creating boxplot for categorical data, strep_exposure vs Putative.hemin.transporter
+2023-08-07 20:15:03 INFO::Creating boxplot for categorical data, strep_exposure vs Outer.membrane
+2023-08-07 20:15:03 INFO::Creating boxplot for categorical data, strep_exposure vs Arsenic.resistance
+2023-08-07 20:15:03 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.393130.3.peg.794
+2023-08-07 20:15:04 INFO::Creating boxplot for categorical data, strep_exposure vs Fe.S.cluster.assembly
+2023-08-07 20:15:04 INFO::Creating boxplot for categorical data, strep_exposure vs LMPTP.YwlE.cluster
+2023-08-07 20:15:04 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.279010.5.peg.3195
+2023-08-07 20:15:04 INFO::Creating boxplot for categorical data, strep_exposure vs Ferrous.iron.transporter.EfeUOB..low.pH.induced
+2023-08-07 20:15:04 INFO::Creating boxplot for categorical data, strep_exposure vs Histidine.Biosynthesis
+2023-08-07 20:15:05 INFO::Creating boxplot for categorical data, strep_exposure vs Phage.tail.proteins.2
+2023-08-07 20:15:05 INFO::Creating boxplot for categorical data, strep_exposure vs KDO2.Lipid.A.biosynthesis
+2023-08-07 20:15:05 INFO::Creating boxplot for categorical data, strep_exposure vs Menaquinone.biosynthesis.from.chorismate.via.1.4.dihydroxy.2.naphthoate
+2023-08-07 20:15:05 INFO::Creating boxplot for categorical data, strep_exposure vs Hemin.transport.system
+2023-08-07 20:15:05 INFO::Creating boxplot for categorical data, strep_exposure vs Transport.of.Manganese
+2023-08-07 20:15:06 INFO::Creating boxplot for categorical data, strep_exposure vs BOX..RUP.and.SPRITE.repeats.in.Streptococcus.pneumoniae
+2023-08-07 20:15:06 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.243265.1.peg.198
+2023-08-07 20:15:06 INFO::Creating boxplot for categorical data, strep_exposure vs Lysozyme.inhibitors
+2023-08-07 20:15:06 INFO::Creating boxplot for categorical data, strep_exposure vs Murein.Hydrolases
+2023-08-07 20:15:07 INFO::Creating boxplot for categorical data, strep_exposure vs Carbon.Starvation
+2023-08-07 20:15:07 INFO::Creating boxplot for categorical data, strep_exposure vs Curli.production
+2023-08-07 20:15:07 INFO::Creating boxplot for categorical data, strep_exposure vs L.fucose.utilization
+2023-08-07 20:15:07 INFO::Creating boxplot for categorical data, strep_exposure vs Deoxyribose.and.Deoxynucleoside.Catabolism
+2023-08-07 20:15:07 INFO::Creating boxplot for categorical data, strep_exposure vs Lactose.and.Galactose.Uptake.and.Utilization
+2023-08-07 20:15:08 INFO::Creating boxplot for categorical data, strep_exposure vs Glutaredoxins
+2023-08-07 20:15:08 INFO::Creating boxplot for categorical data, strep_exposure vs Biotin.biosynthesis
+2023-08-07 20:15:08 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.393121.3.peg.2760
+2023-08-07 20:15:08 INFO::Creating boxplot for categorical data, strep_exposure vs DNA.repair..bacterial.DinG.and.relatives
+2023-08-07 20:15:09 INFO::Creating boxplot for categorical data, strep_exposure vs Streptococcus.pneumoniae.Vancomycin.Tolerance.Locus
+2023-08-07 20:15:09 INFO::Creating boxplot for categorical data, strep_exposure vs Lactose.utilization
+2023-08-07 20:15:09 INFO::Creating boxplot for categorical data, strep_exposure vs Phenylalanine.and.Tyrosine.Branches.from.Chorismate
+2023-08-07 20:15:09 INFO::Creating boxplot for categorical data, strep_exposure vs Mycobacterium.virulence.operon.involved.in.DNA.transcription
+2023-08-07 20:15:10 INFO::Creating boxplot for categorical data, strep_exposure vs Alpha.Amylase.locus.in.Streptocococcus
+2023-08-07 20:15:10 INFO::Creating boxplot for categorical data, strep_exposure vs cell.division.cluster.containing.FtsQ
+2023-08-07 20:15:10 INFO::Creating boxplot for categorical data, strep_exposure vs Phd.Doc..YdcE.YdcD.toxin.antitoxin..programmed.cell.death..systems
+2023-08-07 20:15:10 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Asp.and.Asn
+2023-08-07 20:15:11 INFO::Creating boxplot for categorical data, strep_exposure vs Glycolate..glyoxylate.interconversions
+2023-08-07 20:15:11 INFO::Creating boxplot for categorical data, strep_exposure vs ABC.transporter.oligopeptide..TC.3.A.1.5.1.
+2023-08-07 20:15:11 INFO::Creating boxplot for categorical data, strep_exposure vs n.Phenylalkanoic.acid.degradation
+2023-08-07 20:15:12 INFO::Creating boxplot for categorical data, strep_exposure vs Cell.Division.Subsystem.including.YidCD
+2023-08-07 20:15:12 INFO::Creating boxplot for categorical data, strep_exposure vs Respiration...HGM
+2023-08-07 20:15:12 INFO::Creating boxplot for categorical data, strep_exposure vs Peptidoglycan.Biosynthesis
+2023-08-07 20:15:12 INFO::Creating boxplot for categorical data, strep_exposure vs Competence.or.DNA.damage.inducible.protein.CinA.and.related.protein.families
+2023-08-07 20:15:12 INFO::Creating boxplot for categorical data, strep_exposure vs The.usher.protein.HtrE.fimbrial.cluster
+2023-08-07 20:15:13 INFO::Creating boxplot for categorical data, strep_exposure vs Calvin.Benson.cycle
+2023-08-07 20:15:13 INFO::Creating boxplot for categorical data, strep_exposure vs DNA.replication
+2023-08-07 20:15:14 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.176299.4.peg.1292
+2023-08-07 20:15:14 INFO::Creating boxplot for categorical data, strep_exposure vs Sporulation.associated.proteins.with.broader.functions
+2023-08-07 20:15:14 INFO::Creating boxplot for categorical data, strep_exposure vs Thiamin.biosynthesis.in.plants
+2023-08-07 20:15:14 INFO::Creating boxplot for categorical data, strep_exposure vs RuvABC.plus.a.hypothetical
+2023-08-07 20:15:14 INFO::Creating boxplot for categorical data, strep_exposure vs Arginine.and.Ornithine.Degradation
+2023-08-07 20:15:15 INFO::Creating boxplot for categorical data, strep_exposure vs COG2363
+2023-08-07 20:15:15 INFO::Creating boxplot for categorical data, strep_exposure vs Cinnamic.Acid.Degradation
+2023-08-07 20:15:15 INFO::Creating boxplot for categorical data, strep_exposure vs Hydantoin.metabolism
+2023-08-07 20:15:15 INFO::Creating boxplot for categorical data, strep_exposure vs Osmoregulation
+2023-08-07 20:15:16 INFO::Creating boxplot for categorical data, strep_exposure vs Pyruvate.metabolism.I..anaplerotic.reactions..PEP
+2023-08-07 20:15:16 INFO::Creating boxplot for categorical data, strep_exposure vs Uptake.of.selenate.and.selenite
+2023-08-07 20:15:16 INFO::Creating boxplot for categorical data, strep_exposure vs VC0266
+2023-08-07 20:15:16 INFO::Creating boxplot for categorical data, strep_exposure vs Formate.hydrogenase
+2023-08-07 20:15:17 INFO::Creating boxplot for categorical data, strep_exposure vs Accessory.colonization.factor
+2023-08-07 20:15:17 INFO::Creating boxplot for categorical data, strep_exposure vs GroEL.GroES
+2023-08-07 20:15:17 INFO::Creating boxplot for categorical data, strep_exposure vs ECF.class.transporters
+2023-08-07 20:15:17 INFO::Creating boxplot for categorical data, strep_exposure vs CbiZ.Main
+2023-08-07 20:15:18 INFO::Creating boxplot for categorical data, strep_exposure vs DNA.binding.regulatory.proteins..strays
+2023-08-07 20:15:18 INFO::Creating boxplot for categorical data, strep_exposure vs L.rhamnose.utilization
+2023-08-07 20:15:18 INFO::Creating boxplot for categorical data, strep_exposure vs cAMP.signaling.in.bacteria
+2023-08-07 20:15:18 INFO::Creating boxplot for categorical data, strep_exposure vs HPr.catabolite.repression.system
+2023-08-07 20:15:19 INFO::Creating boxplot for categorical data, strep_exposure vs Trehalose.Biosynthesis
+2023-08-07 20:15:19 INFO::Creating boxplot for categorical data, strep_exposure vs Siderophore.Enterobactin
+2023-08-07 20:15:19 INFO::Creating boxplot for categorical data, strep_exposure vs D.Tagatose.and.Galactitol.Utilization
+2023-08-07 20:15:19 INFO::Creating boxplot for categorical data, strep_exposure vs Siderophore.Yersiniabactin.Biosynthesis
+2023-08-07 20:15:20 INFO::Creating boxplot for categorical data, strep_exposure vs X4.Hydroxyphenylacetic.acid.catabolic.pathway
+2023-08-07 20:15:20 INFO::Creating boxplot for categorical data, strep_exposure vs Inner.membrane.protein.YhjD.and.conserved.cluster.involved.in.LPS.biosynthesis
+2023-08-07 20:15:20 INFO::Creating boxplot for categorical data, strep_exposure vs Propionyl.CoA.to.Succinyl.CoA.Module
+2023-08-07 20:15:20 INFO::Creating boxplot for categorical data, strep_exposure vs Terminal.cytochrome.d.ubiquinol.oxidases
+2023-08-07 20:15:21 INFO::Creating boxplot for categorical data, strep_exposure vs Tricarballylate.Utilization
+2023-08-07 20:15:21 INFO::Creating boxplot for categorical data, strep_exposure vs O.antigen.capsule.important.for.environmental.persistence
+2023-08-07 20:15:21 INFO::Creating boxplot for categorical data, strep_exposure vs D.galactarate..D.glucarate.and.D.glycerate.catabolism
+2023-08-07 20:15:21 INFO::Creating boxplot for categorical data, strep_exposure vs Heme..hemin.uptake.and.utilization.systems.in.GramPositives
+2023-08-07 20:15:22 INFO::Creating boxplot for categorical data, strep_exposure vs Respiratory.Complex.I
+2023-08-07 20:15:22 INFO::Creating boxplot for categorical data, strep_exposure vs Alanine.biosynthesis
+2023-08-07 20:15:22 INFO::Creating boxplot for categorical data, strep_exposure vs Glycine.Biosynthesis
+2023-08-07 20:15:22 INFO::Creating boxplot for categorical data, strep_exposure vs Acetone.Butanol.Ethanol.Synthesis
+2023-08-07 20:15:23 INFO::Creating boxplot for categorical data, strep_exposure vs Glyoxylate.bypass
+2023-08-07 20:15:23 INFO::Creating boxplot for categorical data, strep_exposure vs ThiD.ThiE.fusions
+2023-08-07 20:15:23 INFO::Creating boxplot for categorical data, strep_exposure vs Carnitine.Metabolism.in.Microorganisms
+2023-08-07 20:15:23 INFO::Creating boxplot for categorical data, strep_exposure vs Hexose.Phosphate.Uptake.System
+2023-08-07 20:15:23 INFO::Creating boxplot for categorical data, strep_exposure vs Pyrroloquinoline.Quinone.biosynthesis
+2023-08-07 20:15:24 INFO::Creating boxplot for categorical data, strep_exposure vs t.6.A.synthesis.in.bacteria
+2023-08-07 20:15:24 INFO::Creating boxplot for categorical data, strep_exposure vs ATP.dependent.efflux.pump.transporter.Ybh
+2023-08-07 20:15:24 INFO::Creating boxplot for categorical data, strep_exposure vs Universal.GTPases
+2023-08-07 20:15:24 INFO::Creating boxplot for categorical data, strep_exposure vs D.gluconate.and.ketogluconates.metabolism
+2023-08-07 20:15:24 INFO::Creating boxplot for categorical data, strep_exposure vs Menaquinone.Biosynthesis.via.Futalosine
+2023-08-07 20:15:25 INFO::Creating boxplot for categorical data, strep_exposure vs The.mdtABCD.multidrug.resistance.cluster
+2023-08-07 20:15:25 INFO::Creating boxplot for categorical data, strep_exposure vs ATP.dependent.RNA.helicases..bacterial
+2023-08-07 20:15:25 INFO::Creating boxplot for categorical data, strep_exposure vs At3g21300
+2023-08-07 20:15:25 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.211586.1.peg.3133
+2023-08-07 20:15:25 INFO::Creating boxplot for categorical data, strep_exposure vs NAD.and.NADP.cofactor.biosynthesis.global
+2023-08-07 20:15:26 INFO::Creating boxplot for categorical data, strep_exposure vs Phage.packaging.machinery
+2023-08-07 20:15:26 INFO::Creating boxplot for categorical data, strep_exposure vs Toxin.antitoxin.systems..other.than.RelBE.and.MazEF.
+2023-08-07 20:15:26 INFO::Creating boxplot for categorical data, strep_exposure vs A.Gammaproteobacteria.Cluster.Relating.to.Translation
+2023-08-07 20:15:26 INFO::Creating boxplot for categorical data, strep_exposure vs Oxygen.stress.response...Human.gut.microbiome
+2023-08-07 20:15:26 INFO::Creating boxplot for categorical data, strep_exposure vs At1g69340.At2g40600
+2023-08-07 20:15:27 INFO::Creating boxplot for categorical data, strep_exposure vs At5g37530..CsdL.protein.family.
+2023-08-07 20:15:27 INFO::Creating boxplot for categorical data, strep_exposure vs ABC.transporter.branched.chain.amino.acid..TC.3.A.1.4.1.
+2023-08-07 20:15:27 INFO::Creating boxplot for categorical data, strep_exposure vs D.galactarate..D.glucarate.and.D.glycerate.catabolism...gjo
+2023-08-07 20:15:27 INFO::Creating boxplot for categorical data, strep_exposure vs Galactosylceramide.and.Sulfatide.metabolism
+2023-08-07 20:15:27 INFO::Creating boxplot for categorical data, strep_exposure vs Methionine.Degradation
+2023-08-07 20:15:28 INFO::Creating boxplot for categorical data, strep_exposure vs Methionine.Salvage
+2023-08-07 20:15:28 INFO::Creating boxplot for categorical data, strep_exposure vs Fructose.utilization
+2023-08-07 20:15:28 INFO::Creating boxplot for categorical data, strep_exposure vs Maltose.and.Maltodextrin.Utilization
+2023-08-07 20:15:28 INFO::Creating boxplot for categorical data, strep_exposure vs General.Secretion.Pathway
+2023-08-07 20:15:28 INFO::Creating boxplot for categorical data, strep_exposure vs Putative.diaminopropionate.ammonia.lyase.cluster
+2023-08-07 20:15:28 INFO::Creating boxplot for categorical data, strep_exposure vs Transposase.in.enterics
+2023-08-07 20:15:29 INFO::Creating boxplot for categorical data, strep_exposure vs N.Acetyl.Galactosamine.and.Galactosamine.Utilization
+2023-08-07 20:15:29 INFO::Creating boxplot for categorical data, strep_exposure vs Rhamnose.containing.glycans
+2023-08-07 20:15:29 INFO::Creating boxplot for categorical data, strep_exposure vs Respiration...Human.gut.microbiome
+2023-08-07 20:15:29 INFO::Creating boxplot for categorical data, strep_exposure vs Homogentisate.pathway.of.aromatic.compound.degradation
+2023-08-07 20:15:30 INFO::Creating boxplot for categorical data, strep_exposure vs Taurine.Utilization
+2023-08-07 20:15:30 INFO::Creating boxplot for categorical data, strep_exposure vs Transport.of.Molybdenum
+2023-08-07 20:15:30 INFO::Creating boxplot for categorical data, strep_exposure vs Colicin.V.and.Bacteriocin.Production.Cluster
+2023-08-07 20:15:30 INFO::Creating boxplot for categorical data, strep_exposure vs Teichoic.and.lipoteichoic.acids.biosynthesis
+2023-08-07 20:15:31 INFO::Creating boxplot for categorical data, strep_exposure vs Molybdopterin.cytosine.dinucleotide
+2023-08-07 20:15:31 INFO::Creating boxplot for categorical data, strep_exposure vs Iron.III..dicitrate.transport.system.Fec
+2023-08-07 20:15:31 INFO::Creating boxplot for categorical data, strep_exposure vs Dihydroxyacetone.kinases
+2023-08-07 20:15:31 INFO::Creating boxplot for categorical data, strep_exposure vs L.fucose.utilization.temp
+2023-08-07 20:15:31 INFO::Creating boxplot for categorical data, strep_exposure vs Phage.shock.protein..psp..operon
+2023-08-07 20:15:32 INFO::Creating boxplot for categorical data, strep_exposure vs Polysaccharide.deacetylases
+2023-08-07 20:15:32 INFO::Creating boxplot for categorical data, strep_exposure vs Cadmium.resistance
+2023-08-07 20:15:32 INFO::Creating boxplot for categorical data, strep_exposure vs Acetyl.CoA.fermentation.to.Butyrate
+2023-08-07 20:15:32 INFO::Creating boxplot for categorical data, strep_exposure vs Peptidoglycan.biosynthesis..gjo
+2023-08-07 20:15:32 INFO::Creating boxplot for categorical data, strep_exposure vs Ubiquinone.biosynthesis....gjo
+2023-08-07 20:15:32 INFO::Creating boxplot for categorical data, strep_exposure vs De.Novo.Purine.Biosynthesis
+2023-08-07 20:15:33 INFO::Creating boxplot for categorical data, strep_exposure vs Multidrug.Resistance..Tripartite.Systems.Found.in.Gram.Negative.Bacteria
+2023-08-07 20:15:33 INFO::Creating boxplot for categorical data, strep_exposure vs Nitrate.and.nitrite.ammonification
+2023-08-07 20:15:33 INFO::Creating boxplot for categorical data, strep_exposure vs Redox.dependent.regulation.of.nucleus.processes
+2023-08-07 20:15:33 INFO::Creating boxplot for categorical data, strep_exposure vs Iron.acquisition.in.Vibrio
+2023-08-07 20:15:33 INFO::Creating boxplot for categorical data, strep_exposure vs Tryptophan.synthesis
+2023-08-07 20:15:34 INFO::Creating boxplot for categorical data, strep_exposure vs Type.4.conjugative.transfer.system..IncI1.type
+2023-08-07 20:15:34 INFO::Creating boxplot for categorical data, strep_exposure vs At2g33980.At1g28960
+2023-08-07 20:15:34 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.320372.3.peg.6046
+2023-08-07 20:15:34 INFO::Creating boxplot for categorical data, strep_exposure vs Osmoprotectant.ABC.transporter.YehZYXW.of.Enterobacteriales
+2023-08-07 20:15:34 INFO::Creating boxplot for categorical data, strep_exposure vs Ribosome.SSU.bacterial
+2023-08-07 20:15:35 INFO::Creating boxplot for categorical data, strep_exposure vs Tn552
+2023-08-07 20:15:35 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.502800.3.peg.2785
+2023-08-07 20:15:35 INFO::Creating boxplot for categorical data, strep_exposure vs Heme.and.Siroheme.biosynthesis.in.plants
+2023-08-07 20:15:35 INFO::Creating boxplot for categorical data, strep_exposure vs Branched.Chain.Amino.Acid.Biosynthesis
+2023-08-07 20:15:36 INFO::Creating boxplot for categorical data, strep_exposure vs Siderophore.assembly.kit
+2023-08-07 20:15:36 INFO::Creating boxplot for categorical data, strep_exposure vs Periplasmic.disulfide.interchange
+2023-08-07 20:15:36 INFO::Creating boxplot for categorical data, strep_exposure vs Phage.head.and.packaging
+2023-08-07 20:15:36 INFO::Creating boxplot for categorical data, strep_exposure vs Type.1.pili..mannose.sensitive.fimbriae.
+2023-08-07 20:15:36 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.216592.1.peg.3534
+2023-08-07 20:15:37 INFO::Creating boxplot for categorical data, strep_exposure vs Folate.Biosynthesis
+2023-08-07 20:15:37 INFO::Creating boxplot for categorical data, strep_exposure vs Proteolysis.in.bacteria..ATP.dependent
+2023-08-07 20:15:37 INFO::Creating boxplot for categorical data, strep_exposure vs Triacylglycerol.metabolism
+2023-08-07 20:15:37 INFO::Creating boxplot for categorical data, strep_exposure vs Proline..4.hydroxyproline.uptake.and.utilization
+2023-08-07 20:15:37 INFO::Creating boxplot for categorical data, strep_exposure vs CoenzymeM.Archaea
+2023-08-07 20:15:38 INFO::Creating boxplot for categorical data, strep_exposure vs COG0277
+2023-08-07 20:15:38 INFO::Creating boxplot for categorical data, strep_exposure vs DNA.Repair.Base.Excision
+2023-08-07 20:15:38 INFO::Creating boxplot for categorical data, strep_exposure vs D.ribose.utilization
+2023-08-07 20:15:38 INFO::Creating boxplot for categorical data, strep_exposure vs IbrA.and.IbrB..co.activators.of.prophage.gene.expression
+2023-08-07 20:15:38 INFO::Creating boxplot for categorical data, strep_exposure vs Cyanate.hydrolysis
+2023-08-07 20:15:39 INFO::Creating boxplot for categorical data, strep_exposure vs CLO.thiaminPP.biosynthesis
+2023-08-07 20:15:39 INFO::Creating boxplot for categorical data, strep_exposure vs Lacto.N.Biose.I.and.Galacto.N.Biose.Metabolic.Pathway
+2023-08-07 20:15:39 INFO::Creating boxplot for categorical data, strep_exposure vs X..945..Fimbriae
+2023-08-07 20:15:39 INFO::Creating boxplot for categorical data, strep_exposure vs Ethanolamine.utilization
+2023-08-07 20:15:39 INFO::Creating boxplot for categorical data, strep_exposure vs Phenylacetyl.CoA.catabolic.pathway..core.
+2023-08-07 20:15:40 INFO::Creating boxplot for categorical data, strep_exposure vs Streptococcus.pyogenes.recombinatorial.zone
+2023-08-07 20:15:40 INFO::Creating boxplot for categorical data, strep_exposure vs Threonine.and.Homoserine.Biosynthesis
+2023-08-07 20:15:40 INFO::Creating boxplot for categorical data, strep_exposure vs Inteins
+2023-08-07 20:15:41 INFO::Creating boxplot for categorical data, strep_exposure vs Bacterial.Chemotaxis
+2023-08-07 20:15:41 INFO::Creating boxplot for categorical data, strep_exposure vs Heme.biosynthesis.orphans
+2023-08-07 20:15:41 INFO::Creating boxplot for categorical data, strep_exposure vs Glycine.and.Serine.Utilization
+2023-08-07 20:15:41 INFO::Creating boxplot for categorical data, strep_exposure vs Mannitol.Utilization
+2023-08-07 20:15:41 INFO::Creating boxplot for categorical data, strep_exposure vs MazEF.toxin.antitoxing..programmed.cell.death..system
+2023-08-07 20:15:42 INFO::Creating boxplot for categorical data, strep_exposure vs Quinone.disambuiguation
+2023-08-07 20:15:42 INFO::Creating boxplot for categorical data, strep_exposure vs DNA.phosphorothioation
+2023-08-07 20:15:42 INFO::Creating boxplot for categorical data, strep_exposure vs Fatty.Acid.Biosynthesis.FASII
+2023-08-07 20:15:42 INFO::Creating boxplot for categorical data, strep_exposure vs Two.cell.division.clusters.relating.to.chromosome.partitioning
+2023-08-07 20:15:43 INFO::Creating boxplot for categorical data, strep_exposure vs Type.VI.secretion.systems
+2023-08-07 20:15:43 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.257314.1.peg.488
+2023-08-07 20:15:43 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.342610.3.peg.1536
+2023-08-07 20:15:43 INFO::Creating boxplot for categorical data, strep_exposure vs Pterin.carbinolamine.dehydratase
+2023-08-07 20:15:43 INFO::Creating boxplot for categorical data, strep_exposure vs Colanic.acid.biosynthesis
+2023-08-07 20:15:44 INFO::Creating boxplot for categorical data, strep_exposure vs A.toxin.antitoxin.module.cotranscribed.with.DinB
+2023-08-07 20:15:44 INFO::Creating boxplot for categorical data, strep_exposure vs At1g14345
+2023-08-07 20:15:44 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.216592.1.peg.3937
+2023-08-07 20:15:44 INFO::Creating boxplot for categorical data, strep_exposure vs Formate.dehydrogenase
+2023-08-07 20:15:44 INFO::Creating boxplot for categorical data, strep_exposure vs Inorganic.Sulfur.Assimilation
+2023-08-07 20:15:45 INFO::Creating boxplot for categorical data, strep_exposure vs L.ascorbate.utilization..and.related.gene.clusters.
+2023-08-07 20:15:45 INFO::Creating boxplot for categorical data, strep_exposure vs Polyadenylation.bacterial
+2023-08-07 20:15:45 INFO::Creating boxplot for categorical data, strep_exposure vs Putative.oxidase.COG2907
+2023-08-07 20:15:45 INFO::Creating boxplot for categorical data, strep_exposure vs Teichuronic.acid.biosynthesis
+2023-08-07 20:15:45 INFO::Creating boxplot for categorical data, strep_exposure vs Siderophore.Aerobactin
+2023-08-07 20:15:46 INFO::Creating boxplot for categorical data, strep_exposure vs High.affinity.phosphate.transporter.and.control.of.PHO.regulon
+2023-08-07 20:15:46 INFO::Creating boxplot for categorical data, strep_exposure vs Isoprenoid.Biosynthesis
+2023-08-07 20:15:46 INFO::Creating boxplot for categorical data, strep_exposure vs Bacterial.Cytoskeleton
+2023-08-07 20:15:46 INFO::Creating boxplot for categorical data, strep_exposure vs Synechocystis.experimental
+2023-08-07 20:15:46 INFO::Creating boxplot for categorical data, strep_exposure vs N.linked.Glycosylation.in.Bacteria
+2023-08-07 20:15:47 INFO::Creating boxplot for categorical data, strep_exposure vs p.Hydroxybenzoate.degradation
+2023-08-07 20:15:47 INFO::Creating boxplot for categorical data, strep_exposure vs Cluster.Ytf.and.putative.sugar.transporter
+2023-08-07 20:15:47 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Arg
+2023-08-07 20:15:47 INFO::Creating boxplot for categorical data, strep_exposure vs Butanol.Biosynthesis
+2023-08-07 20:15:48 INFO::Creating boxplot for categorical data, strep_exposure vs Nitric.oxide.synthase
+2023-08-07 20:15:48 INFO::Creating boxplot for categorical data, strep_exposure vs Sortase
+2023-08-07 20:15:48 INFO::Creating boxplot for categorical data, strep_exposure vs YjbEFGH.Locus.Involved.in.Exopolysaccharide.Production
+2023-08-07 20:15:48 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Thr
+2023-08-07 20:15:48 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.methylthiotransferase.containing.cluster
+2023-08-07 20:15:49 INFO::Creating boxplot for categorical data, strep_exposure vs Phenylpropionate.Degradation
+2023-08-07 20:15:49 INFO::Creating boxplot for categorical data, strep_exposure vs Unsaturated.Fatty.Acid.Metabolism
+2023-08-07 20:15:49 INFO::Creating boxplot for categorical data, strep_exposure vs Hydrogenases
+2023-08-07 20:15:49 INFO::Creating boxplot for categorical data, strep_exposure vs Lactate.utilization
+2023-08-07 20:15:50 INFO::Creating boxplot for categorical data, strep_exposure vs Staphylococcal.pathogenicity.islands.SaPI
+2023-08-07 20:15:50 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.316407.3.peg.1371
+2023-08-07 20:15:50 INFO::Creating boxplot for categorical data, strep_exposure vs Glutathionylspermidine.and.Trypanothione
+2023-08-07 20:15:50 INFO::Creating boxplot for categorical data, strep_exposure vs BEY.LIP
+2023-08-07 20:15:50 INFO::Creating boxplot for categorical data, strep_exposure vs Phage.capsid.proteins
+2023-08-07 20:15:51 INFO::Creating boxplot for categorical data, strep_exposure vs Fatty.acid.degradation.regulons
+2023-08-07 20:15:51 INFO::Creating boxplot for categorical data, strep_exposure vs Proton.dependent.Peptide.Transporters
+2023-08-07 20:15:51 INFO::Creating boxplot for categorical data, strep_exposure vs Phenazine.biosynthesis
+2023-08-07 20:15:51 INFO::Creating boxplot for categorical data, strep_exposure vs Pterin.biosynthesis
+2023-08-07 20:15:52 INFO::Creating boxplot for categorical data, strep_exposure vs Transport.of.Nickel.and.Cobalt
+2023-08-07 20:15:52 INFO::Creating boxplot for categorical data, strep_exposure vs rRNA.modification.Archaea
+2023-08-07 20:15:52 INFO::Creating boxplot for categorical data, strep_exposure vs trimethylamine.N.oxide..TMAO..reductase
+2023-08-07 20:15:52 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Val
+2023-08-07 20:15:52 INFO::Creating boxplot for categorical data, strep_exposure vs Lipopolysaccharide.assembly
+2023-08-07 20:15:53 INFO::Creating boxplot for categorical data, strep_exposure vs Test.Pyridoxin.B6
+2023-08-07 20:15:53 INFO::Creating boxplot for categorical data, strep_exposure vs Pyrimidine.utilization
+2023-08-07 20:15:53 INFO::Creating boxplot for categorical data, strep_exposure vs ABC.transporter.dipeptide..TC.3.A.1.5.2.
+2023-08-07 20:15:53 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.326442.4.peg.1852
+2023-08-07 20:15:54 INFO::Creating boxplot for categorical data, strep_exposure vs Glycolysis.test
+2023-08-07 20:15:54 INFO::Creating boxplot for categorical data, strep_exposure vs Multiple.Antibiotic.Resistance.MAR.locus
+2023-08-07 20:15:54 INFO::Creating boxplot for categorical data, strep_exposure vs Phage.tail.fiber.proteins
+2023-08-07 20:15:54 INFO::Creating boxplot for categorical data, strep_exposure vs Amino.acid.racemase
+2023-08-07 20:15:54 INFO::Creating boxplot for categorical data, strep_exposure vs Fratricide.in.Streptococcus
+2023-08-07 20:15:55 INFO::Creating boxplot for categorical data, strep_exposure vs Methicillin.resistance.in.Staphylococci
+2023-08-07 20:15:55 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.211586.1.peg.2357
+2023-08-07 20:15:55 INFO::Creating boxplot for categorical data, strep_exposure vs Citrate.Metabolism.KE2
+2023-08-07 20:15:55 INFO::Creating boxplot for categorical data, strep_exposure vs Bacitracin.Stress.Response
+2023-08-07 20:15:56 INFO::Creating boxplot for categorical data, strep_exposure vs EC699.706
+2023-08-07 20:15:56 INFO::Creating boxplot for categorical data, strep_exposure vs Lipid.A.Ara4N.pathway...Polymyxin.resistance..
+2023-08-07 20:15:56 INFO::Creating boxplot for categorical data, strep_exposure vs Biofilm.Adhesin.Biosynthesis
+2023-08-07 20:15:56 INFO::Creating boxplot for categorical data, strep_exposure vs Beta.Glucoside.Metabolism
+2023-08-07 20:15:56 INFO::Creating boxplot for categorical data, strep_exposure vs Propanediol.utilization
+2023-08-07 20:15:57 INFO::Creating boxplot for categorical data, strep_exposure vs Riboflavin..FMN.and.FAD.metabolism.Extended
+2023-08-07 20:15:57 INFO::Creating boxplot for categorical data, strep_exposure vs Ribosome.biogenesis.bacterial
+2023-08-07 20:15:57 INFO::Creating boxplot for categorical data, strep_exposure vs At1g21350
+2023-08-07 20:15:57 INFO::Creating boxplot for categorical data, strep_exposure vs RtcB.RtcA
+2023-08-07 20:15:57 INFO::Creating boxplot for categorical data, strep_exposure vs TenI.like.tautomerase
+2023-08-07 20:15:58 INFO::Creating boxplot for categorical data, strep_exposure vs FOL.Commensurate.regulon.activation
+2023-08-07 20:15:58 INFO::Creating boxplot for categorical data, strep_exposure vs Translation.initiation.factors.eukaryotic.and.archaeal
+2023-08-07 20:15:58 INFO::Creating boxplot for categorical data, strep_exposure vs Multidrug.efflux.pump.in.Campylobacter.jejuni..CmeABC.operon.
+2023-08-07 20:15:58 INFO::Creating boxplot for categorical data, strep_exposure vs Galactose.inducible.PTS
+2023-08-07 20:15:59 INFO::Creating boxplot for categorical data, strep_exposure vs Selenocysteine.metabolism
+2023-08-07 20:15:59 INFO::Creating boxplot for categorical data, strep_exposure vs Nitrogen.Metabolism.in.Aspergillus.nidulans
+2023-08-07 20:15:59 INFO::Creating boxplot for categorical data, strep_exposure vs A.conserved.operon.linked.to.TyrR.and.possibly.involved.in.virulence
+2023-08-07 20:15:59 INFO::Creating boxplot for categorical data, strep_exposure vs At2g23840
+2023-08-07 20:15:59 INFO::Creating boxplot for categorical data, strep_exposure vs Flavodoxin
+2023-08-07 20:16:00 INFO::Creating boxplot for categorical data, strep_exposure vs Lipid.linked.oligosaccharide.synthesis.related.cluster
+2023-08-07 20:16:00 INFO::Creating boxplot for categorical data, strep_exposure vs Methylcitrate.cycle
+2023-08-07 20:16:00 INFO::Creating boxplot for categorical data, strep_exposure vs Proline.Synthesis
+2023-08-07 20:16:00 INFO::Creating boxplot for categorical data, strep_exposure vs Protein.Acetylation.and.Deacetylation.in.Bacteria
+2023-08-07 20:16:01 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Leu
+2023-08-07 20:16:01 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Gly
+2023-08-07 20:16:01 INFO::Creating boxplot for categorical data, strep_exposure vs Trehalose.Uptake.and.Utilization
+2023-08-07 20:16:01 INFO::Creating boxplot for categorical data, strep_exposure vs EC.6.4.1...Ligases.that.form.carbon.carbon.bonds
+2023-08-07 20:16:01 INFO::Creating boxplot for categorical data, strep_exposure vs Alkylphosphonate.utilization
+2023-08-07 20:16:02 INFO::Creating boxplot for categorical data, strep_exposure vs Mycobacterium.virulence.operon.involved.in.an.unknown.function.with.a.Jag.Protein.and.YidC.and.YidD
+2023-08-07 20:16:02 INFO::Creating boxplot for categorical data, strep_exposure vs D.galactonate.catabolism
+2023-08-07 20:16:02 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Ile
+2023-08-07 20:16:02 INFO::Creating boxplot for categorical data, strep_exposure vs Tellurite.resistance..Chromosomal.determinants
+2023-08-07 20:16:02 INFO::Creating boxplot for categorical data, strep_exposure vs Hyperosmotic.potassium.uptake
+2023-08-07 20:16:03 INFO::Creating boxplot for categorical data, strep_exposure vs Capsular.Polysaccharides.Biosynthesis.and.Assembly
+2023-08-07 20:16:03 INFO::Creating boxplot for categorical data, strep_exposure vs Quorum.sensing.in.Yersinia
+2023-08-07 20:16:03 INFO::Creating boxplot for categorical data, strep_exposure vs p.Aminobenzoyl.Glutamate.Utilization
+2023-08-07 20:16:03 INFO::Creating boxplot for categorical data, strep_exposure vs Biotin.synthesis...utilization
+2023-08-07 20:16:03 INFO::Creating boxplot for categorical data, strep_exposure vs The.fimbrial.Stf.cluster
+2023-08-07 20:16:04 INFO::Creating boxplot for categorical data, strep_exposure vs Glycogen.metabolism
+2023-08-07 20:16:04 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.584.1.peg.841
+2023-08-07 20:16:04 INFO::Creating boxplot for categorical data, strep_exposure vs Recycling.of.Peptidoglycan.Amino.Sugars
+2023-08-07 20:16:04 INFO::Creating boxplot for categorical data, strep_exposure vs DNA.repair..bacterial.RecBCD.pathway
+2023-08-07 20:16:04 INFO::Creating boxplot for categorical data, strep_exposure vs Sulfatases.and.sulfatase.modifying.factor.1
+2023-08-07 20:16:05 INFO::Creating boxplot for categorical data, strep_exposure vs Major.Outer.Membrane.Proteins
+2023-08-07 20:16:05 INFO::Creating boxplot for categorical data, strep_exposure vs A.Glutathione.dependent.Thiol.Reductase.Associated.with.a.Step.in.Lysine.Biosynthesis
+2023-08-07 20:16:05 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.246196.1.peg.364
+2023-08-07 20:16:05 INFO::Creating boxplot for categorical data, strep_exposure vs Exopolysaccharide.Biosynthesis
+2023-08-07 20:16:05 INFO::Creating boxplot for categorical data, strep_exposure vs Phage.nin.genes...N.independent.survival
+2023-08-07 20:16:06 INFO::Creating boxplot for categorical data, strep_exposure vs Peptide.ABC.transport.system.Sap
+2023-08-07 20:16:06 INFO::Creating boxplot for categorical data, strep_exposure vs Aromatic.amino.acid.degradation
+2023-08-07 20:16:06 INFO::Creating boxplot for categorical data, strep_exposure vs Glutathione..Biosynthesis.and.gamma.glutamyl.cycle
+2023-08-07 20:16:06 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Phe
+2023-08-07 20:16:07 INFO::Creating boxplot for categorical data, strep_exposure vs Rubrerythrin
+2023-08-07 20:16:07 INFO::Creating boxplot for categorical data, strep_exposure vs Pyruvate.Alanine.Serine.Interconversions
+2023-08-07 20:16:07 INFO::Creating boxplot for categorical data, strep_exposure vs Quinone.oxidoreductase.family
+2023-08-07 20:16:07 INFO::Creating boxplot for categorical data, strep_exposure vs Peptidoglycan.Crosslinking.of.Peptide.Stems
+2023-08-07 20:16:07 INFO::Creating boxplot for categorical data, strep_exposure vs Glycine.reductase..sarcosine.reductase.and.betaine.reductase
+2023-08-07 20:16:08 INFO::Creating boxplot for categorical data, strep_exposure vs NusA.TFII.Cluster
+2023-08-07 20:16:08 INFO::Creating boxplot for categorical data, strep_exposure vs Unknown.sugar.utilization..cluster.yphABCDEFG.
+2023-08-07 20:16:08 INFO::Creating boxplot for categorical data, strep_exposure vs Allantoin.Utilization
+2023-08-07 20:16:08 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.318161.14.peg.2599
+2023-08-07 20:16:09 INFO::Creating boxplot for categorical data, strep_exposure vs Colonization.factor.antigen.I.fimbriae
+2023-08-07 20:16:09 INFO::Creating boxplot for categorical data, strep_exposure vs Terminal.cytochrome.O.ubiquinol.oxidase
+2023-08-07 20:16:09 INFO::Creating boxplot for categorical data, strep_exposure vs Unknown.carbohydrate.utilization...cluster.Yeg..
+2023-08-07 20:16:09 INFO::Creating boxplot for categorical data, strep_exposure vs Flavohaemoglobin
+2023-08-07 20:16:09 INFO::Creating boxplot for categorical data, strep_exposure vs Nitrosative.stress
+2023-08-07 20:16:10 INFO::Creating boxplot for categorical data, strep_exposure vs Queuosine.Archaeosine.Biosynthesis
+2023-08-07 20:16:10 INFO::Creating boxplot for categorical data, strep_exposure vs Test...DHFR
+2023-08-07 20:16:10 INFO::Creating boxplot for categorical data, strep_exposure vs Putative.TldE.TldD.proteolytic.complex
+2023-08-07 20:16:10 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.281090.3.peg.464
+2023-08-07 20:16:10 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.52598.3.peg.2843
+2023-08-07 20:16:11 INFO::Creating boxplot for categorical data, strep_exposure vs Listeria.Pathogenicity.Island.LIPI.1.extended
+2023-08-07 20:16:11 INFO::Creating boxplot for categorical data, strep_exposure vs COG1836
+2023-08-07 20:16:11 INFO::Creating boxplot for categorical data, strep_exposure vs SeqA.and.Co.occurring.Genes
+2023-08-07 20:16:11 INFO::Creating boxplot for categorical data, strep_exposure vs Streptothricin.resistance
+2023-08-07 20:16:12 INFO::Creating boxplot for categorical data, strep_exposure vs Creatine.and.Creatinine.Degradation
+2023-08-07 20:16:12 INFO::Creating boxplot for categorical data, strep_exposure vs Biogenesis.of.cytochrome.c.oxidases
+2023-08-07 20:16:12 INFO::Creating boxplot for categorical data, strep_exposure vs Flagellum.in.Campylobacter
+2023-08-07 20:16:12 INFO::Creating boxplot for categorical data, strep_exposure vs Protection.from.Reactive.Oxygen.Species
+2023-08-07 20:16:13 INFO::Creating boxplot for categorical data, strep_exposure vs Bacterial.hemoglobins
+2023-08-07 20:16:13 INFO::Creating boxplot for categorical data, strep_exposure vs Nonmevalonate.Branch.of.Isoprenoid.Biosynthesis
+2023-08-07 20:16:13 INFO::Creating boxplot for categorical data, strep_exposure vs Phage.integration.and.excision
+2023-08-07 20:16:13 INFO::Creating boxplot for categorical data, strep_exposure vs Rcs.phosphorelay.signal.transduction.pathway
+2023-08-07 20:16:14 INFO::Creating boxplot for categorical data, strep_exposure vs Terminal.cytochrome.C.oxidases
+2023-08-07 20:16:14 INFO::Creating boxplot for categorical data, strep_exposure vs Orphan.regulatory.proteins
+2023-08-07 20:16:14 INFO::Creating boxplot for categorical data, strep_exposure vs Omega.amidase.KE2
+2023-08-07 20:16:14 INFO::Creating boxplot for categorical data, strep_exposure vs Respiratory.dehydrogenases.1
+2023-08-07 20:16:14 INFO::Creating boxplot for categorical data, strep_exposure vs Central.meta.cleavage.pathway.of.aromatic.compound.degradation
+2023-08-07 20:16:15 INFO::Creating boxplot for categorical data, strep_exposure vs t6A.synthesis.in.bacteria
+2023-08-07 20:16:15 INFO::Creating boxplot for categorical data, strep_exposure vs Cluster.based.Subsystem.Grouping.Hypotheticals...perhaps.Proteosome.Related
+2023-08-07 20:16:15 INFO::Creating boxplot for categorical data, strep_exposure vs RNA.polymerase.bacterial
+2023-08-07 20:16:15 INFO::Creating boxplot for categorical data, strep_exposure vs Alkanesulfonates.Utilization
+2023-08-07 20:16:15 INFO::Creating boxplot for categorical data, strep_exposure vs Campylobacter.Iron.Metabolism
+2023-08-07 20:16:16 INFO::Creating boxplot for categorical data, strep_exposure vs Na..translocating.decarboxylases.and.related.biotin.dependent.enzymes
+2023-08-07 20:16:16 INFO::Creating boxplot for categorical data, strep_exposure vs Terminal.cytochrome.oxidases
+2023-08-07 20:16:16 INFO::Creating boxplot for categorical data, strep_exposure vs Rcs.negative.regulator.IgaA
+2023-08-07 20:16:16 INFO::Creating boxplot for categorical data, strep_exposure vs Khodge314.Isoleucine.Biosynthesis
+2023-08-07 20:16:17 INFO::Creating boxplot for categorical data, strep_exposure vs Malonate_
+2023-08-07 20:16:17 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.498211.3.peg.1514
+2023-08-07 20:16:17 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.316057.3.peg.659
+2023-08-07 20:16:17 INFO::Creating boxplot for categorical data, strep_exposure vs Streptolysin.S.Biosynthesis.and.Transport
+2023-08-07 20:16:17 INFO::Creating boxplot for categorical data, strep_exposure vs EC.6.3.4...Ligases.that.form.carbon.nitrogen.bonds
+2023-08-07 20:16:18 INFO::Creating boxplot for categorical data, strep_exposure vs RpoS.Regulators.SG1
+2023-08-07 20:16:18 INFO::Creating boxplot for categorical data, strep_exposure vs Lipoate..transport
+2023-08-07 20:16:18 INFO::Creating boxplot for categorical data, strep_exposure vs At5g63290
+2023-08-07 20:16:18 INFO::Creating boxplot for categorical data, strep_exposure vs D.Sorbitol.D.Glucitol..and.L.Sorbose.Utilization
+2023-08-07 20:16:19 INFO::Creating boxplot for categorical data, strep_exposure vs Choline.Transport
+2023-08-07 20:16:19 INFO::Creating boxplot for categorical data, strep_exposure vs Sucrose.utilization
+2023-08-07 20:16:19 INFO::Creating boxplot for categorical data, strep_exposure vs EC.3.4.11...Aminopeptidases
+2023-08-07 20:16:19 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.258594.1.peg.3339
+2023-08-07 20:16:20 INFO::Creating boxplot for categorical data, strep_exposure vs ESAT.6.proteins.secretion.system.in.Firmicutes
+2023-08-07 20:16:20 INFO::Creating boxplot for categorical data, strep_exposure vs Energy.conserving.hydrogenase.b..Methanococcales.Methanobacteriales.Methanopyrales
+2023-08-07 20:16:20 INFO::Creating boxplot for categorical data, strep_exposure vs Polyamine.Metabolism
+2023-08-07 20:16:20 INFO::Creating boxplot for categorical data, strep_exposure vs EC.3.4.13...Dipeptidases
+2023-08-07 20:16:20 INFO::Creating boxplot for categorical data, strep_exposure vs Commensurate.regulon.activation
+2023-08-07 20:16:21 INFO::Creating boxplot for categorical data, strep_exposure vs Translation.termination.factors.bacterial
+2023-08-07 20:16:21 INFO::Creating boxplot for categorical data, strep_exposure vs Capsular.Polysaccharide..CPS..of.Campylobacter
+2023-08-07 20:16:21 INFO::Creating boxplot for categorical data, strep_exposure vs Iron.Scavenging.cluster.in.Thermus
+2023-08-07 20:16:21 INFO::Creating boxplot for categorical data, strep_exposure vs Persister.Cells
+2023-08-07 20:16:21 INFO::Creating boxplot for categorical data, strep_exposure vs Thioredoxin.disulfide.reductase
+2023-08-07 20:16:22 INFO::Creating boxplot for categorical data, strep_exposure vs Glutathione.dependent.pathway.of.formaldehyde.detoxification
+2023-08-07 20:16:22 INFO::Creating boxplot for categorical data, strep_exposure vs CBSS.316275.9.peg.382
+2023-08-07 20:16:22 INFO::Creating boxplot for categorical data, strep_exposure vs The.fimbrial.Sfm.cluster
+2023-08-07 20:16:22 INFO::Creating boxplot for categorical data, strep_exposure vs YgjD.and.YeaZ
+2023-08-07 20:16:23 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.splicing
+2023-08-07 20:16:23 INFO::Creating boxplot for categorical data, strep_exposure vs RP.Bacterial.Cell.Division
+2023-08-07 20:16:23 INFO::Creating boxplot for categorical data, strep_exposure vs Lipid.A.modifications
+2023-08-07 20:16:23 INFO::Creating boxplot for categorical data, strep_exposure vs RNA.processing.and.degradation..bacterial
+2023-08-07 20:16:23 INFO::Creating boxplot for categorical data, strep_exposure vs A.DNA.integrity.scanning.protein.that.co.occurs.with.RadA
+2023-08-07 20:16:24 INFO::Creating boxplot for categorical data, strep_exposure vs LOS.core.oligosaccharide.biosynthesis
+2023-08-07 20:16:24 INFO::Creating boxplot for categorical data, strep_exposure vs Chitobiose
+2023-08-07 20:16:24 INFO::Creating boxplot for categorical data, strep_exposure vs Entner.Doudoroff.Pathway
+2023-08-07 20:16:24 INFO::Creating boxplot for categorical data, strep_exposure vs Fermentations..Mixed.acid
+2023-08-07 20:16:24 INFO::Creating boxplot for categorical data, strep_exposure vs X5.FCL.like.protein
+2023-08-07 20:16:25 INFO::Creating boxplot for categorical data, strep_exposure vs Putrescine.utilization.pathways
+2023-08-07 20:16:25 INFO::Creating boxplot for categorical data, strep_exposure vs Ton.and.Tol.transport.systems
+2023-08-07 20:16:25 INFO::Creating boxplot for categorical data, strep_exposure vs Alkanesulfonate.assimilation
+2023-08-07 20:16:25 INFO::Creating boxplot for categorical data, strep_exposure vs Ubiquinone.Biosynthesis
+2023-08-07 20:16:25 INFO::Creating boxplot for categorical data, strep_exposure vs CytR.regulation
+2023-08-07 20:16:26 INFO::Creating boxplot for categorical data, strep_exposure vs Bacterial.Cell.Division
+2023-08-07 20:16:26 INFO::Creating boxplot for categorical data, strep_exposure vs Salmochelin.mediated.Iron.Acquisition
+2023-08-07 20:16:26 INFO::Creating boxplot for categorical data, strep_exposure vs EC.3.4.21...Serine.endopeptidase
+2023-08-07 20:16:26 INFO::Creating boxplot for categorical data, strep_exposure vs GABA.and.putrescine.metabolism.from.cluters
+2023-08-07 20:16:27 INFO::Creating boxplot for categorical data, strep_exposure vs Nitrogen.fixation
+2023-08-07 20:16:27 INFO::Creating boxplot for categorical data, strep_exposure vs Cobalamin
+2023-08-07 20:16:27 INFO::Creating boxplot for categorical data, strep_exposure vs Small.acid.soluble.spore.proteins
+2023-08-07 20:16:27 INFO::Creating boxplot for categorical data, strep_exposure vs YebC
+2023-08-07 20:16:27 INFO::Creating boxplot for categorical data, strep_exposure vs tRNA.aminoacylation..Tyr
+2023-08-07 20:16:28 INFO::Creating boxplot for categorical data, strep_exposure vs rRNA.modification.bacteria

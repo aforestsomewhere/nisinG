@@ -1,0 +1,523 @@
+####################
+### Maaslin2    ####
+####################
+#'Multivariable Associations with Linear Models
+library(Maaslin2)
+library(dplyr)
+library(tidyr)
+theme_set(theme_bw())
+
+####################
+### Functions   ####
+####################
+
+#define function to extract filtered significant associations
+
+filter_fit <- function(fit_data){
+  fit_data$results -> maaslin_out
+  maaslin_out %>%
+    #filter(grepl('t__',feature)) %>%
+    filter(pval<=0.05) %>%
+    filter(qval<0.25) %>%
+    mutate(plog= -log(pval)) %>%
+    mutate(plogn = scale(plog)) -> maaslin_out
+  #rename t__ level to species level assignments
+  #sp1 <- as.data.frame(maaslin_out$feature)
+  #names(sp1) <- c("id")
+  #sp1 <- sp1 %>%
+  #separate(id, c("null","domain", "phylum","class", "order", "family", "genus","species","sgb"), "__") %>%
+  #mutate(taxon = paste(species, sgb, sep ="_"))
+  #rejoin
+  #revised <- as.data.frame(cbind(sp1$taxon, maaslin_out))
+  #colnames(revised)[colnames(revised) == "sp1$taxon"] <- "taxon"
+  #make matrix
+  associations <- maaslin_out %>% 
+    select(feature, value, coef) %>%
+    pivot_wider(names_from="value", values_from = "coef") %>%
+    replace(is.na(.), 0)
+  associations <- as.data.frame(associations)
+  rownames(associations) <- associations[,1]
+  associations <- associations[,-1]
+  ass_mat <- as.matrix(associations)
+  return(ass_mat)
+}
+
+###################
+### read inputs ###
+###################
+hm <- as.data.frame(fread("data/pathabundance_cpm_stratified.tsv"))
+hm <- hm %>%
+  rename(pathway = `# Pathway`)
+rownames(hm) <- hm$pathway
+hm <- hm[,-1]
+
+#read sample metadata
+meta <- read.csv("cleaned_data/metadata.csv", nrows=36, row.names=1)
+meta <- meta %>%
+  mutate(strep_exposure = case_when(
+    treatment == "FS" ~ "Y", 
+    treatment == "S" ~ "Y",
+    treatment == "F" ~ "N",
+    treatment == "B" ~ "N"))
+samplenames <- rownames(meta)
+hm2 <- hm %>%
+  rename_with(~ gsub("_Abundance", "", .)) %>% #rename relative abundance entries
+  dplyr::select(matches(paste(samplenames, collapse = "|"))) #select nisin samples
+hm2 <- hm2[rowSums(hm2) >= 0.01,]
+#sf2 <- t(sf2)
+rm(hm)
+
+
+
+#mpa_table <- read.table("cleaned_data/mpa_table.tsv", comment.char = '#', sep = '\t', header = TRUE, row.names=NULL)
+#filter to species level assignments
+#mpa_table <- mpa_table[grep('s__',mpa_table[,1]),]
+#mpa_table[,1] <- gsub(".+\\|s__", "", mpa_table[,1])
+# mpa_table <- mpa_table %>% filter(!grepl("t__",row.names))
+# rownames(mpa_table) <- mpa_table$row.names
+# mpa_table <- mpa_table[,-1]
+# meta <- read.csv("cleaned_data/metadata.csv", nrows=36, row.names=1)
+# meta <- meta %>% 
+#   mutate(strep_exposure = case_when(
+#     treatment == "FS" ~ "Y", 
+#     treatment == "S" ~ "Y",
+#     treatment == "F" ~ "N",
+#     treatment == "B" ~ "N"))
+
+#Subset input data to timepoints
+#T_0
+meta0 <- meta %>% filter(timepoint=="T_0") %>% select(treatment)
+hm2[,colnames(hm2) %in% rownames(meta0)] -> hm2_t0
+#T_6
+meta6 <- meta %>% filter(timepoint=="T_6") %>% select(treatment)
+hm2[,colnames(hm2) %in% rownames(meta6)] -> hm2_t6
+#T_24
+meta24 <- meta %>% filter(timepoint=="T_24") %>% select(treatment)
+hm2[,colnames(hm2) %in% rownames(meta24)] -> hm2_t24
+
+####################
+### run Maaslin2 ###
+####################
+#Comparisons to run:
+#Blank versus all
+#Fuso v Fusostrep
+#at each timepoint
+
+####################
+### t_0          ###
+####################
+run_maaslin <- function(sf, meta ,category, group, time){
+  #variables
+  outputdir <- paste("maaslin2_humann/",time,"/",category,"_",group,sep="")
+  fixedeff <- paste(category, sep = "")
+  refer <- paste(category, group, sep = ", ")
+  #run
+  ref = Maaslin2(
+    input_data = sf, 
+    input_metadata = meta, 
+    output = outputdir, 
+    fixed_effects = fixedeff,
+    reference = refer,
+    correction = "BH")
+  return(ref)
+}
+# inputs <- data.frame(c("meta0","meta6","meta24"),
+#                      c("mpa_table0", "mpa_table6", "mpa_table24"))
+# names(inputs) <- c("meta","mpa")
+# reference_groups <- c("B","F","FS","S")
+# test <- run_maaslin(mpa=mpa_table0, meta=meta0, category="treatment", group="B", time="t0")
+# testy <- inputs[1,2]
+#for each timepoint
+#T_0
+t0_B <- filter_fit(run_maaslin(hm2_t0, meta=meta0, category="treatment", group="B", time="t0"))
+# t0_F <- filter_fit(run_maaslin(mpa=mpa_table0, meta=meta0, category="treatment", group="F", time="t0"))
+# t0_FS <- filter_fit(run_maaslin(mpa=mpa_table0, meta=meta0, category="treatment", group="FS", time="t0"))
+# t0_S <- filter_fit(run_maaslin(mpa=mpa_table0, meta=meta0, category="treatment", group="S", time="t0"))
+#T_6
+t6_B <- filter_fit(run_maaslin(hm2_t6, meta=meta6, category="treatment", group="B", time="t6"))
+# t6_F <- filter_fit(run_maaslin(mpa=mpa_table6, meta=meta6, category="treatment", group="F", time="t6"))
+# t6_FS <- filter_fit(run_maaslin(mpa=mpa_table6, meta=meta6, category="treatment", group="FS", time="t6"))
+# t6_S <- filter_fit(run_maaslin(mpa=mpa_table6, meta=meta6, category="treatment", group="S", time="t6"))
+#T_24
+t24_B <- filter_fit(run_maaslin(hm2_t24, meta=meta24, category="treatment", group="B", time="t24"))
+# t24_F <- filter_fit(run_maaslin(mpa=mpa_table24, meta=meta24, category="treatment", group="F", time="t24"))
+# t24_FS <- filter_fit(run_maaslin(mpa=mpa_table24, meta=meta24, category="treatment", group="FS", time="t24"))
+# t24_S <- filter_fit(run_maaslin(mpa=mpa_table24, meta=meta24, category="treatment", group="S", time="t24"))
+
+
+ggplot(sf2, x=treatment)
+
+#for strep exposure y/n
+#for each timepoint
+#Subset input data to timepoints
+#T_0
+meta0 <- meta %>% filter(timepoint=="T_0") %>% select(strep_exposure)
+sf2[,colnames(sf2) %in% rownames(meta0)] -> sf_0
+#T_6
+meta6 <- meta %>% filter(timepoint=="T_6") %>% select(strep_exposure)
+sf2[,colnames(sf2) %in% rownames(meta6)] -> mpa_table6
+#T_24
+meta24 <- meta %>% filter(timepoint=="T_24") %>% select(strep_exposure)
+sf2[,colnames(sf2) %in% rownames(meta24)] -> mpa_table24
+#T_0
+t0_Y_ex <- filter_fit(run_maaslin(sf_0, meta=meta0, category="strep_exposure", group="Y", time="t0"))
+
+#T_6
+t6_Y_ex <- filter_fit(run_maaslin(sf_t6, meta=meta6, category="strep_exposure", group="Y", time="t6"))
+#T_24
+t24_Y_ex <- filter_fit(run_maaslin(sf_t24, meta=meta24, category="strep_exposure", group="Y", time="t24"))
+
+# rg <- max(abs(t24_B))
+#t0
+pheatmap(mat = t0_B,
+         cluster_cols = F,
+         cluster_rows = F,
+         scale = "column",border_color = "white",
+         color = viridis(n = 256, alpha = 1, 
+                         begin = 0, end = 1, option = "viridis"))
+
+#t6
+t6_B_top <- as.data.frame(t6_B) 
+t6_B_top <- t6_B_top %>% filter(S >= 1 | S <= -1) 
+t6_B_top <- as.matrix(t6_B_top)
+pheatmap(mat = t6_B_top,
+         cluster_cols = F,
+         cluster_rows = F,
+         scale = "column",border_color = "white",
+         color = viridis(n = 256, alpha = 1, 
+                         begin = 0, end = 1, option = "viridis"))
+
+#t24
+t24_B_top <- as.data.frame(t24_B) 
+t24_B_top <- t24_B_top %>% filter(S >= 1 | S <= -1) 
+t24_B_top <- as.matrix(t24_B_top)
+pheatmap(mat = t24_B_top,
+         cluster_cols = F,
+         cluster_rows = F,
+         scale = "column",border_color = "white",
+         color = viridis(n = 256, alpha = 1, 
+                         begin = 0, end = 1, option = "viridis"))
+
+# , breaks = seq(-rg, rg, length.out = 100))
+# obj_name <- paste("fit_t0_treatment",group_in,sep="_")
+# for(i in 1:nrow(inputs)){
+#   #for each reference group in category
+#   for(j in 1:4){
+#     mpa_in <- inputs[[i]][[2]]
+#     meta_in <- inputs[[i]][[1]]
+#     group_in <- paste(reference_groups[j])
+#     obj_name <- paste("fit_t0_treatment",group_in,sep="_")
+#     obj_name <- run_maaslin(mpa=mpa_in, meta=meta_in, category="treatment", group=group_in, time="t0")
+#   }
+# }
+# refer = cat(paste('c("',category,',',group,'")', sep=""))
+# cat(paste('c("',category,',',group,'")', sep=""))
+# fixedeff <- cat(paste('c("', category, '")', sep = ""))
+# 
+# category=c("treatment")
+paste('c(',category,",)", sep='"')
+cat(paste('c("', category, '")', sep = ""))
+group=c("B")
+cat(paste('c("',category,'","',group,'")', sep=""))
+outputdir <- paste("maaslin2/",category,"_",group,sep="")
+
+ref_B = Maaslin2(
+  input_data = mpa_table, 
+  input_metadata = meta, 
+  output = "maaslin2/reference_B", 
+  fixed_effects = c("treatment"),
+  reference = c("treatment,B"),
+  random_effects = c("timepoint"),
+  correction = "BH")
+
+ref_F = Maaslin2(
+  input_data = mpa_table, 
+  input_metadata = meta, 
+  output = "maaslin2/reference_F", 
+  fixed_effects = c("treatment"),
+  reference = c("treatment,F"),
+  random_effects = c("timepoint"),
+  correction = "BH")
+
+ref_FS = Maaslin2(
+  input_data = mpa_table, 
+  input_metadata = meta, 
+  output = "maaslin2/reference_FS", 
+  fixed_effects = c("treatment"),
+  reference = c("treatment,FS"),
+  random_effects = c("timepoint"),
+  correction = "BH")
+
+ref_S = Maaslin2(
+  input_data = mpa_table, 
+  input_metadata = meta, 
+  output = "maaslin2/reference_S", 
+  fixed_effects = c("treatment"),
+  reference = c("treatment,S"),
+  random_effects = c("timepoint"),
+  correction = "BH")
+
+
+#filter only t__ level assignments
+
+
+
+filter_ref_B <- filter_fit(ref_B)
+filter_ref_F <- filter_fit(ref_F)
+filter_ref_FS <- filter_fit(ref_FS)
+filter_ref_S <- filter_fit(ref_S)
+
+pheatmap(filter_ref_S)
+pheatmap(filter_ref_FS)
+pheatmap(filter_ref_F)
+pheatmap(filter_ref_B)
+
+####################
+### remove T_0   ###
+####################
+input_metadata %>% filter(timepoint!="T_0") -> input_metadata_no_T0
+rownames(input_metadata_no_T0) -> nisin_sam
+input_data[,colnames(input_data) %in% nisin_sam] -> input_data_no_T0
+fit_data = Maaslin2(
+  input_data = input_data_no_T0, 
+  input_metadata = input_metadata_no_T0, 
+  output = "maaslin2_output_no_T0", 
+  fixed_effects = c("treatment"),
+  reference = c("treatment,B"),
+  random_effects = c("timepoint"),
+  correction = "BH")
+
+fit_data$results -> maaslin_out_noT0
+maaslin_out_noT0 %>%
+  filter(pval<=0.05) %>%
+  filter(qval<0.25) %>%
+  filter(!grepl('.t__', feature)) %>%
+  mutate(plog= -log(pval)) %>%
+  mutate(plogn = scale(plog)) -> maaslin_out_noT0
+
+#facet-labeller(
+#treatment_names=cbind(c("F", "FS", "S"), c("F. nucleatum", "F.nucleatum/S. salivarius", "S. salivarius"))
+treatment_names <- c(
+  'F' = "F. nucleatum",'FS' = "F.nucleatum/S. salivarius",'S' = "S. salivarius")
+
+ggplot(maaslin_out_noT0, 
+       aes(x=coef,y=feature, color=coef>0))+
+  geom_point(data = maaslin_out_noT0,  
+             aes(x = coef, y = feature,
+                 size=-log(pval))) +
+  theme(axis.text.x = element_text(vjust = 0.5, hjust=1),
+        axis.text.y=element_text(face="italic", size=12),
+        legend.text=element_text(size=10),
+        strip.text = element_text(face = "italic",size=10))+
+  xlab("Model coefficient value (effect size v control)") +
+  ylab("")+
+  facet_wrap(~value, labeller=as_labeller(treatment_names))+
+  ggtitle("Species significantly associated with treatment") +
+  scale_color_manual("coef > 0",values = c("#3B9AB2","#F21A00"), 
+                     labels=c("Decreased","Increased"), 
+                     name="Effect") +
+  scale_size_continuous(name="p-value",
+                        range  = c(0.1, 10),
+                        limits = c(0, 50),
+                        breaks = c(3, 12, 40),
+                        labels = c("e-2","e-12","e-20")) +
+  geom_vline(xintercept = 0, linetype="dashed")
+ggsave("figures\\maaslin2_noT0_uncollapsed.emf", width = 20, height = 10, dpi = 300, device = {function(filename, ...) devEMF::emf(file = filename, ...)})
+
+#####################################
+### collapse F with B, FS with S  ###
+#####################################
+
+input_metadata_no_T0 %>%
+  mutate(treatment= str_replace(treatment, 'FS', 'S')) %>%
+  mutate(treatment= str_replace(treatment, 'F', 'B')) -> input_metadata_no_T0
+
+fit_data = Maaslin2(
+  input_data = input_data_no_T0, 
+  input_metadata = input_metadata_no_T0, 
+  output = "maaslin2_output_no_T0_collapsed", 
+  fixed_effects = c("treatment"),
+  reference = c("treatment,B"),
+  random_effects = c("timepoint"),
+  correction = "BH")
+
+fit_data$results -> maaslin_out_noT0_collapsed
+fit_data$fitted -> fitted
+#filter to p values <0.05 and remove taxon assignations from MPA4
+maaslin_out_noT0_collapsed %>%
+  filter(pval<=0.05) %>%
+  filter(qval<=0.25) %>%
+  filter(!grepl('.t__', feature)) %>%
+  mutate(plog= -log(pval)) %>%
+  mutate(plogn = scale(plog)) -> maaslin_out_noT0_collapsed
+#plot
+
+
+#-log(0.05) = 2.995732 (e-2)
+#-log(0.01) = 4.60517
+#-log(0.001) = 6.907755
+#-log(0.000005) =12.20607 (e-6)
+#-log(0.0000000003839008) = 21.68 (e-10)
+#-log(0.00000000000000000003839008) e-20
+
+#plot
+ggplot(maaslin_out_noT0_collapsed, 
+       aes(x=coef,y=feature, color=coef>0))+
+  geom_point(data = maaslin_out_noT0_collapsed,  
+             aes(x = coef, y = feature,
+                 size=-log(pval))) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        axis.text.y=element_text(face="italic", size=12),
+        legend.text=element_text(size=10))+
+  xlab("Model coefficient value (effect size v control)") +
+  ylab("")+
+  ggtitle("Taxonomic features significantly-associated with probiotic treatment") +
+  scale_color_manual("coef > 0",values = c("#3B9AB2","#F21A00"), 
+                     labels=c("Decreased","Increased"), 
+                     name="Effect") +
+  scale_size_continuous(name="p-value",
+                        range  = c(0.1, 10),
+                        limits = c(0, 50),
+                        breaks = c(3, 12, 40),
+                        labels = c("e-2","e-12","e-20")) +
+  geom_vline(xintercept = 0, linetype="dashed")
+ggsave("figures\\maaslin2_noT0_collapsed.emf", width = 10, height = 10, dpi = 300, device = {function(filename, ...) devEMF::emf(file = filename, ...)})
+
+#####################################
+### compare FS with S             ###
+#####################################
+#read data
+#amended to not drop first sample (https://forum.biobakery.org/t/running-calculate-unifrac-r-ignores-first-sample/1600)
+input_data <- read.table("data\\metaphlan.tsv", comment.char = '#', sep = '\t', header = TRUE)
+input_metadata <- read.csv("data\\enriq_metadata.csv", nrows=62, row.names=1)
+input_data <- input_data[grep('s__',input_data[,1]),]
+input_data[,1] <- gsub(".+\\|s__", "", input_data[,1])
+rownames(input_data) <- input_data[,1]
+input_data <- input_data[,-1]
+
+#subset to nisin experiment, correct colname booboo
+names(input_metadata)[names(input_metadata) == 'experiement'] <- "experiment"
+#split condition columns for subsequent grouping
+input_metadata$treatment_replicate <- input_metadata$condition
+input_metadata %>% filter(experiment=="nisin") %>%
+  separate(condition, c("treatment", "replicate"), "_") %>% 
+  mutate(exp_group = paste(treatment, timepoint, sep ='_')) -> input_metadata
+rownames(input_metadata) -> nisin_sam
+input_data[,colnames(input_data) %in% nisin_sam] -> input_data
+
+#remove T0 and B, F
+input_metadata %>% filter(timepoint!="T_0") %>%
+  filter(treatment=="FS"|treatment=="F") -> input_metadata_no_T0_FS_F
+rownames(input_metadata_no_T0_FS_F) -> nisin_sam
+input_data[,colnames(input_data) %in% nisin_sam] -> input_data_no_T0_FS_F
+
+fit_data = Maaslin2(
+  input_data = input_data_no_T0_FS_F, 
+  input_metadata = input_metadata_no_T0_FS_F, 
+  output = "maaslin2_output_no_T0_FS_F", 
+  fixed_effects = c("treatment"),
+  reference = c("treatment,F"),
+  random_effects = c("timepoint"),
+  correction = "BH")
+
+fit_data$results -> maaslin_out_noT0_FS_F
+#filter to p values <0.05 and remove taxon assignations from MPA4
+maaslin_out_noT0_FS_F %>%
+  filter(pval<=0.05) %>%
+  filter(qval<=0.25) %>%
+  filter(!grepl('.t__', feature)) %>%
+  mutate(plog= -log(pval)) %>%
+  mutate(plogn = scale(plog)) -> maaslin_out_noT0_FS_F
+#plot
+ggplot(maaslin_out_noT0_FS_F, 
+       aes(x=coef,y=feature, color=coef>0))+
+  geom_point(data = maaslin_out_noT0_FS_F,  
+             aes(x = coef, y = feature,
+                 size=-log(pval))) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        axis.text.y=element_text(face="italic", size=12),
+        legend.text=element_text(size=10))+
+  xlab("Model coefficient value (effect size v F)") +
+  ylab("")+
+  ggtitle("MaAsLiN analysis correlating species with significantly-associated to FS, relative to F") +
+  scale_color_manual("coef > 0",values = c("#3B9AB2","#F21A00"), 
+                     labels=c("Decreased","Increased"), 
+                     name="Effect") +
+  scale_size_continuous(name="p-value",
+                        range  = c(0.1, 10),
+                        limits = c(0, 50),
+                        breaks = c(3, 12, 40),
+                        labels = c("e-2","e-12","e-20")) +
+  geom_vline(xintercept = 0, linetype="dashed")
+ggsave("figures\\maaslin2_noT0_FS_F.emf", width = 10, height = 10, dpi = 300, device = {function(filename, ...) devEMF::emf(file = filename, ...)})
+
+
+########################################################################
+
+#####################################
+### compare B with S             ###
+#####################################
+#read data
+#amended to not drop first sample (https://forum.biobakery.org/t/running-calculate-unifrac-r-ignores-first-sample/1600)
+input_data <- read.table("data\\metaphlan.tsv", comment.char = '#', sep = '\t', header = TRUE)
+input_metadata <- read.csv("data\\enriq_metadata.csv", nrows=62, row.names=1)
+input_data <- input_data[grep('s__',input_data[,1]),]
+input_data[,1] <- gsub(".+\\|s__", "", input_data[,1])
+rownames(input_data) <- input_data[,1]
+input_data <- input_data[,-1]
+
+#subset to nisin experiment, correct colname booboo
+names(input_metadata)[names(input_metadata) == 'experiement'] <- "experiment"
+#split condition columns for subsequent grouping
+input_metadata$treatment_replicate <- input_metadata$condition
+input_metadata %>% filter(experiment=="nisin") %>%
+  separate(condition, c("treatment", "replicate"), "_") %>% 
+  mutate(exp_group = paste(treatment, timepoint, sep ='_')) -> input_metadata
+rownames(input_metadata) -> nisin_sam
+input_data[,colnames(input_data) %in% nisin_sam] -> input_data
+
+#remove T0 and F, FS
+input_metadata %>% filter(timepoint!="T_0") %>%
+  filter(treatment=="B"|treatment=="S") -> input_metadata_no_T0_B_S
+rownames(input_metadata_no_T0_B_S) -> nisin_sam
+input_data[,colnames(input_data) %in% nisin_sam] -> input_data_no_T0_B_S
+
+fit_data = Maaslin2(
+  input_data = input_data_no_T0_B_S, 
+  input_metadata = input_metadata_no_T0_B_S, 
+  output = "maaslin2_output_no_T0_B_S", 
+  fixed_effects = c("treatment"),
+  reference = c("treatment,B"),
+  random_effects = c("timepoint"),
+  correction = "BH")
+
+fit_data$results -> maaslin_out_noT0_B_S
+#filter to p values <0.05 and remove taxon assignations from MPA4
+maaslin_out_noT0_B_S %>%
+  filter(pval<=0.05) %>%
+  filter(qval<=0.25) %>%
+  filter(!grepl('.t__', feature)) %>%
+  mutate(plog= -log(pval)) %>%
+  mutate(plogn = scale(plog)) -> maaslin_out_noT0_B_S
+#plot
+ggplot(maaslin_out_noT0_B_S, 
+       aes(x=coef,y=feature, color=coef>0))+
+  geom_point(data = maaslin_out_noT0_B_S,  
+             aes(x = coef, y = feature,
+                 size=-log(pval))) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        axis.text.y=element_text(face="italic", size=12),
+        legend.text=element_text(size=10))+
+  xlab("Model coefficient value (effect size v B)") +
+  ylab("")+
+  ggtitle("MaAsLiN analysis correlating species with significantly-associated to S, relative to B") +
+  scale_color_manual("coef > 0",values = c("#3B9AB2","#F21A00"), 
+                     labels=c("Decreased","Increased"), 
+                     name="Effect") +
+  scale_size_continuous(name="p-value",
+                        range  = c(0.1, 10),
+                        limits = c(0, 50),
+                        breaks = c(3, 12, 40),
+                        labels = c("e-2","e-12","e-20")) +
+  geom_vline(xintercept = 0, linetype="dashed")
+ggsave("figures\\maaslin2_noT0_B_S.emf", width = 10, height = 10, dpi = 300, device = {function(filename, ...) devEMF::emf(file = filename, ...)})

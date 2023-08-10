@@ -1,0 +1,653 @@
+#' Final Dominance testing and plots
+#' Script to calculate dominance indices for NisinG samples
+#' Developed by A. Kate Falà (https://github.com/aforestsomewhere)
+#' Compute raw dominance indices
+#' For stat testing need to collapse B with F and FS with s
+#'Dominance indices are in general negatively correlated with diversity, and 
+#'sometimes used in ecological literature. High dominance is obtained when one 
+#'or few species have a high share of the total species abundance in the community.
+#'MPA4
+#'13/03/23
+
+#############################
+### Library / palettes    ###
+#############################
+
+library(cowplot)
+library(ggpubr)
+library(ggplot2)
+library(dplyr)
+library(wesanderson)
+library(rstatix)
+library(tidyr)
+library(tidyverse)
+library(vegan)
+library(phyloseq)
+library(FSA)
+library(openxlsx)
+theme_set(theme_classic())
+palette_time <- c("#9A8822", "#F8AFA8", "#74A089")
+palette_groups <- c("#332211","#ffcc44", "#44aacc", "#bb2211")
+palette_collapsed <- c("#FF0000", "#00A08A")
+
+####################
+### Functions    ###
+####################
+
+metaphlanToPhyloseq = function(
+  tax,
+  metadat=NULL,
+  simplenames=TRUE,
+  roundtointeger=FALSE,
+  split="|"){
+  xnames = rownames(tax)
+  shortnames = gsub(paste0(".+\\", split), "", xnames)
+  if(simplenames){
+    rownames(tax) = shortnames
+  }
+  if(roundtointeger){
+    tax = round(tax * 1e4)
+  }
+  x2 = strsplit(xnames, split=split, fixed=TRUE)
+  taxmat = matrix(NA, ncol=max(sapply(x2, length)), nrow=length(x2))
+  colnames(taxmat) = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", "Strain")[1:ncol(taxmat)]
+  rownames(taxmat) = rownames(tax)
+  for (i in 1:nrow(taxmat)){
+    taxmat[i, 1:length(x2[[i]])] = x2[[i]]
+  }
+  taxmat = gsub("[a-z]__", "", taxmat)
+  taxmat = phyloseq::tax_table(taxmat)
+  otutab = phyloseq::otu_table(tax, taxa_are_rows=TRUE)
+  if(is.null(metadat)){
+    res = phyloseq::phyloseq(taxmat, otutab)
+  }else{
+    res = phyloseq::phyloseq(taxmat, otutab, phyloseq::sample_data(metadat))
+  }
+  return(res)
+}
+
+#sigcode = function(P){
+#   if(P<=0){ 
+#     return("NaN") 
+#   }
+#   else if(P<0.001){ 
+#     return("***") 
+#   }
+#   else if(P<0.01){ 
+#     return("**") 
+#   }
+#   else if(P<=0.05){ 
+#     return("*") 
+#   }
+#   else if(P<0.1){ 
+#     return(".") 
+#   }
+#   else{ return(" ")}
+# }
+
+#new vectorised
+sigcode <- function(P) {
+  sapply(P, function(p) {
+    if (p <= 0) {
+      return("NaN")
+    } else if (p < 0.001) {
+      return("***")
+    } else if (p < 0.01) {
+      return("**")
+    } else if (p <= 0.05) {
+      return("*")
+    } else if (p < 0.1) {
+      return(".")
+    } else {
+      return(" ")
+    }
+  })
+}
+
+
+#function to perform wilcox test
+calc_wilcox <- function(dom, metric, group){
+  res.stat <- dom %>% 
+    rstatix::wilcox_test(as.formula(paste(metric, group, sep = "~"))) %>%
+    rstatix::adjust_pvalue(method = "BH") %>%
+    rstatix::add_significance("p.adj") %>%
+    rstatix::add_xy_position(x=group, fun="max")
+  stdevvar <- sd(dom[,as.character(metric)])
+  res.stat <- res.stat %>%
+    mutate(y.position = y.position + (2*stdevvar)) #very manual hack to move p values up
+  return(res.stat)
+}
+#calc_wilcox(dom = dom_big, metric = "dbp", group="timepoint")
+#function to generate base violin plot
+plot_base <- function(df, metric, group){
+  p <- ggviolin(df, x=group, y=metric,
+                fill=group, xlab="", ylab=metric, alpha=0.6)
+  return(p)
+}
+#function to generate plot to extract the legend
+plot_leg <- function(base_plot,legendtitle, pal){
+  p1 <- base_plot + 
+    scale_fill_manual(name=legendtitle,
+                      #labels=c(expression(paste("No ", italic("S. salivarius"))),expression(paste("Any ", italic("S. salivarius")))),
+                      values = pal)+
+    geom_point() +
+    theme(legend.box = "vertical", 
+          legend.position = "bottom",
+          legend.title = element_text(face="bold"),
+          axis.ticks.x = element_blank(),
+          axis.text.x = element_blank())
+  return(p1)
+}
+#function to combine the base plot with the significance testing
+plot_layer <- function(base_plot, stats, legendtitle, pal){
+  p1 <- base_plot + 
+    stat_pvalue_manual(stats, label = "p.adj = {p.adj}", tip.length = 0.01)+
+    scale_fill_manual(name=legendtitle,
+                      #labels=c(expression(paste("No ", italic("S. salivarius"))),expression(italic("S. salivarius"))),
+                      values = pal)+
+    geom_point() +
+    theme(legend.position='none', 
+          #axis.text.x = element_blank(), 
+          #axis.ticks.x = element_blank(),
+          axis.title.y = element_text(size=12, face="bold", colour = "black"))
+}
+
+####################
+### read data    ###
+####################
+meta <- read.csv("cleaned_data/metadata.csv", nrows=36, row.names=1)
+meta <- meta %>%
+  mutate(strep_exposure = case_when(
+    treatment == "FS" ~ "Y", 
+    treatment == "S" ~ "Y",
+    treatment == "F" ~ "N",
+    treatment == "B" ~ "N"))
+
+mpa_table <- read.table("cleaned_data/mpa_table.tsv", comment.char = '#', sep = '\t', header = TRUE, row.names=NULL)
+#filter to species level assignments
+mpa_table <- mpa_table[grep('s__',mpa_table[,1]),]
+mpa_table[,1] <- gsub(".+\\|s__", "", mpa_table[,1])
+rownames(mpa_table) <- mpa_table[,1]
+mpa_table <- mpa_table[,-1]
+
+#########################
+### form Phyloseq obj ###
+#########################
+#generate base obj #Read cross reference of SGB to taxonomy
+#remove 'SGB' and '_group' from first column to allow matching to the tree
+mpa_legend <- read.table("data\\mpa_vJan21_CHOCOPhlAnSGB_202103_species.txt", sep = '\t')
+mpa_legend$V1 <- gsub("_group", "", mpa_legend$V1)
+mpa_legend$V1 <- gsub("SGB", "", mpa_legend$V1)
+#generate base Phyloseq obj
+mpa.phy = metaphlanToPhyloseq(mpa_table)
+phy <- metaphlanToPhyloseq(
+  phyloseq::otu_table(mpa.phy),
+  metadat=phyloseq::sample_data(meta, errorIfNULL = TRUE),
+  simplenames=TRUE,
+  roundtointeger=FALSE,
+  split="|")
+#generate guide tree, importing full tree from MPA and filtering by taxa detected
+read_tree("data\\mpa_vJan21_CHOCOPhlAnSGB_202103.nwk") -> mpa_tree
+new_tree <- mpa_tree; new_tree$tip.label <- mpa_legend$V2[match(mpa_tree$tip.label,mpa_legend$V1)]
+new_tree$tip.label <- gsub(".+\\|s__", "", new_tree$tip.label)
+filt_tree <- ape::keep.tip(new_tree, intersect(rownames(phy@otu_table),new_tree$tip.label))
+filt_mpa <- mpa_table[filt_tree$tip.label,] / 100.0
+phy = phyloseq::merge_phyloseq(phy, filt_tree)
+
+###########################
+### Calculate Dominance ###
+###########################
+#transform to compositional
+microbiome::transform(phy, 'compositional') -> phy2
+dom <- cbind(phy2@sam_data, microbiome::dominant(phy2, level = NULL))
+dom$sample_name <- rownames(dom)
+microbiome::dominance(phy2, index = "all", rank = 1, relative = TRUE, aggregate = TRUE) -> dom2
+dom2$sample_name <- rownames(dom2)
+dom_big <- dplyr::left_join(dom2, dom, by="sample_name")
+names(dom_big)[names(dom_big) == 'microbiome::dominant(phy2, level = NULL)'] <- "dominant_species"
+
+############################################
+### Test Dominance                       ###
+### Kruskal-Wallis                       ###      
+### timepoint, treatment, strep_exposure ###
+############################################
+subbed <- dom_big[,1:7]
+metric_list <- names(subbed)
+rm(subbed)
+
+#can only test groups where n>5 - treatment, timepoint
+#Kruskal - don't need to adjust (not pairwise - Dunn/Wilcoxon yes)
+results <- data.frame()
+for (i in (1:length(metric_list))){
+  result <- dom_big %>%
+    do(tidy(kruskal.test(x = .[[metric_list[i]]], g = .$treatment)))
+  result <- result %>% 
+    mutate(metric=metric_list[i]) %>%
+    mutate(group="treatment") %>%
+    mutate(sig_code=sigcode(p.value))
+  results <- bind_rows(results, result)
+}
+results2 <- data.frame()
+for (i in (1:length(metric_list))){
+  result <- dom_big %>%
+    do(tidy(kruskal.test(x = .[[metric_list[i]]], g = .$timepoint)))
+  result <- result %>% 
+    mutate(metric=metric_list[i]) %>%
+    mutate(group="timepoint") %>%
+    mutate(sig_code=sigcode(p.value))
+  results2 <- bind_rows(results2, result)
+}
+results3 <- data.frame()
+for (i in (1:length(metric_list))){
+  result <- dom_big %>%
+    do(tidy(kruskal.test(x = .[[metric_list[i]]], g = .$strep_exposure)))
+  result <- result %>% 
+    mutate(metric=metric_list[i]) %>%
+    mutate(group="strep_exposure") %>%
+    mutate(sig_code=sigcode(p.value))
+  results3 <- bind_rows(results3, result)
+}
+results_kruskal_dom <- rbind(results, results2, results3)
+
+############################################
+### Follow up test sig. from KW          ###
+### Only timepoint -> Wilcoxon           ###
+############################################
+#only timepoint was significant - follow up with wilcoxon
+dom_time <- data.frame()
+results4 <- data.frame()
+#wilcoxon for each metric, pairwise between groups
+for (i in 1:length(metric_list)){
+  dom_time <-rbind(dom_time, calc_wilcox(dom = dom_big, metric = metric_list[i], group="timepoint"))
+  results4 <- bind_rows(results4, dom_time)
+}
+results_wilcox_dom_time <- results4  %>%
+  rename("dominance_metric" = 1) %>%
+  select(1:8) %>%
+  mutate(between_groups="timepoint") %>%
+  mutate(sig_code=sigcode(as.numeric(p.adj)))
+
+
+#########################
+# Plots for KW/Wilcoxon #
+#########################
+alpha_all <- data.frame()
+
+#timepoint sig different - pairwise wilcoxon to ascertain which different, violin plots to show
+#make plot for each dominance index (all sig dif)
+myplots <- vector("list", 7)
+#get legend for group plot
+legend <- get_legend(plot_leg(plot_base(df=dom_big, metric = metric_list[i], group="timepoint"), 
+                              legendtitle="Timepoint", pal=palette_time) +
+                       theme(legend.box = "vertical", 
+                             legend.position = "bottom",
+                             legend.title = element_text(face="bold")))
+for (i in 1:length(metric_list)){
+  myplots[[i]] <- local({
+    i <- i
+    p1 <- plot_layer(plot_base(df=dom_big, metric = metric_list[i], group="timepoint"),
+                     calc_wilcox(dom=dom_big, metric = metric_list[i], group="timepoint"),
+                     legendtitle="Timepoint", pal=palette_time)
+    print(p1)
+  })
+}
+final_plot <- plot_grid(ncol=3, 
+                        plotlist = myplots, legend, 
+                        labels = "AUTO")
+final_plot
+ggsave("figures\\dom_violins_between_timepoints.pdf", final_plot, height = 29, width = 21, units = "cm", dpi = 300)
+
+############################################
+### Treatment not sig (KW)               ###
+### Violin plots, no testing             ###
+############################################
+myplots <- vector("list", 7)
+legend <- get_legend(plot_leg(plot_base(df=dom_big, metric = metric_list[i], group="treatment"), 
+                                 legendtitle="Treatment", pal=palette_groups) +
+                          theme(legend.direction = "vertical", 
+                                legend.position = "bottom",
+                                legend.title = element_text(face="bold")))
+for (i in 1:length(metric_list)){
+  myplots[[i]] <- local({
+    i <- i
+    p1 <- plot_base(df=dom_big, metric = metric_list[i], group="treatment") + 
+      scale_fill_manual(name="Treatment group", values = palette_groups) +
+      theme(axis.title.y = element_text(size=12, face="bold", colour = "black"),
+            legend.position='none') + geom_point()
+    print(p1)
+  })
+}
+final_plot <- plot_grid(ncol=3, 
+                        plotlist = myplots, legend, 
+                        labels = "AUTO")
+final_plot
+ggsave("figures\\dom_violins_between_treatments.pdf", final_plot, height = 29, width = 21, units = "cm", dpi = 300)
+
+############################################
+### Strep exposure not sig (KW)          ###
+### Violin plots, no testing             ###
+############################################
+myplots <- vector("list", 7)
+legend <- get_legend(plot_leg(plot_base(df=dom_big, metric = metric_list[i], group="strep_exposure"), 
+                              legendtitle="Any exposure", pal=palette_collapsed) +
+                       theme(legend.direction = "vertical", 
+                             legend.position = "bottom",
+                             legend.title = element_text(face="bold")))
+for (i in 1:length(metric_list)){
+  myplots[[i]] <- local({
+    i <- i
+    p1 <- plot_base(df=dom_big, metric = metric_list[i], group="strep_exposure") + 
+      scale_fill_manual(name="Any exposure", values = palette_collapsed) +
+      theme(axis.title.y = element_text(size=12, face="bold", colour = "black"),
+            legend.position='none') + geom_point()
+    print(p1)
+  })
+}
+final_plot <- plot_grid(ncol=3, 
+                        plotlist = myplots, legend, 
+                        labels = "AUTO")
+final_plot
+ggsave("figures\\dom_violins_between_exposure.pdf", final_plot, height = 29, width = 21, units = "cm", dpi = 300)
+
+############################################
+### Sig. differences between timepoints  ###
+### Group within timepoints and test     ###
+### Collapse for n=6                     ###
+### Kruskal Wallis                       ###
+############################################
+
+results_exposure <- data.frame()
+#testing for differences between strep_exposure Y/N
+for (i in (1:length(metric_list))){
+  result <- dom_big %>%
+    group_by(timepoint) %>%
+    do(tidy(kruskal.test(x = .[[metric_list[i]]], g = .$strep_exposure)))
+  result <- result %>% 
+    mutate(metric=metric_list[i]) %>%
+    mutate(sig_code=sigcode(p.value)) %>%
+    mutate(group = "strep_exposure")
+  results_exposure <- bind_rows(results_exposure, result)
+}
+# Final test - collapsed to dominant species, where more than 2 available
+dom_big_spec <- dom_big %>% 
+  #filter(dominant_species!="Bifidobacterium_bifidum") %>%
+  filter(timepoint!="T_0") #removing T_0 - no sig diff, not possible to calculate
+results_spec <- data.frame()
+for (i in (1:length(metric_list))){
+  result <- dom_big_spec %>%
+    group_by(timepoint) %>%
+    do(tidy(kruskal.test(x = .[[metric_list[i]]], g = .$dominant_species)))
+  result <- result %>% 
+    mutate(metric=metric_list[i]) %>%
+    mutate(sig_code=sigcode(p.value)) %>%
+    mutate(group = "dominant_species")
+  results_spec <- bind_rows(results_spec, result)
+}
+results_kruskal_dom_collapsed_withintimepoint <- rbind(results_exposure, results_spec)
+
+############################################
+### Follow up test sig. from KW          ###
+### Only timepoint T_24,                 ###
+### only dbp, relative, absolute         ###
+### only strep_exposure, dominant_species ##
+### (cannot test other groups due to n<6) ##
+###-> Wilcoxon                           ###
+############################################
+#only T_24 from KW
+dom_24 <- dom_big %>% filter(timepoint=="T_24")
+result <- data.frame()
+#Wilcoxon for each metric, pairwise between groups: strep_exposure
+for (i in 1:length(metric_list)){
+  result <-rbind(result, calc_wilcox(dom = dom_24, metric = metric_list[i], group="strep_exposure"))
+}
+results_wilcox_T24_dom_exposure <- result %>% 
+  rename("dominance_metric" = 1) %>%
+  select(1:9) %>%
+  mutate(at_timepoint="T_24") %>%
+  mutate(between_groups="strep_exposure")
+#Wilcoxon for each metric, pairwise between groups: dominant species
+dom_24_spec <- dom_24 %>% filter(dominant_species!="Bifidobacterium_bifidum") #filter out sample where Bifidobacterium was dominant
+result <- data.frame()
+for (i in 1:length(metric_list)){
+  result <-rbind(result, calc_wilcox(dom = dom_24_spec, metric = metric_list[i], group="dominant_species"))
+}
+results_wilcox_T24_dom_species <- result %>% 
+  rename("dominance_metric" = 1) %>%
+  select(1:9) %>%
+  mutate(at_timepoint="T_24") %>%
+  mutate(between_groups="dominant_species")
+results_wilcox_dom_collapsed_T24 <- rbind(results_wilcox_T24_dom_exposure, results_wilcox_T24_dom_species)
+
+#function to make violins with wilcoxon
+myplots <- vector("list", 7)
+#get legend for group plot
+legend <- get_legend(plot_leg(plot_base(df=dom_24, metric = metric_list[i], group="strep_exposure"), 
+                              legendtitle="Any exposure", pal=palette_collapsed) +
+                       theme(legend.box = "vertical", 
+                             legend.position = "bottom",
+                             legend.title = element_text(face="bold")))
+for (i in 1:length(metric_list)){
+  myplots[[i]] <- local({
+    i <- i
+    p1 <- plot_layer(plot_base(df=dom_24, metric = metric_list[i], group="strep_exposure"),
+                     calc_wilcox(dom=dom_24, metric = metric_list[i], group="strep_exposure"),
+                     legendtitle="Any exposure", pal=palette_collapsed)
+    print(p1)
+  })
+}
+final_plot <- plot_grid(ncol=3, 
+                        plotlist = myplots, legend, 
+                        labels = "AUTO")
+final_plot
+ggsave("figures\\dom_violins_between_exposure_T24.pdf", final_plot, height = 29, width = 21, units = "cm", dpi = 300)
+
+#SAME FOR DOMINANT SPECIES
+dom_24_spec <- dom_24 %>% filter(dominant_species!="Bifidobacterium_bifidum")
+myplots <- vector("list", 7)
+#get legend for group plot
+legend <- get_legend(plot_leg(plot_base(df=dom_24_spec, metric = metric_list[i], group="dominant_species"), 
+                              legendtitle="Dominant_species", pal = wes_palette("BottleRocket2", 2)) +
+                       theme(legend.direction = "vertical", 
+                             legend.position = "bottom",
+                             legend.title = element_text(face="bold"),
+                             legend.text = element_text(face="italic")))
+for (i in 1:length(metric_list)){
+  myplots[[i]] <- local({
+    i <- i
+    p1 <- plot_layer(plot_base(df=dom_24_spec, metric = metric_list[i], group="dominant_species"),
+                     calc_wilcox(dom=dom_24_spec, metric = metric_list[i], group="dominant_species"),
+                     legendtitle="Dominant_species", pal = wes_palette("BottleRocket2", 2)) +
+      theme(axis.text.x = element_text(face="italic", angle=30, vjust=0.8, hjust=0.8))
+    print(p1)
+  })
+}
+final_plot <- plot_grid(ncol=3, 
+                        plotlist = myplots, legend, 
+                        labels = "AUTO")
+final_plot
+ggsave("figures\\dom_violins_between_dominant_species_T24.pdf", final_plot, height = 40, width = 21, units = "cm", dpi = 300)
+
+########################
+# abundance values     #
+# to support dominance #
+########################
+
+#basic rel abun
+mpa_table <- read.table("cleaned_data/mpa_table.tsv", comment.char = '#', sep = '\t', header = TRUE, row.names=NULL)
+#filter to species level assignments
+mpa_table <- mpa_table[grep('s__',mpa_table[,1]),]
+mpa_table[,1] <- gsub(".+\\|s__", "", mpa_table[,1])
+mpa_table <- mpa_table %>% filter(grepl('t__',row.names))
+rownames(mpa_table) <- mpa_table[,1]
+mpa_table <- mpa_table[,-1]
+#generate matrix of abundance data
+#remove empty rows
+mpa_table_filt <- mpa_table[rowSums(mpa_table) >= 0.000001,]
+# Get row names of the matrix
+row_names <- rownames(mpa_table_filt)
+# Filter rows with partial string matches
+partial_match_rows <- row_names[grepl("Fusobacterium", row_names, ignore.case = TRUE)]
+partial_match_rows_S <- row_names[grepl("Streptococcus_salivarius", row_names, ignore.case = TRUE)]
+partial_match_rows_B <- row_names[grepl("Bifidobacterium_longum", row_names, ignore.case = TRUE)]
+
+# Subset the matrix based on the filtered row names
+fuso <- mpa_table_filt[partial_match_rows, , drop = FALSE]
+strep <- mpa_table_filt[partial_match_rows_S, , drop = FALSE]
+bif <- mpa_table_filt[partial_match_rows_B, , drop = FALSE]
+#strep <- t(strep)
+
+#FUSO
+#rename t__ level to species level assignments
+sp1 <- as.data.frame(row.names(fuso))
+names(sp1) <- c("id")
+sp1 <- sp1 %>%
+  separate(id, c("species","sgb"), "__") %>%
+  mutate(taxon = gsub("\\|t","", species))
+rownames(fuso) <- sp1$taxon
+fuso <- t(fuso)
+#STREP
+#rename t__ level to species level assignments
+sp1 <- as.data.frame(row.names(strep))
+names(sp1) <- c("id")
+sp1 <- sp1 %>%
+  separate(id, c("species","sgb"), "__") %>%
+  mutate(taxon = gsub("\\|t","", species))
+rownames(strep) <- sp1$taxon
+strep <- t(strep)
+#BIF
+sp1 <- as.data.frame(row.names(bif))
+names(sp1) <- c("id")
+sp1 <- sp1 %>%
+  separate(id, c("species","sgb"), "__") %>%
+  mutate(taxon = gsub("\\|t","", species))
+rownames(bif) <- sp1$taxon
+bif <- t(bif)
+
+meta <- read.csv("cleaned_data/metadata.csv", nrows=36, row.names=1)
+meta <- meta  %>%
+  mutate(strep_exposure = case_when(
+    treatment == "FS" ~ "Y", 
+    treatment == "S" ~ "Y",
+    treatment == "F" ~ "N",
+    treatment == "B" ~ "N"))
+
+#Group by strep exposure
+df_strep <- merge(meta, strep, by = 'row.names')
+df_strep_T24 <- df_strep %>% filter(timepoint=="T_24") %>% 
+  select(strep_exposure, Streptococcus_salivarius) %>%
+  group_by(strep_exposure) %>%
+  summarise('Mean Relative Abundance(n=3)' = round(mean(Streptococcus_salivarius, na.rm = TRUE), digits = 2),
+            S.d. = round(sd(Streptococcus_salivarius, na.rm = TRUE), digits = 2)) %>%
+  mutate(Species="Streptococcus_salivarius") %>%
+  rename("Any exposure to S. salivarius DPC6487"=strep_exposure) %>%
+  select(4,1,2,3)
+
+df_bif <- merge(meta, bif, by = 'row.names')
+df_bif_T24 <- df_bif %>% filter(timepoint=="T_24") %>% 
+  select(strep_exposure, Bifidobacterium_longum) %>%
+  group_by(strep_exposure) %>%
+  summarise('Mean Relative Abundance(n=3)' = round(mean(Bifidobacterium_longum, na.rm = TRUE), digits = 2),
+            S.d. = round(sd(Bifidobacterium_longum, na.rm = TRUE), digits = 2)) %>%
+  mutate(Species="Bifidobacterium_longum") %>%
+  rename("Any exposure to S. salivarius DPC6487"=strep_exposure) %>%
+  select(4,1,2,3)
+
+df_fuso <- merge(meta, fuso, by = 'row.names')
+df_fuso_T24 <- df_fuso %>% filter(timepoint=="T_24") %>% 
+  select(strep_exposure, Fusobacterium_nucleatum) %>%
+  group_by(strep_exposure) %>%
+  summarise('Mean Relative Abundance(n=3)' = round(mean(Fusobacterium_nucleatum, na.rm = TRUE), digits = 2),
+            S.d. = round(sd(Fusobacterium_nucleatum, na.rm = TRUE), digits=3)) %>%
+  mutate(Species="Fusobacterium_nucleatum") %>%
+  rename("Any exposure to S. salivarius DPC6487"=strep_exposure) %>%
+  select(4,1,2,3)
+
+abundances <- rbind(df_strep_T24, df_bif_T24, df_fuso_T24)
+
+#Group by treatment
+# 
+# "Control", #b
+# expression(paste(italic("F. nucleatum"), " DSM15643")), #f
+# expression(paste(italic("F. nuc"), " DSM15643 + ", italic("S. sal"), " DPC6487")), #fs
+# expression(paste(italic("S. salivarius"), " DPC6487")))
+
+
+df_strep_T24 <- df_strep %>% filter(timepoint=="T_24") %>% 
+  select(treatment, Streptococcus_salivarius) %>%
+  group_by(treatment) %>%
+  summarise('Mean Relative Abundance(n=3)' = round(mean(Streptococcus_salivarius, na.rm = TRUE), digits = 2),
+            S.d. = round(sd(Streptococcus_salivarius, na.rm = TRUE), digits = 2)) %>%
+  mutate(Species="Streptococcus_salivarius") %>%
+  mutate(treatment=case_when(
+    treatment =="B" ~"Control",
+    treatment == "F" ~ "F. nucleatum DSM15643",
+    treatment == "FS" ~"F. nuc DSM15643 + S. sal DPC6487",
+    treatment == "S" ~ "S. salivarius DPC6487")) %>%
+  #rename("Any exposure to S. salivarius DPC6487"=treatment) %>%
+  select(4,1,2,3)
+
+df_bif <- merge(meta, bif, by = 'row.names')
+df_bif_T24 <- df_bif %>% filter(timepoint=="T_24") %>% 
+  select(treatment, Bifidobacterium_longum) %>%
+  group_by(treatment) %>%
+  summarise('Mean Relative Abundance(n=3)' = round(mean(Bifidobacterium_longum, na.rm = TRUE), digits = 2),
+            S.d. = round(sd(Bifidobacterium_longum, na.rm = TRUE), digits = 2)) %>%
+  mutate(Species="Bifidobacterium_longum") %>%
+  mutate(treatment=case_when(
+    treatment =="B" ~"Control",
+    treatment == "F" ~ "F. nucleatum DSM15643",
+    treatment == "FS" ~"F. nuc DSM15643 + S. sal DPC6487",
+    treatment == "S" ~ "S. salivarius DPC6487")) %>%
+  #rename("Any exposure to S. salivarius DPC6487"=treatment) %>%
+  select(4,1,2,3)
+
+df_fuso <- merge(meta, fuso, by = 'row.names')
+df_fuso_T24 <- df_fuso %>% filter(timepoint=="T_24") %>% 
+  select(treatment, Fusobacterium_nucleatum) %>%
+  group_by(treatment) %>%
+  summarise('Mean Relative Abundance(n=3)' = round(mean(Fusobacterium_nucleatum, na.rm = TRUE), digits = 2),
+            S.d. = round(sd(Fusobacterium_nucleatum, na.rm = TRUE), digits=2)) %>%
+  mutate(Species="Fusobacterium_nucleatum") %>%
+  mutate(treatment=case_when(
+    treatment =="B" ~"Control",
+    treatment == "F" ~ "F. nucleatum DSM15643",
+    treatment == "FS" ~"F. nuc DSM15643 + S. sal DPC6487",
+    treatment == "S" ~ "S. salivarius DPC6487")) %>%
+  #rename("Any exposure to S. salivarius DPC6487"=treatment) %>%
+  select(4,1,2,3)
+
+abundances_groups <- rbind(df_strep_T24, df_bif_T24, df_fuso_T24)
+# 
+# df_bif_T24 <- df_bif %>% filter(timepoint=="T_24") %>% group_by(strep_exposure) %>% mutate(mean=mean(Bifidobacterium_longum)) %>%
+#   mutate(sd=sd(Bifidobacterium_longum)) %>% ungroup()
+# 
+# 
+# #ggplot(df, aes(x = treatment_replicate, y= Streptococcus_salivarius)) + geom_bar(stat="identity") +
+# #  facet_wrap(~timepoint)
+# 
+# df %>% group_by(exp_group) %>% mutate(mean=mean(Streptococcus_salivarius)) -> test
+# df %>% filter(timepoint=="T_24") %>% group_by(strep_exposure) %>% mutate(mean=mean(Streptococcus_salivarius)) %>%
+#   mutate(sd=sd(Streptococcus_salivarius)) %>%
+#   mutate(species=Streptococcus_salivarius) %>%
+#   
+# aggregate(df[, 3:4], list(d$Name), mean)
+# 
+# -> test2
+# 
+# finalstrep <- data.frame(Species )
+# 
+# df_bif <- merge(meta, bif, by='row.names')
+# df_bif %>% filter(timepoint=="T_24") %>% group_by(strep_exposure) %>% mutate(mean=mean(Bifidobacterium_adolescentis )) %>%
+#   mutate(sd=sd(Bifidobacterium_adolescentis)) -> test2
+
+#######################
+#generate output file #
+#######################
+list_of_datasets <- list("Dominance Indices" = dom_big,
+                         "Kruskal Wallis, all groups" = results_kruskal_dom,
+                         "Wilcoxon, Timepoint" = results_wilcox_dom_time,
+                         "Kruskal Wallis, by timepoints" = results_kruskal_dom_collapsed_withintimepoint,
+                         "Wilcoxon, T_24, collapsed" = results_wilcox_dom_collapsed_T24,
+                         "Mean abundances, n6, T_24" = abundances,
+                         "Mean abundances, n3, T_24" = abundances_groups)
+openxlsx::write.xlsx(list_of_datasets, file = "reports/dominance.xlsx")

@@ -1,0 +1,13 @@
+"","Species","treatment","timepoint","Mean Relative Abundance(n=3)","S.d."
+"1","Fusobacterium_nucleatum","Control","T_0",0,0
+"2","Fusobacterium_nucleatum","Control","T_24",0,0
+"3","Fusobacterium_nucleatum","Control","T_6",0,0
+"4","Fusobacterium_nucleatum","F. nuc DSM15643 + S. sal DPC6487","T_0",0.11,0.013
+"5","Fusobacterium_nucleatum","F. nuc DSM15643 + S. sal DPC6487","T_24",0.02,0.013
+"6","Fusobacterium_nucleatum","F. nuc DSM15643 + S. sal DPC6487","T_6",0,0
+"7","Fusobacterium_nucleatum","F. nucleatum DSM15643","T_0",0.07,0.052
+"8","Fusobacterium_nucleatum","F. nucleatum DSM15643","T_24",0.21,0.166
+"9","Fusobacterium_nucleatum","F. nucleatum DSM15643","T_6",0.2,0.088
+"10","Fusobacterium_nucleatum","S. salivarius DPC6487","T_0",0,0
+"11","Fusobacterium_nucleatum","S. salivarius DPC6487","T_24",0,0
+"12","Fusobacterium_nucleatum","S. salivarius DPC6487","T_6",0,0

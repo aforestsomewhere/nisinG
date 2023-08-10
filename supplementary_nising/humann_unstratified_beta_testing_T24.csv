@@ -1,0 +1,4 @@
+"","Data","Metric","Comparing","Test","Test_Statistic","P_value","Significance_codes"
+"2","humann_unstratified (T_24)","Robust Aitchison Distances","Strep exposure","anosim","-0.0129629629629629","0.4279"," "
+"21","humann_unstratified (T_24)","Robust Aitchison Distances","Strep exposure","adonis2","1.06228382486653","0.3086"," "
+"3","humann_unstratified (T_24)","Robust Aitchison Distances","Strep exposure","beta_dispersion","0.0170796885816008","0.922077922077922"," "

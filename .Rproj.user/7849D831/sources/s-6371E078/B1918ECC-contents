@@ -1,0 +1,390 @@
+#SUPERFOCUS DIVERSITY lvl 2
+library(ggplot2)
+library(dplyr)
+library(vegan)
+theme_set(theme_classic())
+palette_groups <- c("#332211","#ffcc44", "#44aacc", "#bb2211")
+palette_time <- c("#9A8822", "#F8AFA8", "#74A089")
+palette_collapsed <- c("#FF0000", "#00A08A")
+####################
+### functions    ###
+####################
+#annotate significance codes
+sigcode = function(P){
+  if(P<0){ 
+    return("NaN") 
+  }
+  else if(P<0.001){ 
+    return("***") 
+  }
+  else if(P<0.01){ 
+    return("**") 
+  }
+  else if(P<=0.05){ 
+    return("*") 
+  }
+  else if(P<0.1){ 
+    return(".") 
+  }
+  else{ return(" ")}
+}
+#anosim
+calc_anosim <- function(distmat, group, dataset, metric, groupname){
+  res <- anosim(distmat,group, permutations = 9999)
+  P <- res$signif
+  F<-res$statistic
+  S<-sigcode(P)
+  anosim_df <- c(dataset, metric, groupname, "anosim",F,P,S)
+  return(anosim_df)
+}
+#adonis
+calc_adonis <- function(distmat, group, dataset, metric, groupname){
+  res <- adonis2(distmat~group, permutations = 9999)
+  P<- res["group","Pr(>F)"]
+  F<-res["group","F"]
+  S<-sigcode(P)
+  adonis_df <- c(dataset, metric, groupname, "adonis2",F,P,S)
+  return(adonis_df)
+}
+#beta dispersion -checkk beta dispersions within groups
+calc_disp <- function(distmat, group, dataset, metric, groupname){
+  res <- betadisper(distmat, group)
+  disp <- permutest(res, pairwise=TRUE, permutations=1000)
+  R<-disp$tab$F[1]
+  P<- disp$tab$'Pr(>F)'[1]
+  S<-sigcode(P)
+  adonis_df <- c(dataset, metric, groupname, "beta_dispersion",R,P,S)
+  return(adonis_df)
+}
+
+###################
+# Read and clean  #
+###################
+
+sf <- read.csv("data/superfocus_2.csv",skip=4, row.names = 1, check.names = FALSE)
+#read sample metadata
+meta <- read.csv("cleaned_data/metadata.csv", nrows=36, row.names=1)
+meta <- meta %>%
+  mutate(strep_exposure = case_when(
+    treatment == "FS" ~ "Y", 
+    treatment == "S" ~ "Y",
+    treatment == "F" ~ "N",
+    treatment == "B" ~ "N"))
+samplenames <- rownames(meta)
+sf2 <- sf %>%
+  dplyr::select(contains("%")) %>% #filter to relative abundance entries
+  dplyr::select(matches(paste(samplenames, collapse = "|"))) %>% #select nisin samples
+  dplyr::select(seq(2, ncol(.), by = 2)) %>% #select every other (forward/reverse reads)
+  rename_with(~ gsub("_microbial_2.fastq %", "", .))
+sf2 <- sf2[rowSums(sf2) >= 0.01,]
+sf2 <- t(sf2)
+rm(sf)
+
+############################
+# All samples (timepoints) #
+############################
+
+########################
+# Plotting
+########################
+
+#ordination 1
+dist_mat_ra = vegdist(sf2, method="robust.aitchison")
+
+#ANOSIM
+# 1. Timepoint, 2. Treatment, 3. Strep exposure
+#initialise output DF
+anosim_df_all <- data.frame(Data="SUPER-FOCUS level 2", 
+                            Metric="Robust Aitchison Distances",
+                            Comparing=NA,
+                            Test="ANOSIM",
+                            Test_Statistic=NA,
+                            P_value=NA,
+                            Significance_codes="NA")
+anosim_df_all <-rbind(anosim_df_all, calc_anosim(dist_mat_ra,group=meta$timepoint, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Timepoint"))
+anosim_df_all[-1,]-> anosim_df_all #remove first shaper row (empty)
+anosim_df_all <-rbind(anosim_df_all, calc_anosim(dist_mat_ra,group=meta$treatment, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Treatment"))
+anosim_df_all <-rbind(anosim_df_all, calc_anosim(dist_mat_ra,group=meta$strep_exposure, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Strep exposure"))
+#ADONIS2
+# 1. Timepoint, 2. Treatment, 3. Strep exposure
+anosim_df_all <-rbind(anosim_df_all, calc_adonis(dist_mat_ra,group=meta$timepoint, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Timepoint"))
+anosim_df_all <-rbind(anosim_df_all, calc_adonis(dist_mat_ra,group=meta$treatment, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Treatment"))
+anosim_df_all <-rbind(anosim_df_all, calc_adonis(dist_mat_ra,group=meta$strep_exposure, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Strep exposure"))
+#Beta dispersion
+# 1. Timepoint, 2. Treatment, 3. Strep exposure
+anosim_df_all <-rbind(anosim_df_all, calc_disp(dist_mat_ra,group=meta$timepoint, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Timepoint"))
+anosim_df_all <-rbind(anosim_df_all, calc_disp(dist_mat_ra,group=meta$treatment, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Treatment"))
+anosim_df_all <-rbind(anosim_df_all, calc_disp(dist_mat_ra,group=meta$strep_exposure, dataset="SUPER-FOCUS level 2", metric="Robust Aitchison Distances", groupname="Strep exposure"))
+#write outputs
+write.csv(anosim_df_all, file="reports\\superfocus2_beta_testing_all_timepoints.csv")
+
+
+cmd_res = cmdscale(dist_mat_ra, 
+                   k = (nrow(sf2) - 1),
+                   eig = TRUE)
+
+# calculate the proportion of variance in the data which is explained by 
+#the first two PCoA axes
+PC1 <- round(100*(cmd_res$eig[1]/(sum(cmd_res$eig))), digits = 2)
+PC2 <- round(100*(cmd_res$eig[2]/(sum(cmd_res$eig))), digits = 2)
+#extract details of features
+pcoa_df = tibble(PC1 = cmd_res$points[,1], 
+                 PC2 = cmd_res$points[,2])
+
+#combine pcoa with sample data
+pcoa_meta = bind_cols(pcoa_df, meta)
+
+#Plot 1 timepoint
+p1 = ggplot(pcoa_meta,aes(x = PC1, y = PC2, color=timepoint)) + 
+  scale_color_manual(name="Timepoint",
+                     labels=c("T_0", 
+                              "T_6",
+                              "T_24"),
+                     values = palette_time) +
+  scale_fill_manual(name="Timepoint",
+                    labels=c("T_0", 
+                             "T_6",
+                             "T_24"),
+                    values = palette_time) +
+  labs(shape="Treatment") +
+  theme(axis.title.x= element_text(size=10),
+        axis.title.y = element_text(size=10),
+        axis.text.x = element_text(size=10),
+        axis.text.y = element_text(size=10),
+        legend.key.size = unit(0.5, 'mm'),
+        legend.title = element_text(size = 7, face = "bold"),
+        legend.text = element_text(size=5),
+        legend.title.align = 0.5,
+        legend.text.align = 0,
+        legend.position="bottom", legend.box = "horizontal",
+        legend.background = element_rect(colour="black",linewidth = 0.5, linetype="solid"),
+        plot.title = element_text(size = 14, hjust = 0.5)) +
+  ylab(paste("PC2 (",PC2,"%)", sep=""))+
+  xlab(paste("PC1 (",PC1,"%)", sep=""))+
+  geom_mark_ellipse(aes(fill=timepoint),
+                    alpha=0.05,
+                    linetype = 2) +
+  geom_point(aes(shape=treatment),size=1, alpha=1) +
+  scale_shape_manual(name="Treatment",
+                     labels=c("Control", #b
+                              expression(paste(italic("F. nucleatum"), " DSM15643")), #f
+                              expression(paste(italic("F. nuc"), " DSM15643 + ", italic("S. sal"), " DPC6487")), #fs
+                              expression(paste(italic("S. salivarius"), " DPC6487"))), #s
+                     values = c(15,16,17,18)) +
+  guides(fill= "none",
+         col= guide_legend(title.position = "top",
+                           nrow=2, byrow=TRUE,
+                           override.aes=list(fill=palette_time)),
+         shape = guide_legend(title.position = "top",
+                              nrow=2, byrow=TRUE)) +
+  ggtitle("All timepoints ~ timepoint")
+p1 <- p1 + expand_limits(x = c(-15, 10), y = c(-10, 15))
+p1
+#plot 2 treatment
+p2 = ggplot(pcoa_meta,aes(x = PC1, y = PC2, color=treatment)) + 
+  scale_color_manual(name="Treatment",
+                     labels=c("Control", #b
+                              expression(paste(italic("F. nucleatum"), " DSM15643")), #f
+                              expression(paste(italic("F. nuc"), " DSM15643 + ", italic("S. sal"), " DPC6487")), #fs
+                              expression(paste(italic("S. salivarius"), " DPC6487"))), #s
+                     values = palette_groups) + 
+  scale_fill_manual(name="Treatment",
+                    labels=c("Control", #b
+                             expression(paste(italic("F. nucleatum"), " DSM15643")), #f
+                             expression(paste(italic("F. nuc"), " DSM15643 + ", italic("S. sal"), " DPC6487")), #fs
+                             expression(paste(italic("S. salivarius"), " DPC6487"))), #s
+                    values = palette_groups) +
+  labs(shape="Treatment") +
+  theme(axis.title.x= element_text(size=10),
+        axis.title.y = element_text(size=10),
+        axis.text.x = element_text(size=10),
+        axis.text.y = element_text(size=10),
+        legend.key.size = unit(0.5, 'mm'),
+        legend.title = element_text(size = 7, face = "bold"),
+        legend.text = element_text(size=5),
+        legend.title.align = 0.5,
+        legend.text.align = 0,
+        legend.position="bottom", legend.box = "horizontal",
+        legend.background = element_rect(colour="black",linewidth = 0.5, linetype="solid"),
+        plot.title = element_text(size = 14, hjust = 0.5)) +
+  ylab(paste("PC2 (",PC2,"%)",sep=""))+
+  xlab(paste("PC1 (",PC1,"%)",sep=""))+
+  geom_mark_ellipse(aes(fill=treatment),
+                    alpha=0.05,
+                    linetype = 2) +
+  geom_point(aes(shape=timepoint),size=1, alpha=1) +
+  scale_shape_manual(name="Timepoint",
+                     labels=c("T_0", 
+                              "T_6",
+                              "T_24"),
+                     values =  c(15,16,17,18)) +
+  guides(fill= "none",
+         col= guide_legend(title.position = "top",
+                           nrow=2, byrow=TRUE,
+                           override.aes=list(fill=palette_groups)),
+         shape = guide_legend(title.position = "top",
+                              nrow=2, byrow=TRUE)) +
+  ggtitle("All timepoints ~ treatment")
+p2 <- p2 + expand_limits(x = c(-15, 10), y = c(-10, 12))
+p2
+
+#plot e any exposure 
+p3 = ggplot(pcoa_meta,aes(x = PC1, y = PC2, color=strep_exposure)) + 
+  scale_color_manual(name="Any exposure",
+                     labels=c(expression(paste("No ", italic("S. salivarius"), " DPC6487")),
+                              expression(paste("Any ", italic("S. salivarius"), " DPC6487"))),
+                     values = palette_collapsed) + 
+  scale_fill_manual(name="Any exposure",
+                    labels=c(expression(paste("No ", italic("S. salivarius"), " DPC6487")),
+                             expression(paste("Any ", italic("S. salivarius"), " DPC6487"))),
+                    values = palette_collapsed) +
+  labs(shape="Timepoint") +
+  theme(axis.title.x= element_text(size=10),
+        axis.title.y = element_text(size=10),
+        axis.text.x = element_text(size=10),
+        axis.text.y = element_text(size=10),
+        legend.key.size = unit(0.5, 'mm'),
+        legend.title = element_text(size = 7, face = "bold"),
+        legend.text = element_text(size=5),
+        legend.title.align = 0.5,
+        legend.text.align = 0,
+        legend.position="bottom", legend.box = "horizontal",
+        legend.background = element_rect(colour="black",linewidth = 0.5, linetype="solid"),
+        plot.title = element_text(size = 14, hjust = 0.5)) +
+  ylab(paste("PC2 (",PC2,"%)",sep=""))+
+  xlab(paste("PC1 (",PC1,"%)",sep=""))+
+  geom_mark_ellipse(aes(fill=strep_exposure),
+                    alpha=0.05,
+                    linetype = 2) +
+  geom_point(aes(shape=timepoint),size=1, alpha=1) +
+  scale_shape_manual(name="Timepoint",
+                     labels=c("T_0", 
+                              "T_6",
+                              "T_24"),
+                     values =  c(15,16,17,18)) +
+  guides(fill= "none",
+         col= guide_legend(title.position = "top",
+                           nrow=2, byrow=TRUE),
+         shape = guide_legend(title.position = "top",
+                              nrow=2, byrow=TRUE)) +
+  ggtitle("All timepoints ~ any exposure")
+p3 <- p3 + expand_limits(x = c(-15, 10), y = c(-10, 12))
+p3
+
+
+#### Only T_24 - need new ordination and collapse of samples
+
+################################
+#collapsed and only t24
+################################
+#need new ordination filtered to T24
+meta_filt <- meta %>%
+  filter(timepoint=="T_24")
+sf2[rownames(sf2) %in% rownames(meta_filt),] -> sf_table_filt
+#remove empty rows
+#mpa_table_filt <- mpa_table_filt[rowSums(mpa_table_filt) >= 0.000001,]
+#mpa_table_filt_mat <- t(mpa_table_filt)
+#robust aitchisons transformation
+dist_mat_sf_filt = vegdist(sf_table_filt, method="robust.aitchison")
+
+#ANOSIM
+# 1. Timepoint, 2. Treatment, 3. Strep exposure
+#initialise output DF
+filt_df_all <- data.frame(Data="SUPER-FOCUS level 2", 
+                          Metric="Robust Aitchison Distances",
+                          Comparing=NA,
+                          Test="ANOSIM",
+                          Test_Statistic=NA,
+                          P_value=NA,
+                          Significance_codes="NA")
+#filt_df_all <-rbind(filt_df_all, calc_anosim(dist_mat_ra,group=meta_filt$timepoint, dataset="SUPER-FOCUS level 3 (T_24)", metric="Robust Aitchison Distances", groupname="Timepoint"))
+filt_df_all <-rbind(filt_df_all, calc_anosim(dist_mat_sf_filt,group=meta_filt$strep_exposure, dataset="SUPER-FOCUS level 2 (T_24)", metric="Robust Aitchison Distances", groupname="Strep exposure"))
+filt_df_all[-1,]-> filt_df_all #remove first shaper row (empty)
+# filt_df_all <-rbind(filt_df_all, calc_anosim(dist_mat_ra,group=meta_filt$treatment, dataset="SUPER-FOCUS level 3 (T_24)", metric="Robust Aitchison Distances", groupname="Treatment"))
+# filt_df_all <-rbind(filt_df_all, calc_anosim(dist_mat_ra,group=meta_filt$strep_exposure, dataset="SUPER-FOCUS level 3 (T_24)", metric="Robust Aitchison Distances", groupname="Strep exposure"))
+#ADONIS2
+# 1. Timepoint, 2. Treatment, 3. Strep exposure
+#filt_df_all <-rbind(filt_df_all, calc_adonis(dist_mat_ra,group=meta_filt$timepoint, dataset="SUPER-FOCUS level 3 (T_24)", metric="Robust Aitchison Distances", groupname="Timepoint"))
+#filt_df_all <-rbind(filt_df_all, calc_adonis(dist_mat_ra,group=meta_filt$treatment, dataset="SUPER-FOCUS level 3 (T_24)", metric="Robust Aitchison Distances", groupname="Treatment"))
+filt_df_all <-rbind(filt_df_all, calc_adonis(dist_mat_sf_filt,group=meta_filt$strep_exposure, dataset="SUPER-FOCUS level 2 (T_24)", metric="Robust Aitchison Distances", groupname="Strep exposure"))
+#Beta dispersion
+# 1. Timepoint, 2. Treatment, 3. Strep exposure
+#filt_df_all <-rbind(filt_df_all, calc_disp(dist_mat_ra,group=meta_filt$timepoint, dataset="SUPER-FOCUS level 3 (T_24)", metric="Robust Aitchison Distances", groupname="Timepoint"))
+#filt_df_all <-rbind(filt_df_all, calc_disp(dist_mat_ra,group=meta_filt$treatment, dataset="SUPER-FOCUS level 3 (T_24)", metric="Robust Aitchison Distances", groupname="Treatment"))
+filt_df_all <-rbind(filt_df_all, calc_disp(dist_mat_sf_filt,group=meta_filt$strep_exposure, dataset="SUPER-FOCUS level 2 (T_24)", metric="Robust Aitchison Distances", groupname="Strep exposure"))
+
+write.csv(filt_df_all, file="reports\\superfocus2_beta_testing_T24.csv")
+
+#plot
+cmd_res = cmdscale(dist_mat_sf_filt, 
+                   k = (nrow(sf_table_filt) - 1),
+                   eig = TRUE)
+
+# calculate the proportion of variance in the data which is explained by 
+#the first two PCoA axes
+PC1 <- round(100*(cmd_res$eig[1]/(sum(cmd_res$eig))), digits = 2)
+PC2 <- round(100*(cmd_res$eig[2]/(sum(cmd_res$eig))), digits = 2)
+#extract details of features
+pcoa_df = tibble(PC1 = cmd_res$points[,1], 
+                 PC2 = cmd_res$points[,2])
+
+
+#combine pcoa with sample data
+pcoa_meta = bind_cols(pcoa_df, meta_filt)
+
+
+
+
+
+p4 = ggplot(pcoa_meta,aes(x = PC1, y = PC2, color=strep_exposure)) + 
+  geom_mark_ellipse(aes(fill=strep_exposure),
+                    alpha=0.05,
+                    linetype = 2) +
+  scale_color_manual(name="Any exposure",
+                     labels=c(expression(paste("No ", italic("S. salivarius"), " DPC6487")),
+                              expression(paste("Any ", italic("S. salivarius"), " DPC6487"))),
+                     values = palette_collapsed) + 
+  scale_fill_manual(name="Any exposure",
+                    labels=c(expression(paste("No ", italic("S. salivarius"), " DPC6487")),
+                             expression(paste("Any ", italic("S. salivarius"), " DPC6487"))),
+                    values = palette_collapsed) +  labs(shape="Treatment") +
+  theme(axis.title.x= element_text(size=10),
+        axis.title.y = element_text(size=10),
+        axis.text.x = element_text(size=10),
+        axis.text.y = element_text(size=10),
+        legend.key.size = unit(0.5, 'mm'),
+        legend.title = element_text(size = 7, face = "bold"),
+        legend.text = element_text(size=5),
+        legend.title.align = 0.5,
+        legend.text.align = 0,
+        legend.position="bottom", legend.box = "horizontal",
+        legend.background = element_rect(colour="black",linewidth = 0.5, linetype="solid"),
+        plot.title = element_text(size = 14, hjust = 0.5)) +
+  ylab(paste("PC2 (",PC2,"%)",sep=""))+
+  xlab(paste("PC1 (",PC1,"%)",sep=""))+
+  geom_point(aes(shape=treatment),size=1, alpha=1) +
+  scale_shape_manual(name="Treatment",
+                     labels=c("Control", #b
+                              expression(paste(italic("F. nucleatum"), " DSM15643")), #f
+                              expression(paste(italic("F. nuc"), " DSM15643 + ", italic("S. sal"), " DPC6487")), #fs
+                              expression(paste(italic("S. salivarius"), " DPC6487"))), #s
+                     values =  c(15,16,17,18)) +
+  guides(fill= "none",
+         col= guide_legend(title.position = "top",
+                           nrow=2, byrow=TRUE,
+                           override.aes=list(fill=wes_palette("Darjeeling1", n = 2, type = "discrete"))),
+         shape = guide_legend(title.position = "top",
+                              nrow=2, byrow=TRUE,
+                              override.aes=list(col=c("#FF0000", "#FF0000","#00A08A","#00A08A")))) +
+  ggtitle(expression(paste("T_24 only ~ ",italic("S. salivarius"), " exposure")))
+p4 <- p4 + expand_limits(x = c(-7, 6),y = c(-5, 10))
+p4
+#################
+# Testing
+#################
+plots <- plot_grid(p1, p2, p3, p4, nrow=2, labels="AUTO")
+
+title <- ggdraw() + draw_label("Beta-diversity, SUPER-FOCUS Level 2", fontface='bold')
+plots2 <- plot_grid(title, plots, ncol=1, rel_heights=c(0.1, 1)) 
+plots2
+ggsave("figures\\func_sf2.pdf", plots2, height = 29, width = 21, units = "cm", dpi = 300)

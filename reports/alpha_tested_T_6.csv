@@ -1,0 +1,5 @@
+"Data","Metric","Comparing","Test","Test_Statistic","P_value","p_adjust_method","Significance_codes"
+"MetaPhlAn4","richness","B  v.s  S","Wilcoxon rank sum","21","0.688","BH","ns"
+"MetaPhlAn4","shannon","B  v.s  S","Wilcoxon rank sum","23","0.485","BH","ns"
+"MetaPhlAn4","simpson","B  v.s  S","Wilcoxon rank sum","16","0.818","BH","ns"
+"MetaPhlAn4","inv_simpson","B  v.s  S","Wilcoxon rank sum","16","0.818","BH","ns"

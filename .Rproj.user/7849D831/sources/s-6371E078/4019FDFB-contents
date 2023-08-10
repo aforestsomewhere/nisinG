@@ -1,0 +1,300 @@
+#########################
+#' Humann4
+#' alpha diversity (FuncDiv)
+#' 20/03/23
+#' nisinG
+#########################
+
+library(tidyverse)
+library(dplyr)
+library(FuncDiv)
+library(viridis)
+library(webshot)
+library(devEMF)
+
+
+#use with humann stratified data
+contrib_tab <- read.table("data\\pathcoverage_cpm_stratified.tsv",
+                          header = TRUE, sep = "\t", stringsAsFactors = FALSE, check.names = FALSE)
+colnames(contrib_tab) <- gsub("_Coverage", "", colnames(contrib_tab)) #remove _coverage after sample names for filtering
+#read sample metadata
+meta <- read.csv("cleaned_data/metadata.csv", nrows=36, row.names=1)
+meta <- meta %>%
+  mutate(strep_exposure = case_when(
+    treatment == "FS" ~ "Y", 
+    treatment == "S" ~ "Y",
+    treatment == "F" ~ "N",
+    treatment == "B" ~ "N"))
+samplenames <- rownames(meta)
+contrib_tab_paths <- contrib_tab %>%
+  dplyr::select(Pathway)
+rownames(contrib_tab_paths)<- contrib_tab_paths[,1]
+rownames(contrib_tab)<-contrib_tab[,1]
+
+#rownames(Pathway)#preserve pathway and tax data
+contrib_tab[,colnames(contrib_tab) %in% samplenames] -> contrib_tab
+dplyr::left_join(contrib_tab_paths,
+                 contrib_tab %>% mutate(Pathway = rownames(contrib_tab)),
+                 by ='Pathway') -> final_contrib_tab
+
+#split out UNINTEGRATED for now
+final_contrib_tab2 <- final_contrib_tab %>%
+  filter(!str_detect(Pathway, "UNINTEGRATED"))
+rownames(final_contrib_tab2)<-final_contrib_tab2[,1]
+testy7 <- final_contrib_tab2[,-1]
+testy7$rowsums <- rowSums(testy7) #many sum to 0... remove
+testy8 <- testy7[rowSums(testy7) >= 10,] #Get rid of genes with low read counts
+testy8 <- testy8 %>% dplyr::select(-rowsums)
+
+#separate pathway column into func and tax
+testy8$Pathway <- rownames(testy8)
+testy8 %>% separate(Pathway, c("func","tax"), "\\|", extra = "merge") -> final3
+#funcdiv
+
+metrics <- c("shannon_index", "berger_parker_dominance")
+alpha_out <- alpha_div_contrib(metrics = metrics,
+                               contrib_tab = testy_df,
+                               ncores = 1,
+                               replace_NA = FALSE,
+                               samp_colname = "sample",
+                               func_colname = "func",
+                               taxon_colname = "tax",
+                               abun_colname = "abundance")
+alpha_out$shannon_index -> alpha_shannon
+
+#pivot longer
+#convert to long format, columns: sample, func, tax, copynum(1 for now), abundance
+samples <- rownames(meta)
+pivot_longer(final3, cols = which(colnames(final3) %in% samples), names_to = "sample", values_to = "abundance") -> testy
+testy$copy_num <- 1
+testy_df <- as.data.frame(testy)
+#final3t <- t(final3)
+#final3t <- as.data.frame(t(final_contrib_tab2))
+#pivot_longer(final3t, cols = colnames(final3t), names_to = "Pathways", values_to = "Abundance") ->testy
+#final3t %>%
+#  pivot_longer(
+#    cols = starts_with("wk"),
+#    names_to = "week",
+#    names_prefix = "wk",
+#    values_to = "rank",
+#    values_drop_na = TRUE
+#  )
+
+#abun_long <- final3 %>%
+#  gather(key="timepoint", value="abundance", T_0, T_6, T_24) %>%
+#  convert_as_factor(replicate, timepoint, treatment)
+
+metrics <- c("richness", "shannon_index", "berger_parker_dominance", "ENS_pie",
+             "heips_evenness", "pielous_evenness", "gini_simpson_index",
+             "simpsons_evenness", "inverse_simpson_index") #remove faiths_pd as it requires a tree
+
+alpha_out <- alpha_div_contrib(metrics = metrics,
+                               contrib_tab = testy_df,
+                               #in_tree = in_tree,
+                               #ncores = 1,
+                               replace_NA = FALSE,
+                               samp_colname = "sample",
+                               func_colname = "func",
+                               taxon_colname = "tax",
+                               abun_colname = "abundance")
+#check means between samples (diff sequencing depth?)
+#scale data to account for this
+alpha_out_scaled <- lapply(alpha_out,
+                           function(X) { data.frame(scale(x = X,
+                                                          center = TRUE,
+                                                          scale = TRUE)) })
+#replace NAs in Shannon with 0
+library(ComplexHeatmap)
+
+#column i.e. sample annotations
+anno <- as.data.frame(t(as.data.frame(rownames(meta))))
+anno <- cbind(rownames(meta),meta$treatment,meta$timepoint)
+annot<- t(anno)
+colnames(annot)<-annot[1,]
+annot
+#ann <- data.frame(meta$treatment, meta$timepoint)
+#rownames(ann)<-rownames(meta)
+#colnames(ann) <- c('treatment', 'time')
+
+colours <- list('treatment' = c('B' = '#9A8822', 'F' = '#F8AFA8', 'FS'='#FDDDA0', 'S'='#74A089'),
+                'timepoint' = c('T_0' = '#899DA4', 'T_6' = '#C93312', 'T_24' = '#DC863B'))
+#colAnn <- HeatmapAnnotation(df = na.omit(alpha_out$berger_parker_dominance),
+#                            which = 'col',
+#                            col = colours,
+#                            annotation_width = unit(c(1, 4), 'cm'),
+#                            gap = unit(1, 'mm'))
+#test10 <- as.matrix(na.omit(alpha_out$shannon_index))
+#colnames(test10)
+#ncol(test10)
+#nrow(colAnn)
+richness <- Heatmap(as.matrix(na.omit(alpha_out_scaled$richness)),
+        column_title = "richness",
+        col = viridis(3),
+        column_title_gp = gpar(fontsize = 10),
+        name="richness",            
+        row_names_gp = grid::gpar(fontsize = 6),
+        heatmap_legend_param = list(title_gp = gpar(fontsize = 5, fontface = "bold"),
+                                    labels_gp = gpar(fontsize = 5),  
+                                    grid_height=unit(1, "mm"),
+                                    grid_width=unit(1,"mm"),
+                                    legend_direction = "horizontal"),
+        show_column_names = FALSE,
+        bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$richness))),]$treatment,
+                                                              timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$richness))),]$timepoint,
+                                                              col=colours))
+draw(richness)
+shannon <- Heatmap(as.matrix(na.omit(alpha_out_scaled$shannon_index)), #omit NAs for shannon
+        column_title = "shannon",
+        col = viridis(3),
+        column_title_gp = gpar(fontsize = 10),
+        name = "Shannon_index",
+        row_names_gp = grid::gpar(fontsize = 5),
+        show_column_names = FALSE,
+        heatmap_legend_param = list(title_gp = gpar(fontsize = 5, fontface = "bold"),
+                                    labels_gp = gpar(fontsize = 5),  
+                                    grid_height=unit(1, "mm"),
+                                    grid_width=unit(1,"mm"),
+                                    legend_direction = "horizontal"),
+        #column_names_gp= grid::gpar(fontsize = 3),
+        bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$shannon_index))),]$treatment,
+                                                              timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$shannon_index))),]$timepoint,
+                                                       col=colours))
+#draw(shannon)
+berger <- Heatmap(as.matrix(na.omit(alpha_out_scaled$berger_parker_dominance)),
+        column_title = "berger_parker_dominance",
+        col = viridis(3),
+        column_title_gp = gpar(fontsize = 10),
+        name = "dominance_index",
+        row_names_gp = grid::gpar(fontsize = 10),
+        heatmap_legend_param = list(title_gp = gpar(fontsize = 8, fontface = "bold"),
+                                    labels_gp = gpar(fontsize = 8),  
+                                    grid_height=unit(1, "mm"),
+                                    grid_width=unit(1,"mm"),
+                                    legend_direction = "horizontal"),
+        show_column_names = FALSE,
+        bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$berger_parker_dominance))),]$treatment,
+                                                              timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$berger_parker_dominance))),]$timepoint,
+                                                              col=colours,
+                                                              #show_legend = F,
+                                                              show_annotation_name = F))
+                                                              #annotation_label = NULL,
+                                                              #annotation_name_gp = gpar()))
+berger
+ENS <- Heatmap(as.matrix(na.omit(alpha_out_scaled$ENS_pie)),
+                  column_title = "ENS_pie",
+                  col = viridis(3),
+                  column_title_gp = gpar(fontsize = 10),
+                  name = "ENS_pie",
+                  row_names_gp = grid::gpar(fontsize = 6),
+                  heatmap_legend_param = list(title_gp = gpar(fontsize = 5, fontface = "bold"),
+                                           labels_gp = gpar(fontsize = 5),  
+                                           grid_height=unit(1, "mm"),
+                                           grid_width=unit(1,"mm"),
+                                           legend_direction = "horizontal"),
+                  show_column_names = FALSE,
+                  bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$ENS_pie))),]$treatment,
+                                                                        timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$ENS_pie))),]$timepoint,
+                                                                        col=colours))
+
+#draw(ENS)
+heips <- Heatmap(as.matrix(na.omit(alpha_out_scaled$heips_evenness)),
+               column_title = "heips_evenness",
+               col = viridis(3),
+               column_title_gp = gpar(fontsize = 10),
+               name = "heips_evenness",
+               row_names_gp = grid::gpar(fontsize = 6),
+               heatmap_legend_param = list(title_gp = gpar(fontsize = 5, fontface = "bold"),
+                                           labels_gp = gpar(fontsize = 5),  
+                                           grid_height=unit(1, "mm"),
+                                           grid_width=unit(1,"mm"),
+                                           legend_direction = "horizontal"),
+               show_column_names = FALSE,
+               bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$heips_evenness))),]$treatment,
+                                                                     timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$heips_evenness))),]$timepoint,
+                                                                     col=colours))
+
+#draw(heips)
+pie_mat <- as.matrix(alpha_out$pielous_evenness)
+
+pielous <- Heatmap(as.matrix(na.omit(alpha_out_scaled$pielous_evenness)),
+                 column_title = "pielous_evenness",
+                 column_title_gp = gpar(fontsize = 10),
+                 col = viridis(3),
+                 name = "pielous_evenness",
+                 row_names_gp = grid::gpar(fontsize = 10),
+                 heatmap_legend_param = list(title_gp = gpar(fontsize = 8, fontface = "bold"),
+                                             labels_gp = gpar(fontsize = 8),  
+                                             grid_height=unit(1, "mm"),
+                                             grid_width=unit(1,"mm"),
+                                             legend_direction = "horizontal"),
+                 show_column_names = FALSE,
+                 bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$pielous_evenness))),]$treatment,
+                                                                       timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$pielous_evenness))),]$timepoint,
+                                                                       col=colours,
+                                                                       show_annotation_name = F))
+
+#draw(pielous)
+gini <- Heatmap(as.matrix(na.omit(alpha_out_scaled$gini_simpson_index)),
+                   column_title = "gini_simpson_index",
+                   column_title_gp = gpar(fontsize = 10), 
+                   col = viridis(3),
+                   name = "gini_simpson_index",
+                   row_names_gp = grid::gpar(fontsize = 6),
+                   show_column_names = FALSE,
+                   heatmap_legend_param = list(title_gp = gpar(fontsize = 8, fontface = "bold"),
+                                            labels_gp = gpar(fontsize = 8),  
+                                            grid_height=unit(1, "mm"),
+                                            grid_width=unit(1,"mm"),
+                                            legend_direction = "horizontal"),
+                   bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$gini_simpson_index))),]$treatment,
+                                                                         timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$gini_simpson_index))),]$timepoint,
+                                                                         col=colours))
+
+#draw(gini)
+simp <- Heatmap(as.matrix(na.omit(alpha_out_scaled$simpsons_evenness)),
+                column_title = "simpsons_evenness",
+                col = viridis(3),
+                column_title_gp = gpar(fontsize = 10),
+                name = "simpsons_evenness",
+                row_names_gp = grid::gpar(fontsize = 6),
+                show_column_names = FALSE,
+                heatmap_legend_param = list(title_gp = gpar(fontsize = 8, fontface = "bold"),
+                                            labels_gp = gpar(fontsize = 8),  
+                                            grid_height=unit(1, "mm"),
+                                            grid_width=unit(1,"mm"),
+                                            legend_direction = "horizontal"),
+                bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$simpsons_evenness))),]$treatment,
+                                                                      timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$simpsons_evenness))),]$timepoint,
+                                                                      col=colours))
+
+#draw(simp)
+invsimp <- Heatmap(as.matrix(na.omit(alpha_out_scaled$inverse_simpson_index)),
+                column_title = "inverse_simpson_index",
+                col = viridis(3),
+                column_title_gp = gpar(fontsize = 10),
+                name = "inverse_simpson_index",
+                row_names_gp = grid::gpar(fontsize = 12),
+                show_column_names = FALSE,
+                heatmap_legend_param = list(title_gp = gpar(fontsize = 8, fontface = "bold"),
+                                            labels_gp = gpar(fontsize = 8),  
+                                            grid_height=unit(1, "mm"),
+                                            grid_width=unit(1,"mm"),
+                                            legend_direction = "horizontal"),
+                bottom_annotation = ComplexHeatmap::HeatmapAnnotation(treatment=meta[colnames(as.matrix(na.omit(alpha_out_scaled$inverse_simpson_index))),]$treatment,
+                                                                      timepoint=meta[colnames(as.matrix(na.omit(alpha_out_scaled$inverse_simpson_index))),]$timepoint,
+                                                                      col=colours))
+
+draw(invsimp)
+#save externally
+png(file="figures\\humann_alpha_func_3.png",width=40,height=20,units="in",res=300)
+draw(invsimp, 
+     heatmap_legend_side = "left", 
+     annotation_legend_side = "left")
+dev.off()
+#ggsave("figures\\humann_alpha_func.svg", width = 20, height = 10, dpi = 300)
+
+#save externally
+#png(file="figures\\humann_alpha_func.png")
+
+draw(ht)
+dev.off()
